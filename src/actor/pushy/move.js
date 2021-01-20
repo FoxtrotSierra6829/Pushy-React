@@ -180,7 +180,9 @@ export default function handleMovement(player) {
     }
 
     function handleKeyDown(e) {
-        e.preventDefault()
+        if (e.keyCode!=122 & e.keyCode!=123) {
+            e.preventDefault()
+        }
         switch(e.keyCode) {
             case 37:
                 return tryMove('left')
