@@ -11,9 +11,9 @@ function Levelname(props) {
                 position: 'absolute',
                 fontFamily: 'arial',
                 color: 'white',
-                top: '.2vw',
-                left: '.3vw',
-                fontSize: '1.5vw',
+                top: scale*0.1+'vh',
+                left: scale*0.2+'vh',
+                fontSize: scale*0.4+'vh',
                 }}
         
         >
