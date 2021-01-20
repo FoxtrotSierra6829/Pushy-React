@@ -1,0 +1,49 @@
+LEVEL CREATION GUIDE
+---------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+
+Level Creation is divided into placing the Ground and the Objects, as well as the Name determination.
+
+---------------------------------------------------------------------------------------------------
+Level Ground files should be called levelX_ground.txt where X is the number of the level
+Level Objects files should be called levelX_objects.txt where X is the number of the level
+Level Name files should be called levelX_name.txt where X is the number of the level
+
+---------------------------------------------------------------------------------------------------
+
+Items are placed with indication numbers seperated by space.
+
+For Ground files:
+0 = Water
+1 = Sand
+2 = Gras
+
+For Objects files:
+0 = None
+1 = Pushy
+2 = House
+3 = Box
+4 = Stone
+5 = Palm left
+6 = Palm right
+7 = Seastar
+8 = WaterHole
+9 = SandHole
+10 = Bottle
+11 = Bean
+
+Empty World Grid (20x12):
+
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+

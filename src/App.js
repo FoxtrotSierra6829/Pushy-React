@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react'
+import World from './world'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{
+      width: '100vw',
+      height: '100vh',
+      display: '-webkit-flex',
+      display: '-ms-flexbox',
+      display: 'flex',
+      
+      '-webkit-justify-content': 'center',
+      '-ms-flex-pack': 'center',
+      'justify-content': 'center',
+
+      '-webkit-align-items': 'center',
+      '-ms-flex-align': 'center',
+      'align-items': 'center',
+    }}>
+      <World />
     </div>
-  );
+  )
 }
 
 export default App;
