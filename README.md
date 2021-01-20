@@ -4,6 +4,8 @@ Pushy Island recreated in ReactJS
 
 Port-Over/Rebuild from [existing Greenfoot/Java Project](https://github.com/FoxtrotSierra6829/PushyGreenfoot)
 
+## [Try it out now!](https://pushy.florian-scheuner.de/)
+
 [Java Version Releases](https://github.com/FoxtrotSierra6829/PushyGreenfoot/releases)
 
 [Project-Status(React)](https://github.com/FoxtrotSierra6829/Pushy-React/projects/1)
