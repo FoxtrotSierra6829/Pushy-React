@@ -2,11 +2,13 @@
 
 Pushy Island recreated in ReactJS
 
-Port-Over/Rebuild from existing Greenfoot/Java Project
+Port-Over/Rebuild from [existing Greenfoot/Java Project](https://github.com/FoxtrotSierra6829/PushyGreenfoot)
 
-[Java Release](https://github.com/FoxtrotSierra6829/PushyGreenfoot/releases)
+[Java Version Releases](https://github.com/FoxtrotSierra6829/PushyGreenfoot/releases)
 
 [Project-Status(React)](https://github.com/FoxtrotSierra6829/Pushy-React/projects/1)
+
+![Preview Image](https://github.com/FoxtrotSierra6829/Pushy-React/blob/master/Preview.png?raw=true)
 
 
 # Getting Started with Create React App
