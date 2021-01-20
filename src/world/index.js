@@ -49,9 +49,9 @@ function World(props) {
             style={{
                 position: 'relative',
                 'text-align': 'center',
-                width: scale*worldwidth+ 'vw',
-                height: scale*worldheight+ 'vw',
-                border: '.1vw solid black',
+                width: scale*worldwidth+ 'vh',
+                height: scale*worldheight+ 'vh',
+                border: '.1vh solid black',
                 margin: 'auto',
             }}
         >

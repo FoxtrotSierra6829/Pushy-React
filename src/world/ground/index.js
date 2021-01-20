@@ -81,8 +81,8 @@ function MapTile(props) {
     return <div
     className={`groundtile ${getTileSprite(props.groundtile)}`}
     style={{
-        width: scale+ 'vw',
-        height: scale+ 'vw',
+        width: scale+ 'vh',
+        height: scale+ 'vh',
     }}
     >{props.groundtile}
     </div>
@@ -103,8 +103,8 @@ function Ground(props) {
             style={{
                 position: 'absolute',
                 textAlign: 'center',
-                width: scale*worldwidth+ 'vw',
-                height: scale*worldheight+ 'vw',
+                width: scale*worldwidth+ 'vh',
+                height: scale*worldheight+ 'vh',
                 margin: 'auto',
             }}
         >

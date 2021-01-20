@@ -9,15 +9,15 @@ function Pushy(props) {
         <div
             style={{
                 position: 'absolute',
-                top: (props.position[1]-1)*scale+'vw',
-                left: (props.position[0]-1)*scale+'vw',
+                top: (props.position[1]-1)*scale+'vh',
+                left: (props.position[0]-1)*scale+'vh',
                 transform: `rotate(${props.rotation}deg)`,
                 backgroundImage: `url('${pushyimg}')`,
                 backgroundPosition: '0 0',
                 backgroundSize: 'cover',
                 backgroundRepeat: 'no-repeat',
-                width: scale+ 'vw',
-                height: scale+ 'vw',
+                width: scale+ 'vh',
+                height: scale+ 'vh',
                 zIndex: 3,
 
             }}

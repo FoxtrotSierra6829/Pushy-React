@@ -33,8 +33,8 @@ function MapTile(props) {
     return <div
     className={`objectstile ${getTileSprite(props.objectstile)}`}
     style={{
-        width: scale+ 'vw',
-        height: scale+ 'vw',
+        width: scale+ 'vh',
+        height: scale+ 'vh',
     }}
     >{props.objectstile}
     </div>
@@ -54,8 +54,8 @@ function Objects(props) {
             style={{
                 position: 'absolute',
                 textAlign: 'center',
-                width: scale*worldwidth+ 'vw',
-                height: scale*worldheight+ 'vw',
+                width: scale*worldwidth+ 'vh',
+                height: scale*worldheight+ 'vh',
                 margin: 'auto',
             }}
         >
