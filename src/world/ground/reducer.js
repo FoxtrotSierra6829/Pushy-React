@@ -8,6 +8,10 @@ const groundReducer = (state=initialState, action) => {
             return {
                 ...action.payload
             }
+        case 'UPDATE_GROUND':
+            return {
+                ...action.payload
+            }
         default:
         return state
     }

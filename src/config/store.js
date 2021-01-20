@@ -3,12 +3,14 @@ import pushyReducer from '../actor/pushy/reducer'
 import worldReducer from '../world/reducer'
 import groundReducer from '../world/ground/reducer'
 import objectsReducer from '../world/objects/reducer'
+import levelnameReducer from '../world/levelname/reducer'
 
 const rootReducer = combineReducers({
     pushy: pushyReducer,
     world: worldReducer,
     ground: groundReducer,
     objects: objectsReducer,
+    levelname: levelnameReducer
 })
 
 const store = createStore(

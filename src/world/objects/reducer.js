@@ -8,6 +8,10 @@ const objectsReducer = (state=initialState, action) => {
             return {
                 ...action.payload
             }
+        case 'MOVE_OBJECTS':
+        return {
+            ...action.payload
+            }
         default:
         return state
     }

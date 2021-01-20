@@ -1,10 +1,10 @@
 const initialState = {
-    level: 1
+    levelname: ""
 }
 
-const worldReducer = (state=initialState, action) => {
+const levelnameReducer = (state=initialState, action) => {
     switch(action.type) {
-        case 'CHANGE_LEVEL':
+        case 'ADD_LEVELNAME':
             return {
                 ...action.payload
             }
@@ -14,4 +14,4 @@ const worldReducer = (state=initialState, action) => {
 }
 
 
-export default worldReducer
+export default levelnameReducer

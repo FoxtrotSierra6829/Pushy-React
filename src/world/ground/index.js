@@ -41,20 +41,18 @@ function getTileSprite(type) {
     const groundTileBelow = storedground[ydown] [x]
     const groundTileLeft = storedground[y] [xleft]
     const groundTileRight = storedground[y] [xright]
-    console.log(count + ',' + x + ','+y)
-    console.log(groundTileLeft + ',' + groundTileAbove)
     count++
     switch(type) {
         case 0:
             return 'water'
         case 1:
-            if (groundTileAbove === 0 && groundTileLeft === 0 || groundTileAbove === 0 && x === 0) {
+            if (groundTileAbove === 0 && groundTileLeft === 0 || groundTileAbove === 3 && groundTileLeft === 0 || groundTileAbove === 3 && groundTileLeft === 3 || groundTileAbove === 0 && x === 0 || groundTileAbove === 3 && x === 0) {
                 return 'sand-lo'
-            } else if (groundTileBelow === 0 && groundTileLeft === 0 || groundTileBelow === 0 && x === 0) {
+            } else if (groundTileBelow === 0 && groundTileLeft === 0 || groundTileBelow === 3 && groundTileLeft === 0 || groundTileBelow === 3 && groundTileLeft === 3 || groundTileBelow === 0 && groundTileLeft === 3 || groundTileBelow === 0 && x === 0 || groundTileBelow === 3 && x === 0) {
                     return 'sand-lu'
-            } else if (groundTileBelow === 0 && groundTileRight === 0 || groundTileBelow === 0 && x === 19) {
+            } else if (groundTileBelow === 0 && groundTileRight === 0 || groundTileBelow === 3 && groundTileRight === 0 || groundTileBelow === 3 && groundTileRight === 3 ||groundTileBelow === 0 && groundTileRight === 3 || groundTileBelow === 0 && x === 19 || groundTileBelow === 3 && x === 19) {
                 return 'sand-ru'
-            } else if (groundTileAbove === 0 && groundTileRight === 0 || groundTileAbove === 0 && x === worldwidth-1) {
+            } else if (groundTileAbove === 0 && groundTileRight === 0 || groundTileAbove === 3 && groundTileRight === 0 ||groundTileAbove === 3 && groundTileRight === 3 || groundTileAbove === 0 && groundTileRight === 3 || groundTileAbove === 0 && x === worldwidth-1 || groundTileAbove === 3 && x === worldwidth-1) {
                 return 'sand-ro'
             } else {
                 return 'sand'
@@ -74,6 +72,8 @@ function getTileSprite(type) {
             } else {
                 return 'grass'
             }
+        case 3:
+            return 'box-water'
     }
 }
 

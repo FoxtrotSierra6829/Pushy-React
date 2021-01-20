@@ -56,6 +56,9 @@
 .box {
   background-image: url("../images/box.png");
 }
+.box-water {
+  background-image: url("../images/box_water.png");
+}
 .stone {
   background-image: url("../images/stone.png");
 }

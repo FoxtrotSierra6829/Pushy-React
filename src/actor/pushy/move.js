@@ -42,21 +42,97 @@ export default function handleMovement(player) {
     function isObstacleAhead(newPos, direction) {
         const oldPos = store.getState().pushy.position
         const rotation = getRotation(direction)
-        const ground = store.getState().ground.ground
-        const objects = store.getState().objects.objects
+        const gnd = store.getState().ground.ground
+        const obj = store.getState().objects.objects
         const yto = newPos[1]-1
         const xto = newPos[0]-1
+        var ystep2 = 0
+        if (yto==worldheight-1 || yto==0) {
+            ystep2 = yto
+        }
+        else {
+            ystep2 = oldPos[1]+(oldPos[1]-newPos[1])*(-2)-1
+        }
+        var xstep2 = 0
+        if (xto==worldwidth-1 || xto==0) {
+            xstep2 = xto
+        }
+        else {
+            xstep2 = oldPos[0]+(oldPos[0]-newPos[0])*(-2)-1
+        }
         const yfrom = oldPos[1]-1
         const xfrom = oldPos[0]-1
-        const nextGroundTile = ground[yto] [xto]
-        const nextObjectsTile = objects[yto] [xto]
-        const currentGroundTile = ground[yfrom] [xfrom]
-        const currentObjectsTile = objects[yfrom] [xfrom]
-        if (nextGroundTile === 0 || (nextGroundTile=== 2 && currentGroundTile=== 1) || (nextObjectsTile=== 2 && rotation!== 0) || (currentObjectsTile=== 2 && rotation!== 180) || nextObjectsTile===4 || nextObjectsTile===5 || nextObjectsTile===6 ) {
+        const nextGroundTile = gnd[yto] [xto]
+        const nextObjectsTile = obj[yto] [xto]
+        const step2ObjectsTile = obj[ystep2] [xstep2]
+        const step2GroundTile = gnd[ystep2] [xstep2]
+        const currentGroundTile = gnd[yfrom] [xfrom]
+        const currentObjectsTile = obj[yfrom] [xfrom]
+        console.log(obj[ystep2] [xstep2])
+
+
+        if (nextObjectsTile===2 && rotation === 0) {
+            const level = parseInt(getCookie('level'))+1
+            setCookie('level', level, 365)
+            window.location.reload();
+            return false
+        }
+        else if (nextObjectsTile===3 && obj[ystep2] [xstep2] === 0 && step2GroundTile===0) {
+            const objects = obj.slice() //copy the array
+            objects[yto] [xto] = 0 //execute the manipulations
+            store.dispatch({type: 'MOVE_OBJECTS', payload: {
+                objects,
+            }})
+            const ground = gnd.slice() //copy the array
+            ground[ystep2] [xstep2] = 3 //execute the manipulations
+            store.dispatch({type: 'UPDATE_GROUND', payload: {
+                ground,
+            }})
+            return false
+
+        }
+        else if (nextObjectsTile===3 && !(step2GroundTile === 2 && nextGroundTile=== 1) && obj[ystep2] [xstep2] === 0) {
+            const objects = obj.slice() //copy the array
+            objects[yto] [xto] = 0 //execute the manipulations
+            objects[ystep2] [xstep2] = 3 //execute the manipulations
+            store.dispatch({type: 'MOVE_OBJECTS', payload: {
+                objects,
+            }})
+            return false
+
+        }
+        else if (nextObjectsTile===3) {
+            return true
+
+        }
+        else if (nextGroundTile === 0 || (nextGroundTile=== 2 && currentGroundTile=== 1) || (nextObjectsTile=== 2 && rotation!== 0) || (currentObjectsTile=== 2 && rotation!== 180) || nextObjectsTile===4 || nextObjectsTile===5 || nextObjectsTile===6 ) {
             return true;
         } else {
             return false;
         }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for(var i = 0; i <ca.length; i++) {
+              var c = ca[i];
+              while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+              }
+              if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+              }
+            }
+            return "";
+          }
+
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays*24*60*60*1000));
+            var expires = "expires="+ d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+          }
         
 
     }
@@ -131,6 +207,7 @@ export default function handleMovement(player) {
     window.addEventListener('keydown', (e) => {
         handleKeyDown(e)
     })
+    
 
     return player
 }
