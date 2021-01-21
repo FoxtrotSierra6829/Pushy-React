@@ -91,7 +91,7 @@ export default function handleMovement(player) {
             return false
 
         }
-        else if (nextObjectsTile===3 && !(step2GroundTile === 2 && nextGroundTile=== 1) && obj[ystep2] [xstep2] === 0) {
+        else if (nextObjectsTile===3 && !(step2GroundTile === 2 && nextGroundTile=== 1) && !(nextGroundTile === 2 && currentGroundTile=== 1) && !(nextGroundTile === 1 && currentGroundTile=== 2) && obj[ystep2] [xstep2] === 0) {
             const objects = obj.slice() //copy the array
             objects[yto] [xto] = 0 //execute the manipulations
             objects[ystep2] [xstep2] = 3 //execute the manipulations
@@ -180,7 +180,7 @@ export default function handleMovement(player) {
     }
 
     function handleKeyDown(e) {
-        if (e.keyCode!=122 & e.keyCode!=123) {
+        if (e.keyCode!=122 && e.keyCode!=123) {
             e.preventDefault()
         }
         switch(e.keyCode) {
