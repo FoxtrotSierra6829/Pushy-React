@@ -5,6 +5,8 @@ import Ground from './ground'
 import Objects from './objects'
 import Levelname from './levelname'
 import Reload from './reload'
+import Backwards from './backwards'
+import Forwards from './forwards'
 import { scale, worldheight, worldwidth, maxlevel } from '../config/constants'
 
 import {levelname as levelname1, ground as ground1,objects as objects1, initalPushyPosition as position1 } from '../levels/PushyIsland/1'
@@ -21,10 +23,12 @@ function World(props) {
         store.dispatch({type: 'CHANGE_LEVEL', payload: {
             maxlevel,
          }})
-        const levelcookie = getCookie('level')
+        let levelcookie = getCookie('level')
+        const highscorelevel = parseInt(getCookie('highscorelevel'))
         if (levelcookie!=="") {
-        if (parseInt(levelcookie)>maxlevel) {
-            level = 1
+            levelcookie = parseInt(levelcookie)
+        if (levelcookie>maxlevel) {
+            level = levelcookie-1
             setCookie('level', level, 365)
         }
         else {
@@ -32,8 +36,15 @@ function World(props) {
         }} else {
             window.alert('Diese Webseite verwendet Cookies um den Spielstand zu speichern.\n\nThis website uses cookies to be able to save your progress in game.')
             setCookie('level', level, 365)
+            setCookie('highscorelevel', 0, 365)
         }
+        if(level>(highscorelevel+1)) {
+            level = highscorelevel+1
+            setCookie('level', level, 365)
+            }
+            else {     
         loadlevel(level)
+            }
     
     return (
         <div className='frame'
@@ -51,6 +62,8 @@ function World(props) {
             <Pushy />
             <Levelname />
             <Reload />
+            <Backwards />
+            <Forwards />
         </div>
         </div>
     )

@@ -97,3 +97,23 @@
   z-index: 4;
   background-image: url("../images/reset.png");
 }
+.backwards {
+  position: absolute;
+  display: inline-flex;
+  background-size: 100%;
+  background-repeat: "no-repeat";
+  color: transparent;
+  z-index: 4;
+  background-image: url("../images/backwards.png");
+}
+.forwards {
+  position: absolute;
+  display: inline-flex;
+  background-size: 100%;
+  background-repeat: "no-repeat";
+  color: transparent;
+  z-index: 4;
+  background-image: url("../images/backwards.png");
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}

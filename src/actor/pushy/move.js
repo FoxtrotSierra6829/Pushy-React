@@ -74,6 +74,7 @@ export default function handleMovement(player) {
         if (nextObjectsTile===2 && rotation === 0) {
             const level = parseInt(getCookie('level'))+1
             setCookie('level', level, 365)
+            setCookie('highscorelevel', level-1, 365)
             window.location.reload();
             return false
         }
