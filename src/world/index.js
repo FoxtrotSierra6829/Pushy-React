@@ -4,6 +4,7 @@ import Pushy from '../actor/pushy'
 import Ground from './ground'
 import Objects from './objects'
 import Levelname from './levelname'
+import Reload from './reload'
 import { scale, worldheight, worldwidth, maxlevel } from '../config/constants'
 
 import {levelname as levelname1, ground as ground1,objects as objects1, initalPushyPosition as position1 } from '../levels/PushyIsland/1'
@@ -15,6 +16,7 @@ import {levelname as levelname6, ground as ground6,objects as objects6, initalPu
 import store from '../config/store'
 
 function World(props) {
+      
         var level =1
         store.dispatch({type: 'CHANGE_LEVEL', payload: {
             maxlevel,
@@ -34,7 +36,7 @@ function World(props) {
         loadlevel(level)
     
     return (
-        <div
+        <div className='frame'
             style={{
                 position: 'relative',
                 'text-align': 'center',
@@ -43,11 +45,13 @@ function World(props) {
                 border: '.1vh solid black',
                 margin: 'auto',
             }}
-        >
+        > <div className='world' id = "world">
             <Ground />
             <Objects />
             <Pushy />
             <Levelname />
+            <Reload />
+        </div>
         </div>
     )
 }
@@ -80,7 +84,7 @@ function getCookie(cname) {
     let objects = objects1
     let position = position1
     let levelname = levelname1
-    if (level===1) {
+    if (level==1) {
         ground = ground1
         objects = objects1
         position = position1

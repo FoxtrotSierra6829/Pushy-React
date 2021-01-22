@@ -1,3 +1,8 @@
+.frame {
+}
+.world {
+  opacity: 0;
+}
 .groundtile {
   display: inline-flex;
   background-size: 100%;
@@ -82,4 +87,13 @@
 }
 .bean {
   background-image: url("../images/bean.png");
+}
+.reload {
+  position: absolute;
+  display: inline-flex;
+  background-size: 100%;
+  background-repeat: "no-repeat";
+  color: transparent;
+  z-index: 4;
+  background-image: url("../images/reset.png");
 }
