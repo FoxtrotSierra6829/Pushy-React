@@ -191,12 +191,11 @@ export default function handleMovement(player) {
         
     }
     function turnhome(newPos) {
-        let position = store.getState().pushy.position
         let rotation = 0
         var i;
-        for (i = 0; i < 1000; i++) {
+        for (i = 0; i < 1440; i++) { //two turns
             setTimeout(() => {
-                rotation++;
+                rotation = rotation+0.5;
                 store.dispatch({
                 type: 'MOVE_PUSHY',
                 payload: {
