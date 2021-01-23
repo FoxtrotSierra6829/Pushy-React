@@ -1,7 +1,17 @@
 .frame {
+  background-size: 100%;
+  background-repeat: "no-repeat";
+  background-image: url("../images/pushy_island_all_water.png");
+}
+.frame-menu {
+  background-size: 100%;
+  background-repeat: "no-repeat";
+  background-image: url("../images/pushy_island.jpg");
 }
 .world {
   opacity: 0;
+  background-size: 100%;
+  background-repeat: "no-repeat";
 }
 .groundtile {
   display: inline-flex;

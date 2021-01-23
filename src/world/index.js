@@ -7,6 +7,7 @@ import Levelname from './levelname'
 import Reload from './reload'
 import Backwards from './backwards'
 import Forwards from './forwards'
+import Menu from './menu'
 import { scale, worldheight, worldwidth, maxlevel } from '../config/constants'
 
 import {levelname as levelname1, ground as ground1,objects as objects1, initalPushyPosition as position1 } from '../levels/PushyIsland/1'
@@ -23,6 +24,7 @@ function World(props) {
         store.dispatch({type: 'CHANGE_LEVEL', payload: {
             maxlevel,
          }})
+        let mode = getCookie('mode')
         let levelcookie = getCookie('level')
         const highscorelevel = parseInt(getCookie('highscorelevel'))
         if (levelcookie!=="") {
@@ -35,6 +37,9 @@ function World(props) {
             level = levelcookie
         }} else {
             window.alert('Diese Webseite verwendet Cookies um den Spielstand zu speichern.\n\nThis website uses cookies to be able to save your progress in game.')
+            window.alert('Controls:\n   W   |     ▲\nA S D|◀ ▼ ▶\n\nMenu: ESC\nContinue: Enter')
+            setCookie('mode', 'menu', 365)
+            mode = 'menu'
             setCookie('level', level, 365)
             setCookie('highscorelevel', 0, 365)
         }
@@ -45,28 +50,46 @@ function World(props) {
             else {     
         loadlevel(level)
             }
-    
-    return (
-        <div className='frame'
-            style={{
-                position: 'relative',
-                'text-align': 'center',
-                width: scale*worldwidth+ 'vh',
-                height: scale*worldheight+ 'vh',
-                border: '.1vh solid black',
-                margin: 'auto',
-            }}
-        > <div className='world' id = "world">
-            <Ground />
-            <Objects />
-            <Pushy />
-            <Levelname />
-            <Reload />
-            <Backwards />
-            <Forwards />
-        </div>
-        </div>
-    )
+    if (mode==="pushyisland") {
+        return (
+            <div className='frame'
+                style={{
+                    position: 'relative',
+                    'text-align': 'center',
+                    width: scale*worldwidth+ 'vh',
+                    height: scale*worldheight+ 'vh',
+                    border: '.1vh solid black',
+                    margin: 'auto',
+                }}
+            > <div className='world' id = "world">
+                <Ground />
+                <Objects />
+                <Pushy />
+                <Levelname />
+                <Reload />
+                <Backwards />
+                <Forwards />
+            </div>
+            </div>
+        )
+    }
+    else {
+        return (
+            <div className='frame-menu'
+                style={{
+                    position: 'relative',
+                    'text-align': 'center',
+                    width: scale*worldwidth+ 'vh',
+                    height: scale*worldheight+ 'vh',
+                    border: '.1vh solid black',
+                    margin: 'auto',
+                }}
+            > <div className='world' id = "world">
+                <Menu />
+            </div>
+            </div>
+        )
+    }
 }
 
 
