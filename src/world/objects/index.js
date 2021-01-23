@@ -1,10 +1,11 @@
 import React from 'react'
+import store from '../../config/store'
 import { connect } from 'react-redux'
 import { scale, worldheight, worldwidth } from '../../config/constants'
 import '../styles.css'
 
 
-function getTileSprite(type) {
+function getTileType(type) {
     switch(type) {
         case 2:
             return 'house'
@@ -31,7 +32,7 @@ function getTileSprite(type) {
 
 function MapTile(props) {
     return <div
-    className={`objectstile ${getTileSprite(props.objectstile)}`}
+    className={`objectstile ${getTileType(props.objectstile)}`}
     style={{
         width: scale+ 'vh',
         height: scale+ 'vh',

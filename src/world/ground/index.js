@@ -46,7 +46,7 @@ function getTileSprite(type) {
         case 0:
             return 'water'
         case 1:
-            if (groundTileAbove === 0 && groundTileLeft === 0 || groundTileAbove === 3 && groundTileLeft === 0 || groundTileAbove === 3 && groundTileLeft === 3 || groundTileAbove === 0 && x === 0 || groundTileAbove === 3 && x === 0) {
+            if (groundTileAbove === 0 && groundTileLeft === 0 || groundTileAbove === 3 && groundTileLeft === 0 || groundTileAbove === 3 && groundTileLeft === 3 || groundTileAbove === 0 && groundTileLeft === 3 || groundTileAbove === 0 && x === 0 || groundTileAbove === 3 && x === 0) {
                 return 'sand-lo'
             } else if (groundTileBelow === 0 && groundTileLeft === 0 || groundTileBelow === 3 && groundTileLeft === 0 || groundTileBelow === 3 && groundTileLeft === 3 || groundTileBelow === 0 && groundTileLeft === 3 || groundTileBelow === 0 && x === 0 || groundTileBelow === 3 && x === 0) {
                     return 'sand-lu'

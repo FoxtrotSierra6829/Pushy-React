@@ -68,24 +68,34 @@ export default function handleMovement(player) {
         const step2GroundTile = gnd[ystep2] [xstep2]
         const currentGroundTile = gnd[yfrom] [xfrom]
         const currentObjectsTile = obj[yfrom] [xfrom]
-        console.log(obj[ystep2] [xstep2])
 
-
+        //In House
         if (nextObjectsTile===2 && rotation === 0) {
+            const objects = obj.slice() //copy the array
+            const obj2 = [].concat(...objects);
+            function countInArray(array, value) {
+                return array.reduce((n, x) => n + (x === value), 0);
+              }
+            if (countInArray(obj2, 7)===0) { //if no Seastars
             const level = parseInt(getCookie('level'))
             const highscore = parseInt(getCookie('highscorelevel'))
             setCookie('level', level+1, 365)
             if (level>highscore) {
             setCookie('highscorelevel', level, 365)
             }
-            window.location.reload();
+            turnhome(newPos)
             return false
+                  }
+            else {
+                return false
+            }
         }
+        //Box to Box_water
         else if (nextObjectsTile===3 && obj[ystep2] [xstep2] === 0 && step2GroundTile===0) {
             const objects = obj.slice() //copy the array
             objects[yto] [xto] = 0 //execute the manipulations
             store.dispatch({type: 'MOVE_OBJECTS', payload: {
-                objects,
+                objects
             }})
             const ground = gnd.slice() //copy the array
             ground[ystep2] [xstep2] = 3 //execute the manipulations
@@ -95,21 +105,51 @@ export default function handleMovement(player) {
             return false
 
         }
+        //Seastar already in water
+        else if (nextObjectsTile===7 &&  nextGroundTile===0) {
+            return true
+        }
+        //Throw Seastar in Water
+        else if (nextObjectsTile===7 && obj[ystep2] [xstep2] === 0 && step2GroundTile===0) {
+            const objects = obj.slice() //copy the array
+            objects[yto] [xto] = 0 //execute the manipulations
+            objects[ystep2] [xstep2] = 7 //execute the manipulations
+            store.dispatch({type: 'MOVE_OBJECTS', payload: {
+                objects
+            }})
+            removeseastar(obj,yto,xto,ystep2,xstep2)
+            return false
+
+        }
+        //move Box
         else if (nextObjectsTile===3 && !(step2GroundTile === 2 && nextGroundTile=== 1) && !(nextGroundTile === 2 && currentGroundTile=== 1) && !(nextGroundTile === 1 && currentGroundTile=== 2) && obj[ystep2] [xstep2] === 0) {
             const objects = obj.slice() //copy the array
             objects[yto] [xto] = 0 //execute the manipulations
             objects[ystep2] [xstep2] = 3 //execute the manipulations
             store.dispatch({type: 'MOVE_OBJECTS', payload: {
-                objects,
+                objects
             }})
             return false
 
         }
-        else if (nextObjectsTile===3) {
+        //move Seastar
+        else if (nextObjectsTile===7 && !(step2GroundTile === 2 && nextGroundTile=== 1) && !(nextGroundTile === 2 && currentGroundTile=== 1) && !(nextGroundTile === 1 && currentGroundTile=== 2) && obj[ystep2] [xstep2] === 0) {
+            const objects = obj.slice() //copy the array
+            objects[yto] [xto] = 0 //execute the manipulations
+            objects[ystep2] [xstep2] = 7 //execute the manipulations
+            store.dispatch({type: 'MOVE_OBJECTS', payload: {
+                objects
+            }})
+            return false
+
+        }
+        //Box or Seastar: cannot go
+        else if (nextObjectsTile===3 || nextObjectsTile===7) {
             return true
 
         }
-        else if (nextGroundTile === 0 || (nextGroundTile=== 2 && currentGroundTile=== 1) || (nextObjectsTile=== 2 && rotation!== 0) || (currentObjectsTile=== 2 && rotation!== 180) || nextObjectsTile===4 || nextObjectsTile===5 || nextObjectsTile===6 ) {
+        //Static element: cannot go
+        else if (nextGroundTile === 0 || ((nextGroundTile=== 2 && currentGroundTile=== 1) || (nextObjectsTile=== 2 && rotation!== 0) || (currentObjectsTile=== 2 && rotation!== 180) || nextObjectsTile===4 || nextObjectsTile===5 || nextObjectsTile===6 )) {
             return true;
         } else {
             return false;
@@ -139,6 +179,36 @@ export default function handleMovement(player) {
         var expires = "expires="+ d.toUTCString();
         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
       }
+
+    function removeseastar(obj,yto,xto,ystep2,xstep2) {
+        setTimeout(() => {  const objects = obj.slice() //copy the array
+            objects[yto] [xto] = 0 //execute the manipulations
+            objects[ystep2] [xstep2] = 0 //execute the manipulations
+            store.dispatch({type: 'MOVE_OBJECTS', payload: {
+                objects
+            }})
+         }, 100);
+        
+    }
+    function turnhome(newPos) {
+        let position = store.getState().pushy.position
+        let rotation = 0
+        var i;
+        for (i = 0; i < 1000; i++) {
+            setTimeout(() => {
+                rotation++;
+                store.dispatch({
+                type: 'MOVE_PUSHY',
+                payload: {
+                    position: newPos,
+                    rotation: rotation,
+                }
+            });
+             }, 100);
+          }
+          setTimeout(() => { window.location.reload()
+         }, 100);
+    }
     function getRotation(rotation) {
         switch(rotation) {
             case 'left':

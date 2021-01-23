@@ -9,14 +9,18 @@ import Backwards from './backwards'
 import Forwards from './forwards'
 import Menu from './menu'
 import { scale, worldheight, worldwidth, maxlevel } from '../config/constants'
+import store from '../config/store'
 
+
+// level imports
 import {levelname as levelname1, ground as ground1,objects as objects1, initalPushyPosition as position1 } from '../levels/PushyIsland/1'
 import {levelname as levelname2, ground as ground2,objects as objects2, initalPushyPosition as position2 } from '../levels/PushyIsland/2'
 import {levelname as levelname3, ground as ground3,objects as objects3, initalPushyPosition as position3 } from '../levels/PushyIsland/3'
 import {levelname as levelname4, ground as ground4,objects as objects4, initalPushyPosition as position4 } from '../levels/PushyIsland/4'
 import {levelname as levelname5, ground as ground5,objects as objects5, initalPushyPosition as position5 } from '../levels/PushyIsland/5'
 import {levelname as levelname6, ground as ground6,objects as objects6, initalPushyPosition as position6 } from '../levels/PushyIsland/6'
-import store from '../config/store'
+import {levelname as levelname7, ground as ground7,objects as objects7, initalPushyPosition as position7 } from '../levels/PushyIsland/7'
+import {levelname as levelname8, ground as ground8,objects as objects8, initalPushyPosition as position8 } from '../levels/PushyIsland/8'
 
 function World(props) {
       
@@ -115,6 +119,9 @@ function getCookie(cname) {
     var expires = "expires="+ d.toUTCString();
     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
   }
+
+
+  //get related level objects
   function loadlevel(level) {
     let ground = ground1
     let objects = objects1
@@ -156,13 +163,25 @@ function getCookie(cname) {
         position = position6
         levelname = levelname6
     }
+    else if (level==7) {
+        ground = ground7
+        objects = objects7
+        position = position7
+        levelname = levelname7
+    }
+    else if (level==8) {
+        ground = ground8
+        objects = objects8
+        position = position8
+        levelname = levelname8
+    }
     
 
     store.dispatch({type: 'ADD_GROUND', payload: {
         ground,
     }})
     store.dispatch({type: 'ADD_OBJECTS', payload: {
-        objects,
+        objects
     }})
     store.dispatch({type: 'MOVE_PUSHY', payload: {
         position,
