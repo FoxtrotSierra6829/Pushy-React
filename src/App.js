@@ -2,6 +2,10 @@ import React, {Component} from 'react'
 import World from './world'
 
 function App() {
+  window.addEventListener('contextmenu', function (e) { 
+    // do something here... 
+    e.preventDefault(); 
+  }, false);
   return (
     <div style={{
       width: '100vw',
