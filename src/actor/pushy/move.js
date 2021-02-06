@@ -123,7 +123,7 @@ export default function handleMovement(player) {
 
         }
         //Box to Box_water
-        else if (nextObjectsTile===3 && step2ObjectsTile === 0 && step2GroundTile===0) {
+        else if (nextObjectsTile===3 && step2ObjectsTile === 0 && step2GroundTile===0 && !(currentGroundTile === 2 && nextGroundTile!== 2)) {
             const objects = obj.slice() //copy the array
             objects[yto] [xto] = 0 //execute the manipulations
             store.dispatch({type: 'MOVE_OBJECTS', payload: {
@@ -142,7 +142,7 @@ export default function handleMovement(player) {
             return true
         }
         //Throw Seastar in Water
-        else if (nextObjectsTile===7 && obj[ystep2] [xstep2] === 0 && step2GroundTile===0) {
+        else if (nextObjectsTile===7 && obj[ystep2] [xstep2] === 0 && step2GroundTile===0 && !(currentGroundTile === 2 && nextGroundTile!== 2)) {
             const objects = obj.slice() //copy the array
             objects[yto] [xto] = 0 //execute the manipulations
             objects[ystep2] [xstep2] = 7 //execute the manipulations
