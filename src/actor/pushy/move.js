@@ -284,10 +284,10 @@ export default function handleMovement(player) {
                     rotation: rotation,
                 }
             });
-             }, i);
+             }, i/1.44);
           }
           setTimeout(() => { window.location.reload()
-         }, 1440);
+         }, 1000);
     }
     function getRotation(rotation) {
         switch(rotation) {
