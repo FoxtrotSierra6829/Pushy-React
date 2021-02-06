@@ -2,13 +2,11 @@
 
 Pushy Island recreated in ReactJS
 
-Port-Over/Rebuild from [existing Greenfoot/Java Project](https://github.com/FoxtrotSierra6829/PushyGreenfoot)
+Port-Over/Rebuild from existing [Greenfoot/Java Project](https://github.com/FoxtrotSierra6829/PushyGreenfoot)
 
 ## [Try it out now!](https://pushy.florian-scheuner.de/)
 
-[Java Version Releases](https://github.com/FoxtrotSierra6829/PushyGreenfoot/releases)
-
-[Project-Status(React)](https://github.com/FoxtrotSierra6829/Pushy-React/projects/1)
+[Project-Status](https://github.com/FoxtrotSierra6829/Pushy-React/projects/1)
 
 ![Preview Image](https://github.com/FoxtrotSierra6829/Pushy-React/blob/master/Preview.png?raw=true)
 
@@ -20,6 +18,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+
+Installs the required dependencies
 
 ### `npm start`
 
