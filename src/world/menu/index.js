@@ -20,7 +20,8 @@ function levelbutton(i) {
                     fontFamily: 'arial',
                     fontSize: scale*0.4+'vh',
                     color: 'red',
-                    fontWeight: 'bold',
+                    fontWeight: 'bold',  
+                    cursor: 'pointer',
                 }} >{i}</div>
             )
         }
@@ -38,6 +39,7 @@ function levelbutton(i) {
                     fontSize: scale*0.4+'vh',
                     color: '#aaaaaa',
                     fontWeight: 'bold',
+                    cursor: 'pointer',
                 }} >{i}</div>
             )
         }
@@ -55,6 +57,7 @@ function levelbutton(i) {
                     fontSize: scale*0.4+'vh',
                     color: 'black',
                     fontWeight: 'bold',
+                    cursor: 'pointer',
                 }} >{i}</div>
             )
         }

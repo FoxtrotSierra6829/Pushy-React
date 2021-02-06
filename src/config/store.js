@@ -1,5 +1,6 @@
 import {combineReducers, createStore} from 'redux'
 import pushyReducer from '../actor/pushy/reducer'
+import beanReducer from '../actor/pushy/reducer.bean'
 import worldReducer from '../world/reducer'
 import groundReducer from '../world/ground/reducer'
 import objectsReducer from '../world/objects/reducer'
@@ -10,7 +11,8 @@ const rootReducer = combineReducers({
     world: worldReducer,
     ground: groundReducer,
     objects: objectsReducer,
-    levelname: levelnameReducer
+    levelname: levelnameReducer,
+    bean: beanReducer,
 })
 
 const store = createStore(

@@ -7,20 +7,28 @@ import Levelname from './levelname'
 import Reload from './reload'
 import Backwards from './backwards'
 import Forwards from './forwards'
+import Beancount from './beancount'
 import Menu from './menu'
+import Congrats from './congrats'
 import { scale, worldheight, worldwidth, maxlevel } from '../config/constants'
 import store from '../config/store'
 
 
 // level imports
-import {levelname as levelname1, ground as ground1,objects as objects1, initalPushyPosition as position1 } from '../levels/PushyIsland/1'
-import {levelname as levelname2, ground as ground2,objects as objects2, initalPushyPosition as position2 } from '../levels/PushyIsland/2'
-import {levelname as levelname3, ground as ground3,objects as objects3, initalPushyPosition as position3 } from '../levels/PushyIsland/3'
-import {levelname as levelname4, ground as ground4,objects as objects4, initalPushyPosition as position4 } from '../levels/PushyIsland/4'
-import {levelname as levelname5, ground as ground5,objects as objects5, initalPushyPosition as position5 } from '../levels/PushyIsland/5'
-import {levelname as levelname6, ground as ground6,objects as objects6, initalPushyPosition as position6 } from '../levels/PushyIsland/6'
-import {levelname as levelname7, ground as ground7,objects as objects7, initalPushyPosition as position7 } from '../levels/PushyIsland/7'
-import {levelname as levelname8, ground as ground8,objects as objects8, initalPushyPosition as position8 } from '../levels/PushyIsland/8'
+const levels = {
+    level1 : require('../levels/PushyIsland/1'),
+    level2 : require('../levels/PushyIsland/2'),
+    level3 : require('../levels/PushyIsland/3'),
+    level4 : require('../levels/PushyIsland/4'),
+    level5 : require('../levels/PushyIsland/5'),
+    level6 : require('../levels/PushyIsland/6'),
+    level7 : require('../levels/PushyIsland/7'),
+    level8 : require('../levels/PushyIsland/8'),
+    level9 : require('../levels/PushyIsland/9'),
+    level10 : require('../levels/PushyIsland/10'),
+    level11 : require('../levels/PushyIsland/11'),
+    level12 : require('../levels/PushyIsland/12'),
+}
 
 function World(props) {
       
@@ -36,6 +44,8 @@ function World(props) {
         if (levelcookie>maxlevel) {
             level = levelcookie-1
             setCookie('level', level, 365)
+            setCookie('mode', 'congrats', 365)
+            window.location.reload()
         }
         else {
             level = levelcookie
@@ -73,6 +83,24 @@ function World(props) {
                 <Reload />
                 <Backwards />
                 <Forwards />
+                <Beancount key={store.getState().bean.count} />
+            </div>
+            </div>
+        )
+    }
+    else if (mode==='congrats') {
+        return (
+            <div className='frame-congrats'
+                style={{
+                    position: 'relative',
+                    'text-align': 'center',
+                    width: scale*worldwidth+ 'vh',
+                    height: scale*worldheight+ 'vh',
+                    border: '.1vh solid black',
+                    margin: 'auto',
+                }}
+            > <div className='world' id = "world">
+                <Congrats />
             </div>
             </div>
         )
@@ -123,58 +151,11 @@ function getCookie(cname) {
 
   //get related level objects
   function loadlevel(level) {
-    let ground = ground1
-    let objects = objects1
-    let position = position1
-    let levelname = levelname1
-    if (level==1) {
-        ground = ground1
-        objects = objects1
-        position = position1
-        levelname = levelname1
-    }
-    else if (level==2) {
-        ground = ground2
-        objects = objects2
-        position = position2
-        levelname = levelname2
-    }
-    else if (level==3) {
-        ground = ground3
-        objects = objects3
-        position = position3
-        levelname = levelname3
-    }
-    else if (level==4) {
-        ground = ground4
-        objects = objects4
-        position = position4
-        levelname = levelname4
-    }
-    else if (level==5) {
-        ground = ground5
-        objects = objects5
-        position = position5
-        levelname = levelname5
-    }
-    else if (level==6) {
-        ground = ground6
-        objects = objects6
-        position = position6
-        levelname = levelname6
-    }
-    else if (level==7) {
-        ground = ground7
-        objects = objects7
-        position = position7
-        levelname = levelname7
-    }
-    else if (level==8) {
-        ground = ground8
-        objects = objects8
-        position = position8
-        levelname = levelname8
-    }
+    var keys = Object.keys(levels);
+    const ground = levels[keys[level-1]].ground
+    const objects = levels[keys[level-1]].objects
+    const position = levels[keys[level-1]].initalPushyPosition
+    const levelname = levels[keys[level-1]].levelname
     
 
     store.dispatch({type: 'ADD_GROUND', payload: {

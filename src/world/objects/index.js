@@ -1,5 +1,4 @@
 import React from 'react'
-import store from '../../config/store'
 import { connect } from 'react-redux'
 import { scale, worldheight, worldwidth } from '../../config/constants'
 import '../styles.css'
@@ -20,13 +19,11 @@ function getTileType(type) {
         case 7:
             return 'seastar'
         case 8:
-            return 'water-hole'
-        case 9:
-            return 'sand-hole'
-        case 10:
             return 'bottle'
-        case 11:
+        case 9:
             return 'bean'
+        case 10:
+            return 'bottle-water'
     }
 }
 

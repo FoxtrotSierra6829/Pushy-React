@@ -1,3 +1,14 @@
+/* Preload all groundtiles that could appear later */
+.frame::after {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  z-index: -1;
+  content: url("../images/box_water.png") url("../images/bottle_water.png")
+    url("../images/bottle_water.png") url("../images/sand_hole_bean.png")
+    url("../images/spring.png") url("../images/1xbean.png");
+}
 .frame {
   background-size: 100%;
   background-repeat: "no-repeat";
@@ -7,6 +18,11 @@
   background-size: 100%;
   background-repeat: "no-repeat";
   background-image: url("../images/pushy_island.jpg");
+}
+.frame-congrats {
+  background-size: 100%;
+  background-repeat: "no-repeat";
+  background-image: url("../images/pushy_island_win.jpg");
 }
 .world {
   opacity: 0;
@@ -95,8 +111,17 @@
 .bottle {
   background-image: url("../images/bottle.png");
 }
+.bottle-water {
+  background-image: url("../images/bottle_water.png");
+}
 .bean {
   background-image: url("../images/bean.png");
+}
+.sand-hole-bean {
+  background-image: url("../images/sand_hole_bean.png");
+}
+.spring {
+  background-image: url("../images/spring.png");
 }
 .reload {
   position: absolute;
@@ -106,6 +131,7 @@
   color: transparent;
   z-index: 4;
   background-image: url("../images/reset.png");
+  cursor: pointer;
 }
 .backwards {
   position: absolute;
@@ -115,6 +141,7 @@
   color: transparent;
   z-index: 4;
   background-image: url("../images/backwards.png");
+  cursor: pointer;
 }
 .forwards {
   position: absolute;
@@ -126,4 +153,14 @@
   background-image: url("../images/backwards.png");
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
+  cursor: pointer;
+}
+.beancount-1 {
+  position: absolute;
+  display: inline-flex;
+  background-size: 100%;
+  background-repeat: "no-repeat";
+  color: transparent;
+  z-index: 4;
+  background-image: url("../images/1xbean.png");
 }
