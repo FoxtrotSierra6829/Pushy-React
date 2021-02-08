@@ -46,9 +46,9 @@ function Forwards(props) {
             style={{
                 width: scale*screenratio()*0.5+ 'vh',
                 height: scale*screenratio()*0.5+ 'vh',
-                top: scale*screenratio()*(worldheight-1)+scale*0.4+ 'vh',
+                top: scale*screenratio()*(worldheight-1)+scale*screenratio()*0.4+ 'vh',
                 color: 'transparent',
-                left: scale*screenratio()*(worldwidth-1)+scale*0.4+'vh',
+                left: scale*screenratio()*(worldwidth-1)+scale*screenratio()*0.4+'vh',
                 }}
         
         >

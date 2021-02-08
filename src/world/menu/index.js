@@ -18,7 +18,7 @@ function levelbutton(i) {
                     height: scale*screenratio()+ 'vh',
                     margin: 'auto',
                     fontFamily: 'arial',
-                    fontSize: scale*0.4+'vh',
+                    fontSize: scale*screenratio()*0.4+'vh',
                     color: 'red',
                     fontWeight: 'bold',  
                     cursor: 'pointer',
