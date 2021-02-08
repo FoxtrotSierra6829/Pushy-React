@@ -336,6 +336,7 @@ export default function handleMovement(player) {
         if (e.keyCode!=122 && e.keyCode!=123) {
             e.preventDefault()
         }
+    console.log(window.innerWidth/window.innerHeight)
         switch(e.keyCode) {
             case 27:
                 setCookie('mode', 'menu', 365);

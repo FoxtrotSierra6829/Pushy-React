@@ -1,7 +1,7 @@
 import React from 'react'
 import store from '../../config/store'
 import { connect } from 'react-redux'
-import { scale, worldheight, worldwidth } from '../../config/constants'
+import { scale, screenratio, worldheight, worldwidth } from '../../config/constants'
 import '../styles.css'
 
 
@@ -89,8 +89,8 @@ function MapTile(props) {
     return <div
     className={`groundtile ${getTileSprite(props.groundtile)}`}
     style={{
-        width: scale+ 'vh',
-        height: scale+ 'vh',
+        width: scale*screenratio()+ 'vh',
+        height: scale*screenratio()+ 'vh',
     }}
     >{props.groundtile}
     </div>
@@ -111,8 +111,8 @@ function Ground(props) {
             style={{
                 position: 'absolute',
                 textAlign: 'center',
-                width: scale*worldwidth+ 'vh',
-                height: scale*worldheight+ 'vh',
+                width: scale*screenratio()*worldwidth+ 'vh',
+                height: scale*screenratio()*worldheight+ 'vh',
                 margin: 'auto',
             }}
         >

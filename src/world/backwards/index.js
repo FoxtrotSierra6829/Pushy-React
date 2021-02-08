@@ -1,7 +1,7 @@
 import React from 'react'
 import store from '../../config/store'
 import { connect } from 'react-redux'
-import { scale, worldheight, worldwidth } from '../../config/constants'
+import { scale, worldheight, worldwidth, screenratio } from '../../config/constants'
 import '../styles.css'
 
 function backwards() {
@@ -40,11 +40,11 @@ function Backwards(props) {
     return (
         <div className="backwards" onClick={() => backwards()}
             style={{
-                width: scale*0.5+ 'vh',
-                height: scale*0.5+ 'vh',
-                top: scale*(worldheight-1)+scale*0.4+ 'vh',
+                width: scale*screenratio()*0.5+ 'vh',
+                height: scale*screenratio()*0.5+ 'vh',
+                top: scale*screenratio()*(worldheight-1)+scale*screenratio()*0.4+ 'vh',
                 color: 'transparent',
-                left: scale*0.1+'vh',
+                left: scale*screenratio()*0.1+'vh',
                 }}
         
         >

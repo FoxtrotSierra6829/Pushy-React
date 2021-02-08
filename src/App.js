@@ -4,7 +4,7 @@ import World from './world'
 function App() {
   window.addEventListener('contextmenu', function (e) { 
     // do something here... 
-    e.preventDefault(); 
+    e.preventDefault();
   }, false);
   return (
     <div style={{

@@ -1,7 +1,7 @@
 import React from 'react'
 import store from '../../config/store'
 import { connect } from 'react-redux'
-import { scale, worldheight, worldwidth } from '../../config/constants'
+import { scale, worldheight, worldwidth, screenratio } from '../../config/constants'
 import '../styles.css'
 
 function Levelname(props) {
@@ -11,9 +11,9 @@ function Levelname(props) {
                 position: 'absolute',
                 fontFamily: 'arial',
                 color: 'white',
-                top: scale*0.1+'vh',
-                left: scale*0.2+'vh',
-                fontSize: scale*0.4+'vh',
+                top: scale*screenratio()*0.1+'vh',
+                left: scale*screenratio()*0.2+'vh',
+                fontSize: scale*screenratio()*0.4+'vh',
                 }}
         
         >

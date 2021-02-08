@@ -1,7 +1,7 @@
 import React from 'react'
 import store from '../../config/store'
 import { connect } from 'react-redux'
-import { maxlevel, scale, worldheight, worldwidth } from '../../config/constants'
+import { maxlevel, scale, worldheight, worldwidth, screenratio } from '../../config/constants'
 import '../styles.css'
 
 function levelbutton(i) {
@@ -12,10 +12,10 @@ function levelbutton(i) {
                 <div value={i} key={i} onClick={() => loadlevel(i)} style={{
                     position: 'absolute',
                     textAlign: 'center',
-                    top: scale*4+ 'vh',
-                    left: scale*(i-0.5)+ 'vh',
-                    width: scale+ 'vh',
-                    height: scale+ 'vh',
+                    top: scale*screenratio()*4+ 'vh',
+                    left: scale*screenratio()*(i-0.5)+ 'vh',
+                    width: scale*screenratio()+ 'vh',
+                    height: scale*screenratio()+ 'vh',
                     margin: 'auto',
                     fontFamily: 'arial',
                     fontSize: scale*0.4+'vh',
@@ -30,13 +30,13 @@ function levelbutton(i) {
                 <div value={i} key={i} onClick={() => loadlevel(i)} style={{
                     position: 'absolute',
                     textAlign: 'center',
-                    top: scale*4+ 'vh',
-                    left: scale*(i-0.5)+ 'vh',
-                    width: scale+ 'vh',
-                    height: scale+ 'vh',
+                    top: scale*screenratio()*4+ 'vh',
+                    left: scale*screenratio()*(i-0.5)+ 'vh',
+                    width: scale*screenratio()+ 'vh',
+                    height: scale*screenratio()+ 'vh',
                     margin: 'auto',
                     fontFamily: 'arial',
-                    fontSize: scale*0.4+'vh',
+                    fontSize: scale*screenratio()*0.4+'vh',
                     color: '#aaaaaa',
                     fontWeight: 'bold',
                     cursor: 'pointer',
@@ -48,13 +48,13 @@ function levelbutton(i) {
                 <div value={i} key={i} onClick={() => loadlevel(i)} style={{
                     position: 'absolute',
                     textAlign: 'center',
-                    top: scale*4+ 'vh',
-                    left: scale*(i-0.5)+ 'vh',
-                    width: scale+ 'vh',
-                    height: scale+ 'vh',
+                    top: scale*screenratio()*4+ 'vh',
+                    left: scale*screenratio()*(i-0.5)+ 'vh',
+                    width: scale*screenratio()+ 'vh',
+                    height: scale*screenratio()+ 'vh',
                     margin: 'auto',
                     fontFamily: 'arial',
-                    fontSize: scale*0.4+'vh',
+                    fontSize: scale*screenratio()*0.4+'vh',
                     color: 'black',
                     fontWeight: 'bold',
                     cursor: 'pointer',

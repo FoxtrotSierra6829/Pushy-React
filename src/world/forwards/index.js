@@ -1,7 +1,7 @@
 import React from 'react'
 import store from '../../config/store'
 import { connect } from 'react-redux'
-import { maxlevel, scale, worldheight, worldwidth } from '../../config/constants'
+import { maxlevel, scale, worldheight, worldwidth, screenratio } from '../../config/constants'
 import '../styles.css'
 
 function forwards() {
@@ -44,11 +44,11 @@ function Forwards(props) {
     return (
         <div className="forwards" onClick={() => forwards()}
             style={{
-                width: scale*0.5+ 'vh',
-                height: scale*0.5+ 'vh',
-                top: scale*(worldheight-1)+scale*0.4+ 'vh',
+                width: scale*screenratio()*0.5+ 'vh',
+                height: scale*screenratio()*0.5+ 'vh',
+                top: scale*screenratio()*(worldheight-1)+scale*0.4+ 'vh',
                 color: 'transparent',
-                left: scale*(worldwidth-1)+scale*0.4+'vh',
+                left: scale*screenratio()*(worldwidth-1)+scale*0.4+'vh',
                 }}
         
         >

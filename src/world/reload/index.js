@@ -1,5 +1,5 @@
 import React from 'react'
-import { scale, worldheight, worldwidth } from '../../config/constants'
+import { scale, worldheight, worldwidth, screenratio } from '../../config/constants'
 import '../styles.css'
 
 function reload() {
@@ -10,11 +10,11 @@ function Reload(props) {
     return (
         <div className="reload" onClick={() => reload()}
             style={{
-                width: scale*0.5+ 'vh',
-                height: scale*0.5+ 'vh',
-                top: scale*0.1+ 'vh',
+                width: scale*screenratio()*0.5+ 'vh',
+                height: scale*screenratio()*0.5+ 'vh',
+                top: scale*screenratio()*0.1+ 'vh',
                 color: 'transparent',
-                left: scale*(worldwidth-1)+scale*0.4+'vh',
+                left: scale*screenratio()*(worldwidth-1)+scale*screenratio()*0.4+'vh',
                 }}
         
         >

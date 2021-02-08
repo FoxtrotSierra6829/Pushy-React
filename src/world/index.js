@@ -10,7 +10,7 @@ import Forwards from './forwards'
 import Beancount from './beancount'
 import Menu from './menu'
 import Congrats from './congrats'
-import { scale, worldheight, worldwidth, maxlevel } from '../config/constants'
+import { scale, worldheight, worldwidth, maxlevel, screenratio } from '../config/constants'
 import store from '../config/store'
 
 
@@ -70,8 +70,8 @@ function World(props) {
                 style={{
                     position: 'relative',
                     'text-align': 'center',
-                    width: scale*worldwidth+ 'vh',
-                    height: scale*worldheight+ 'vh',
+                    width: scale*screenratio()*worldwidth+ 'vh',
+                    height: scale*screenratio()*worldheight+ 'vh',
                     border: '.1vh solid black',
                     margin: 'auto',
                 }}
@@ -94,8 +94,8 @@ function World(props) {
                 style={{
                     position: 'relative',
                     'text-align': 'center',
-                    width: scale*worldwidth+ 'vh',
-                    height: scale*worldheight+ 'vh',
+                    width: scale*screenratio()*worldwidth+ 'vh',
+                    height: scale*screenratio()*worldheight+ 'vh',
                     border: '.1vh solid black',
                     margin: 'auto',
                 }}
@@ -111,8 +111,8 @@ function World(props) {
                 style={{
                     position: 'relative',
                     'text-align': 'center',
-                    width: scale*worldwidth+ 'vh',
-                    height: scale*worldheight+ 'vh',
+                    width: scale*screenratio()*worldwidth+ 'vh',
+                    height: scale*screenratio()*worldheight+ 'vh',
                     border: '.1vh solid black',
                     margin: 'auto',
                 }}

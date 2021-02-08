@@ -9,9 +9,9 @@ Determination should follow the example
 
 ---------------------------------------------------------------------------------------------------
 
-Items are placed with indication numbers seperated by space.
+Items are placed with indication numbers inside the array.
 
-For Ground files:
+For Ground array:
 0 = Water
 1 = Sand
 2 = Gras
@@ -21,7 +21,7 @@ For Ground files:
 6 = SandHole with Bean
 7 = Spring
 
-For Objects files:
+For Objects array:
 0 = None
 //  1 = Pushy
 2 = House
