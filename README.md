@@ -1,4 +1,4 @@
-# [WIP] Pushy-React
+# Pushy-React
 
 Pushy Island recreated in ReactJS
 
