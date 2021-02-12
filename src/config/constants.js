@@ -1,7 +1,7 @@
 export const scale = 7.5
 export const worldheight = 12
 export const worldwidth = 20
-export const maxlevel = 17
+export const maxlevel = 21
 
 // level imports
 export const levels = {
@@ -21,7 +21,11 @@ export const levels = {
     level14 : require('../levels/PushyIsland/14'),
     level15 : require('../levels/PushyIsland/15'),
     level16 : require('../levels/PushyIsland/16'),
-    level17 : require('../levels/PushyIsland/17')
+    level17 : require('../levels/PushyIsland/17'),
+    level18 : require('../levels/PushyIsland/18'),
+    level19 : require('../levels/PushyIsland/19'),
+    level20 : require('../levels/PushyIsland/20'),
+    level21 : require('../levels/PushyIsland/21')
 }
 
 export function screenratio() {

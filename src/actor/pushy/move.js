@@ -1,6 +1,7 @@
 import store from '../../config/store'
 import { worldheight } from '../../config/constants'
 import { worldwidth } from '../../config/constants'
+import objects from '../../world/objects'
 
 
 export default function handleMovement(player) {
@@ -126,7 +127,7 @@ export default function handleMovement(player) {
         //Spring
         else if (nextGroundTile===7) {
             dispatchMove(direction)
-            if (step2GroundTile===0 || step2ObjectsTile===2 || step2ObjectsTile===3 || step2ObjectsTile===4 || step2ObjectsTile===5 || step2ObjectsTile===6 || step2ObjectsTile===7 || step2ObjectsTile===8 || step2ObjectsTile===9 || step2ObjectsTile===10 ) {
+            if (step2GroundTile===0 || step2ObjectsTile===2 || step2ObjectsTile===3 || step2ObjectsTile===4 || step2ObjectsTile===5 || step2ObjectsTile===6 || step2ObjectsTile===7 || step2ObjectsTile===8 || step2ObjectsTile===9 || step2ObjectsTile===10 || step2ObjectsTile===11 || step2ObjectsTile===12 || step2ObjectsTile===12 || step2ObjectsTile===13 || step2ObjectsTile===14 ) {
                 return true
             } else {
                 return false
@@ -317,9 +318,32 @@ export default function handleMovement(player) {
             return true
             }
         }
+
+        //move Bomb
+        else if (nextObjectsTile===14 && step2GroundTile!==0 && step2GroundTile!==7 && !(step2GroundTile === 2 && nextGroundTile!== 2) && !(nextGroundTile === 2 && currentGroundTile!== 2) && !(nextGroundTile !== 2 && currentGroundTile=== 2) && obj[ystep2] [xstep2] === 0) {
+            const objects = obj.slice() //copy the array
+            objects[yto] [xto] = 0 //remove at old position
+            objects[ystep2] [xstep2] = 14 //add at new position
+            store.dispatch({type: 'MOVE_OBJECTS', payload: {
+                objects
+            }})
+            return false
+
+        }
+        //trigger explosion
+        else if (nextGroundTile===11 && obj[yto] [xto] === 0) {
+            const ground = gnd.slice() //copy the array
+            ground[yto] [xto] = 1 //remove at old position
+            store.dispatch({type: 'UPDATE_GROUND', payload: {
+                ground
+            }})
+            explode(obj)
+            return false
+
+        }
         
-        //Box | seastar | bottle: cannot go
-        else if (nextObjectsTile===3 || nextObjectsTile===7 || nextObjectsTile===8 || nextObjectsTile===10) {
+        //Box | seastar | bottle | bomb: cannot go
+        else if (nextObjectsTile===3 || nextObjectsTile===7 || nextObjectsTile===8 || nextObjectsTile===10 || nextObjectsTile===14) {
             return true
 
         }
@@ -365,6 +389,96 @@ export default function handleMovement(player) {
          }, 100);
         
     }
+
+    function explode(obj) {
+        const objects = obj.slice()
+        for (let y = 0; y < worldheight; y++) { //scroll through world y
+            for (let x = 0; x < worldwidth; x++) { //scroll through world x
+                if (objects [y] [x]===14) {
+                    setTimeout(() => {  const objects = obj.slice() //copy the array
+                        objects [y] [x] = 15 //remove at old position
+                        store.dispatch({type: 'MOVE_OBJECTS', payload: {
+                            objects
+                        }})
+                     }, 50);
+                     setTimeout(() => {  const objects = obj.slice() //copy the array
+                        objects [y] [x] = 0 //remove at old position
+                        store.dispatch({type: 'MOVE_OBJECTS', payload: {
+                            objects
+                        }})
+                     }, 250);
+                     if (y>0) {
+                         if (objects [y-1] [x]===0 || objects [y-1] [x]===4) {
+                            setTimeout(() => {  const objects = obj.slice() //copy the array
+                                objects [y-1] [x] = 15 //remove at old position
+                                store.dispatch({type: 'MOVE_OBJECTS', payload: {
+                                    objects
+                                }})
+                             }, 300);
+                            setTimeout(() => {  const objects = obj.slice() //copy the array
+                                objects [y-1] [x] = 0 //remove at old position
+                                store.dispatch({type: 'MOVE_OBJECTS', payload: {
+                                    objects
+                                }})
+                             }, 400);
+                            }
+                        }
+                    if (x<worldwidth) {
+                        if (objects [y] [x+1]===0 || objects [y] [x+1]===4) {
+                            setTimeout(() => {  const objects = obj.slice() //copy the array
+                                objects [y] [x+1] = 15 //remove at old position
+                                store.dispatch({type: 'MOVE_OBJECTS', payload: {
+                                    objects
+                                }})
+                             }, 450);
+                            setTimeout(() => {  const objects = obj.slice() //copy the array
+                                objects [y] [x+1] = 0 //remove at old position
+                                store.dispatch({type: 'MOVE_OBJECTS', payload: {
+                                    objects
+                                }})
+                             }, 650);
+                         }
+                     }
+                     if (y<worldheight-1) {
+                        if (objects [y+1] [x]===0 || objects [y+1] [x]===4) {
+                            setTimeout(() => {  const objects = obj.slice() //copy the array
+                                objects [y+1] [x] = 15 //remove at old position
+                                store.dispatch({type: 'MOVE_OBJECTS', payload: {
+                                    objects
+                                }})
+                             }, 700);
+                            setTimeout(() => {  const objects = obj.slice() //copy the array
+                                objects [y+1] [x] = 0 //remove at old position
+                                store.dispatch({type: 'MOVE_OBJECTS', payload: {
+                                    objects
+                                }})
+                             }, 900);
+                         }
+                     }
+                     if (x>0) {
+                        if (objects [y] [x-1]===0 || objects [y] [x-1]===4) {
+                            setTimeout(() => {  const objects = obj.slice() //copy the array
+                                objects [y] [x-1] = 15 //remove at old position
+                                store.dispatch({type: 'MOVE_OBJECTS', payload: {
+                                    objects
+                                }})
+                             }, 950);
+                            setTimeout(() => {  const objects = obj.slice() //copy the array
+                                objects [y] [x-1] = 0 //remove at old position
+                                store.dispatch({type: 'MOVE_OBJECTS', payload: {
+                                    objects
+                                }})
+                             }, 1150);
+                         }
+                     }
+                }
+
+
+            }
+        }
+        
+    }
+
     function turnhome(newPos) {
         let rotation = 0
         var i;

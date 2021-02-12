@@ -88,6 +88,8 @@ function getTileSprite(type) {
             return 'cross-blue'
         case 10:
             return 'cross-green'
+        case 11:
+            return 'bomb-trigger'
     }
 }
 

@@ -23,6 +23,7 @@ For Ground array:
 8 = Cross red
 9 = Cross blue
 10 = Cross green
+11 = Bomb trigger
 
 For Objects array:
 0 = None
@@ -39,4 +40,6 @@ For Objects array:
 11 = Figure red
 12 = Figure blue
 13 = Figure green
+14 = Bomb
+15 = Explosion      //do not use in world creation
 

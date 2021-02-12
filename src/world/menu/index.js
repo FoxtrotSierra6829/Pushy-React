@@ -8,30 +8,69 @@ function levelbutton(i) {
         let highscore = parseInt(getCookie('highscorelevel'))
         let current = parseInt(getCookie('level'))
         if (i===current) {
-            return (
-                <div value={i} key={i} onClick={() => loadlevel(i)} style={{
-                    position: 'absolute',
-                    textAlign: 'center',
-                    top: scale*screenratio()*4+ 'vh',
-                    left: scale*screenratio()*(i-0.5)+ 'vh',
-                    width: scale*screenratio()+ 'vh',
-                    height: scale*screenratio()+ 'vh',
-                    margin: 'auto',
-                    fontFamily: 'arial',
-                    fontSize: scale*screenratio()*0.4+'vh',
-                    color: 'red',
-                    fontWeight: 'bold',  
-                    cursor: 'pointer',
-                }} >{i}</div>
-            )
+            if (i<worldwidth) {
+                return (
+                    <div value={i} key={i} onClick={() => loadlevel(i)} style={{
+                        position: 'absolute',
+                        textAlign: 'center',
+                        top: scale*screenratio()*4+ 'vh',
+                        left: scale*screenratio()*(i-0.5)+ 'vh',
+                        width: scale*screenratio()+ 'vh',
+                        height: scale*screenratio()+ 'vh',
+                        margin: 'auto',
+                        fontFamily: 'arial',
+                        fontSize: scale*screenratio()*0.4+'vh',
+                        color: 'red',
+                        fontWeight: 'bold',  
+                        cursor: 'pointer',
+                    }} >{i}</div>
+                )
+            }
+            if (i<worldwidth*2) {
+                return (
+                    <div value={i} key={i} onClick={() => loadlevel(i)} style={{
+                        position: 'absolute',
+                        textAlign: 'center',
+                        top: scale*screenratio()*4.75+ 'vh',
+                        left: scale*screenratio()*(i-worldwidth+1-0.5)+ 'vh',
+                        width: scale*screenratio()+ 'vh',
+                        height: scale*screenratio()+ 'vh',
+                        margin: 'auto',
+                        fontFamily: 'arial',
+                        fontSize: scale*screenratio()*0.4+'vh',
+                        color: 'red',
+                        fontWeight: 'bold',  
+                        cursor: 'pointer',
+                    }} >{i}</div>
+                )
+            }
         }
         else if (i>highscore) {
+            if (i<worldwidth) {
+                return (
+                    <div value={i} key={i} onClick={() => loadlevel(i)} style={{
+                        position: 'absolute',
+                        textAlign: 'center',
+                        top: scale*screenratio()*4+ 'vh',
+                        left: scale*screenratio()*(i-0.5)+ 'vh',
+                        width: scale*screenratio()+ 'vh',
+                        height: scale*screenratio()+ 'vh',
+                        margin: 'auto',
+                        fontFamily: 'arial',
+                        fontSize: scale*screenratio()*0.4+'vh',
+                        color: '#aaaaaa',
+                        fontWeight: 'bold',
+                        cursor: 'pointer',
+                    }} >{i}</div>
+                )
+            }
+        if (i<worldwidth*2) {
             return (
                 <div value={i} key={i} onClick={() => loadlevel(i)} style={{
                     position: 'absolute',
                     textAlign: 'center',
-                    top: scale*screenratio()*4+ 'vh',
-                    left: scale*screenratio()*(i-0.5)+ 'vh',
+                    top: scale*screenratio()*4.75+ 'vh',
+                    left: scale*screenratio()*(i-worldwidth+1-0.5)+ 'vh',
                     width: scale*screenratio()+ 'vh',
                     height: scale*screenratio()+ 'vh',
                     margin: 'auto',
@@ -43,23 +82,44 @@ function levelbutton(i) {
                 }} >{i}</div>
             )
         }
+        }
         else {
-            return (
-                <div value={i} key={i} onClick={() => loadlevel(i)} style={{
-                    position: 'absolute',
-                    textAlign: 'center',
-                    top: scale*screenratio()*4+ 'vh',
-                    left: scale*screenratio()*(i-0.5)+ 'vh',
-                    width: scale*screenratio()+ 'vh',
-                    height: scale*screenratio()+ 'vh',
-                    margin: 'auto',
-                    fontFamily: 'arial',
-                    fontSize: scale*screenratio()*0.4+'vh',
-                    color: 'black',
-                    fontWeight: 'bold',
-                    cursor: 'pointer',
-                }} >{i}</div>
-            )
+            if (i<worldwidth) {
+                return (
+                    <div value={i} key={i} onClick={() => loadlevel(i)} style={{
+                        position: 'absolute',
+                        textAlign: 'center',
+                        top: scale*screenratio()*4+ 'vh',
+                        left: scale*screenratio()*(i-0.5)+ 'vh',
+                        width: scale*screenratio()+ 'vh',
+                        height: scale*screenratio()+ 'vh',
+                        margin: 'auto',
+                        fontFamily: 'arial',
+                        fontSize: scale*screenratio()*0.4+'vh',
+                        color: 'black',
+                        fontWeight: 'bold',
+                        cursor: 'pointer',
+                    }} >{i}</div>
+                )
+            }
+            if (i<worldwidth*2) {
+                return (
+                    <div value={i} key={i} onClick={() => loadlevel(i)} style={{
+                        position: 'absolute',
+                        textAlign: 'center',
+                        top: scale*screenratio()*4.75+ 'vh',
+                        left: scale*screenratio()*(i-worldwidth+1-0.5)+ 'vh',
+                        width: scale*screenratio()+ 'vh',
+                        height: scale*screenratio()+ 'vh',
+                        margin: 'auto',
+                        fontFamily: 'arial',
+                        fontSize: scale*screenratio()*0.4+'vh',
+                        color: 'black',
+                        fontWeight: 'bold',
+                        cursor: 'pointer',
+                    }} >{i}</div>
+                )
+            }
         }
     }
 
@@ -112,8 +172,6 @@ function Menu(props) {
         displaylevel = maxlevel
     }
     for (var i = 1; i < displaylevel+1; i++) {
-    // note: we are adding a key prop here to allow react to uniquely identify each
-    // element in this array. see: https://reactjs.org/docs/lists-and-keys.html
     rows.push(levelbutton(i));
 }
     window.addEventListener('keydown', (e) => {

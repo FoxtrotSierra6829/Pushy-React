@@ -94,6 +94,9 @@
 .cross-green {
   background-image: url('../images/cross_green.png');
 }
+.bomb-trigger {
+  background-image: url('../images/bomb_trigger.png');
+}
 
 .objectstile {
   display: inline-flex;
@@ -140,6 +143,12 @@
 }
 .figure-green {
   background-image: url('../images/figure_green.png');
+}
+.bomb {
+  background-image: url('../images/bomb.png');
+}
+.explosion {
+  background-image: url('../images/explosion.png');
 }
 
 .reload {

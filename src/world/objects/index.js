@@ -30,6 +30,10 @@ function getTileType(type) {
             return 'figure-blue'
         case 13:
             return 'figure-green'
+        case 14:
+            return 'bomb'
+        case 15:
+            return 'explosion'
     }
 }
 
