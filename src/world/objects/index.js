@@ -24,6 +24,12 @@ function getTileType(type) {
             return 'bean'
         case 10:
             return 'bottle-water'
+        case 11:
+            return 'figure-red'
+        case 12:
+            return 'figure-blue'
+        case 13:
+            return 'figure-green'
     }
 }
 

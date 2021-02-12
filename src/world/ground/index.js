@@ -82,6 +82,12 @@ function getTileSprite(type) {
             return 'sand-hole-bean'
         case 7:
             return 'spring'
+        case 8:
+            return 'cross-red'
+        case 9:
+            return 'cross-blue'
+        case 10:
+            return 'cross-green'
     }
 }
 

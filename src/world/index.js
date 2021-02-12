@@ -10,25 +10,9 @@ import Forwards from './forwards'
 import Beancount from './beancount'
 import Menu from './menu'
 import Congrats from './congrats'
-import { scale, worldheight, worldwidth, maxlevel, screenratio } from '../config/constants'
+import {levels, scale, worldheight, worldwidth, maxlevel, screenratio } from '../config/constants'
 import store from '../config/store'
 
-
-// level imports
-const levels = {
-    level1 : require('../levels/PushyIsland/1'),
-    level2 : require('../levels/PushyIsland/2'),
-    level3 : require('../levels/PushyIsland/3'),
-    level4 : require('../levels/PushyIsland/4'),
-    level5 : require('../levels/PushyIsland/5'),
-    level6 : require('../levels/PushyIsland/6'),
-    level7 : require('../levels/PushyIsland/7'),
-    level8 : require('../levels/PushyIsland/8'),
-    level9 : require('../levels/PushyIsland/9'),
-    level10 : require('../levels/PushyIsland/10'),
-    level11 : require('../levels/PushyIsland/11'),
-    level12 : require('../levels/PushyIsland/12'),
-}
 
 function World(props) {
       

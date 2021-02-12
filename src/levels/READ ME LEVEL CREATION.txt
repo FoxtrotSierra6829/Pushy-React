@@ -20,6 +20,9 @@ For Ground array:
 5 = SandHole
 6 = SandHole with Bean
 7 = Spring
+8 = Cross red
+9 = Cross blue
+10 = Cross green
 
 For Objects array:
 0 = None
@@ -33,4 +36,7 @@ For Objects array:
 8 = Bottle
 9 = Bean
 10 = Bottle water
+11 = Figure red
+12 = Figure blue
+13 = Figure green
 
