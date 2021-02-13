@@ -40,11 +40,11 @@ function Backwards(props) {
     return (
         <div className="backwards" onClick={() => backwards()}
             style={{
-                width: scale*screenratio()*0.5+ 'vh',
-                height: scale*screenratio()*0.5+ 'vh',
+                width: scale*screenratio()*0.3+ 'vh',
+                height: scale*screenratio()*0.3+ 'vh',
                 top: scale*screenratio()*(worldheight-1)+scale*screenratio()*0.4+ 'vh',
                 color: 'transparent',
-                left: scale*screenratio()*0.1+'vh',
+                left: scale*screenratio()*0.3+'vh',
                 }}
         
         >
