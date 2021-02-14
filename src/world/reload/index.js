@@ -1,12 +1,12 @@
 import React from 'react'
-import { scale, worldheight, worldwidth, screenratio } from '../../config/constants'
+import { scale, worldwidth, screenratio } from '../../config/constants'
 import '../styles.css'
 
 function reload() {
     window.location.reload();
 }
 
-function Reload(props) {
+function Reload() {
     return (
         <div className="reload" onClick={() => reload()}
             style={{

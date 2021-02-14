@@ -151,6 +151,16 @@
   background-image: url('../images/explosion.png');
 }
 
+.back-arrow {
+  position: absolute;
+  display: inline-flex;
+  background-size: 100%;
+  background-repeat: 'no-repeat';
+  color: transparent;
+  z-index: 4;
+  background-image: url('../images/back_arrow.png');
+  cursor: pointer;
+}
 .reload {
   position: absolute;
   display: inline-flex;

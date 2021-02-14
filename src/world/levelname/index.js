@@ -1,7 +1,7 @@
 import React from 'react'
 import store from '../../config/store'
 import { connect } from 'react-redux'
-import { scale, worldheight, worldwidth, screenratio } from '../../config/constants'
+import { scale, screenratio } from '../../config/constants'
 import '../styles.css'
 
 function Levelname(props) {

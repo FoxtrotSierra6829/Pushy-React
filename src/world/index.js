@@ -10,11 +10,12 @@ import Forwards from './forwards'
 import Beancount from './beancount'
 import Menu from './menu'
 import Congrats from './congrats'
-import {levels, scale, worldheight, worldwidth, maxlevel, screenratio } from '../config/constants'
+import {levels, scale, worldheight, worldwidth, maxlevel, screenratio, setCookie, getCookie } from '../config/constants'
 import store from '../config/store'
+import BackArrow from './backarrow'
 
 
-function World(props) {
+function World() {
       
         var level =1
         store.dispatch({type: 'CHANGE_LEVEL', payload: {
@@ -64,6 +65,7 @@ function World(props) {
                 <Objects />
                 <Pushy />
                 <Levelname />
+                <BackArrow />
                 <Reload />
                 <Backwards />
                 <Forwards />
@@ -74,7 +76,8 @@ function World(props) {
     }
     else if (mode==='congrats') {
         return (
-            <div className='frame-congrats'
+            <div className='frame-congrats' onClick={() => {setCookie('mode', 'menu', 365);
+            window.location.reload();}}
                 style={{
                     position: 'relative',
                     'text-align': 'center',
@@ -107,30 +110,6 @@ function World(props) {
         )
     }
 }
-
-
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-      var c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }
-  function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-  }
 
 
   //get related level objects

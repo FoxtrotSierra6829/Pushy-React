@@ -1,4 +1,5 @@
 import React from 'react'
+import { setCookie } from '../../config/constants';
 import '../styles.css'
 
 function handleKeyDown(e) {
@@ -7,22 +8,18 @@ function handleKeyDown(e) {
     }
     switch(e.keyCode) {
         case 13:
-            setCookie('mode', 'menu', 365);
-            window.location.reload();
+            gotomenu()
         case 27:
-            setCookie('mode', 'menu', 365);
-            window.location.reload();
+            gotomenu()
         
         default:
             console.log(e.keyCode)
     }
 }
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-  }
+function gotomenu() {
+    setCookie('mode', 'menu', 365);
+    window.location.reload();
+}
 
 function Congrats() {
     window.addEventListener('keydown', (e) => {
