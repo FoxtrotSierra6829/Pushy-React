@@ -29,29 +29,35 @@ export const levels = {
 }
 
 export function screenratio() {
+    let mobileAdapt = 1
+    let mobileAdaptSmall = 1
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        mobileAdapt = 0.8
+        mobileAdaptSmall = 0.7
+       }
     if (window.innerWidth/window.innerHeight<0.63) {
-        return 0.3
+        return 0.3*mobileAdapt
     }
     else if (window.innerWidth/window.innerHeight<0.77) {
-        return 0.4
+        return 0.4*mobileAdapt
     }
     else if (window.innerWidth/window.innerHeight<0.91) {
-        return 0.5
+        return 0.5*mobileAdapt
     }
     else if (window.innerWidth/window.innerHeight<1.06) {
-        return 0.6
+        return 0.6*mobileAdapt
     }
     else if (window.innerWidth/window.innerHeight<1.2) {
-        return 0.7
+        return 0.7*mobileAdapt
     }
     else if (window.innerWidth/window.innerHeight<1.35) {
-        return 0.8
+        return 0.8*mobileAdaptSmall
     }
     else if (window.innerWidth/window.innerHeight<1.5) {
-        return 0.9
+        return 0.9*mobileAdaptSmall
     }
     else {
-        return 1
+        return 1*mobileAdapt
     }
 }
 export function getCookie(cname) {

@@ -14,7 +14,7 @@ function Pushy(props) {
                 transform: `rotate(${props.rotation}deg)`,
                 backgroundImage: `url('${pushyimg}')`,
                 backgroundPosition: '0 0',
-                backgroundSize: 'cover',
+                backgroundSize: '100%',
                 backgroundRepeat: 'no-repeat',
                 width: scale*screenratio()+ 'vh',
                 height: scale*screenratio()+ 'vh',
