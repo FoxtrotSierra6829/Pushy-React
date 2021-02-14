@@ -608,18 +608,22 @@ export default function handleMovement(player) {
       // sliding horizontally
       if (diffX > 10) {
         // swiped left
+        e.preventDefault();
         tryMove('left')
       } else if (diffX < -10) {
         // swiped right
+        e.preventDefault();
         tryMove('right')
       }  
     } else {
       // sliding vertically
       if (diffY > 10) {
         // swiped up
+        e.preventDefault();
         tryMove('up')
       } else if (diffY < -10) {
         // swiped down
+        e.preventDefault();
         tryMove('down')
       }  
     }
