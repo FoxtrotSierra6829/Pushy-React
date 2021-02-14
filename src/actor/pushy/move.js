@@ -571,9 +571,62 @@ export default function handleMovement(player) {
         }
     }
 
+    // keyboard moves
     window.addEventListener('keydown', (e) => {
         handleKeyDown(e)
     })
+
+    // touch moves
+    window.addEventListener("touchstart", startTouch, false)
+        document.addEventListener("touchmove", moveTouch, false);
+
+    // Swipe Up / Down / Left / Right
+  let initialX = null;
+  let initialY = null;
+
+  function startTouch(e) {
+    initialX = e.touches[0].clientX;
+    initialY = e.touches[0].clientY;
+  };
+
+  function moveTouch(e) {
+    if (initialX === null) {
+      return;
+    }
+
+    if (initialY === null) {
+      return;
+    }
+
+    let currentX = e.touches[0].clientX;
+    let currentY = e.touches[0].clientY;
+
+    let diffX = initialX - currentX;
+    let diffY = initialY - currentY;
+
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+      // sliding horizontally
+      if (diffX > 10) {
+        // swiped left
+        tryMove('left')
+      } else if (diffX < -10) {
+        // swiped right
+        tryMove('right')
+      }  
+    } else {
+      // sliding vertically
+      if (diffY > 10) {
+        // swiped up
+        tryMove('up')
+      } else if (diffY < -10) {
+        // swiped down
+        tryMove('down')
+      }  
+    }
+
+    initialX = null;
+    initialY = null;
+  };
     
 
     return player
