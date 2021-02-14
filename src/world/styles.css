@@ -13,16 +13,19 @@
   background-size: 100%;
   background-repeat: 'no-repeat';
   background-image: url('../images/pushy_island_all_water.png');
+  touch-action: none;
 }
 .frame-menu {
   background-size: 100%;
   background-repeat: 'no-repeat';
   background-image: url('../images/pushy_island.jpg');
+  touch-action: none;
 }
 .frame-congrats {
   background-size: 100%;
   background-repeat: 'no-repeat';
   background-image: url('../images/pushy_island_win.jpg');
+  touch-action: none;
 }
 .world {
   opacity: 0;

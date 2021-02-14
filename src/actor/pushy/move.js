@@ -606,22 +606,22 @@ export default function handleMovement(player) {
 
     if (Math.abs(diffX) > Math.abs(diffY)) {
       // sliding horizontally
-      if (diffX > 10) {
+      if (diffX > 5) {
         // swiped left
         e.preventDefault();
         tryMove('left')
-      } else if (diffX < -10) {
+      } else if (diffX < -5) {
         // swiped right
         e.preventDefault();
         tryMove('right')
       }  
     } else {
       // sliding vertically
-      if (diffY > 10) {
+      if (diffY > 5) {
         // swiped up
         e.preventDefault();
         tryMove('up')
-      } else if (diffY < -10) {
+      } else if (diffY < -5) {
         // swiped down
         e.preventDefault();
         tryMove('down')
