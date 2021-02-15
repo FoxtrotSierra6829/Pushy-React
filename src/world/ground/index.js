@@ -122,6 +122,7 @@ function Ground(props) {
                 width: scale*screenratio()*worldwidth+ 'vh',
                 height: scale*screenratio()*worldheight+ 'vh',
                 margin: 'auto',
+                fontSize: 0,
             }}
         >
             {
