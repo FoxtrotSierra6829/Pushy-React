@@ -1,4 +1,3 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import Pushy from '../actor/pushy'
 import Ground from './ground'
@@ -15,14 +14,14 @@ import store from '../config/store'
 import BackArrow from './backarrow'
 
 
-function World() {
+const World = () => {
       
         let level =1
         store.dispatch({type: 'CHANGE_LEVEL', payload: {
             maxlevel,
          }})
         let mode = getCookie('mode')
-        let levelcookie = getCookie('level')
+        let levelcookie: string | number = getCookie('level')
         const highscorelevel = parseInt(getCookie('highscorelevel'))
         if (levelcookie!=="") {
             levelcookie = parseInt(levelcookie)
@@ -54,7 +53,7 @@ function World() {
             <div className='frame'
                 style={{
                     position: 'relative',
-                    'text-align': 'center',
+                    textAlign: 'center',
                     width: scale*screenratio()*worldwidth+ 'vh',
                     height: scale*screenratio()*worldheight+ 'vh',
                     border: '.1vh solid black',
@@ -80,7 +79,7 @@ function World() {
             window.location.reload();}}
                 style={{
                     position: 'relative',
-                    'text-align': 'center',
+                    textAlign: 'center',
                     width: scale*screenratio()*worldwidth+ 'vh',
                     height: scale*screenratio()*worldheight+ 'vh',
                     border: '.1vh solid black',
@@ -97,7 +96,7 @@ function World() {
             <div className='frame-menu'
                 style={{
                     position: 'relative',
-                    'text-align': 'center',
+                    textAlign: 'center',
                     width: scale*screenratio()*worldwidth+ 'vh',
                     height: scale*screenratio()*worldheight+ 'vh',
                     border: '.1vh solid black',
@@ -113,7 +112,7 @@ function World() {
 
 
   //get related level objects
-  function loadlevel(level) {
+  function loadlevel(level: number) {
     let keys = Object.keys(levels);
     const ground = levels[keys[level-1]].ground
     const objects = levels[keys[level-1]].objects
@@ -135,7 +134,7 @@ function World() {
     }})
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state: any) => {
     return {
         ...state.world,
     }

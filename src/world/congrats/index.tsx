@@ -1,29 +1,28 @@
-import React from 'react'
 import { setCookie } from '../../config/constants';
 import '../styles.css'
 
-function handleKeyDown(e) {
-    if (e.keyCode!==122 && e.keyCode!==123) {
+const handleKeyDown= (e: KeyboardEvent) => {
+    if (e.key!=='F11' && e.key!=='F12') {
         e.preventDefault()
     }
-    switch(e.keyCode) {
-        case 13:
+    switch(e.key) {
+        case 'Enter':
             gotomenu()
             break
-        case 27:
+        case 'Escape':
             gotomenu()
             break
         
         default:
-            console.log(e.keyCode)
+            console.log(e.key + ' key pressed')
     }
 }
-function gotomenu() {
+const gotomenu = () => {
     setCookie('mode', 'menu', 365);
     window.location.reload();
 }
 
-function Congrats() {
+const Congrats = () => {
     window.addEventListener('keydown', (e) => {
         handleKeyDown(e)
     })

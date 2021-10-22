@@ -1,10 +1,11 @@
 const initialState = {
-    level: 1
+    position: [5,7],
+    rotation:0,
 }
 
-const worldReducer = (state=initialState, action) => {
+const pushyReducer = (state=initialState, action: any) => {
     switch(action.type) {
-        case 'CHANGE_LEVEL':
+        case 'MOVE_PUSHY':
             return {
                 ...action.payload
             }
@@ -14,4 +15,4 @@ const worldReducer = (state=initialState, action) => {
 }
 
 
-export default worldReducer
+export default pushyReducer

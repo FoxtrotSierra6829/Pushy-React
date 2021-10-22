@@ -1,8 +1,7 @@
-import React from 'react'
 import { maxlevel, scale, worldheight, worldwidth, screenratio, setCookie, getCookie } from '../../config/constants'
 import '../styles.css'
 
-function forwards() {
+const forwards = () => {
     let level = parseInt(getCookie('level'))+1
     let highscorelevel = parseInt(getCookie('highscorelevel'))
     if (level>=maxlevel) {
@@ -16,7 +15,7 @@ function forwards() {
 }
 
 
-function Forwards() {
+const Forwards = () => {
     return (
         <div className="forwards" onClick={() => forwards()}
             style={{

@@ -1,14 +1,13 @@
-import React from 'react'
 import { maxlevel, scale, worldwidth, screenratio, getCookie, setCookie } from '../../config/constants'
 import '../styles.css'
 
-function levelbutton(i) {
+const levelbutton = (i: number) => {
         let highscore = parseInt(getCookie('highscorelevel'))
         let current = parseInt(getCookie('level'))
         if (i===current) {
             if (i<worldwidth) {
                 return (
-                    <div value={i} key={i} onClick={() => loadlevel(i)} style={{
+                    <div key={i} onClick={() => loadlevel(i)} style={{
                         position: 'absolute',
                         textAlign: 'center',
                         top: scale*screenratio()*4+ 'vh',
@@ -26,7 +25,7 @@ function levelbutton(i) {
             }
             if (i<worldwidth*2) {
                 return (
-                    <div value={i} key={i} onClick={() => loadlevel(i)} style={{
+                    <div key={i} onClick={() => loadlevel(i)} style={{
                         position: 'absolute',
                         textAlign: 'center',
                         top: scale*screenratio()*4.75+ 'vh',
@@ -46,7 +45,7 @@ function levelbutton(i) {
         else if (i>highscore) {
             if (i<worldwidth) {
                 return (
-                    <div value={i} key={i} onClick={() => loadlevel(i)} style={{
+                    <div key={i} onClick={() => loadlevel(i)} style={{
                         position: 'absolute',
                         textAlign: 'center',
                         top: scale*screenratio()*4+ 'vh',
@@ -64,7 +63,7 @@ function levelbutton(i) {
             }
         if (i<worldwidth*2) {
             return (
-                <div value={i} key={i} onClick={() => loadlevel(i)} style={{
+                <div key={i} onClick={() => loadlevel(i)} style={{
                     position: 'absolute',
                     textAlign: 'center',
                     top: scale*screenratio()*4.75+ 'vh',
@@ -84,7 +83,7 @@ function levelbutton(i) {
         else {
             if (i<worldwidth) {
                 return (
-                    <div value={i} key={i} onClick={() => loadlevel(i)} style={{
+                    <div key={i} onClick={() => loadlevel(i)} style={{
                         position: 'absolute',
                         textAlign: 'center',
                         top: scale*screenratio()*4+ 'vh',
@@ -102,7 +101,7 @@ function levelbutton(i) {
             }
             if (i<worldwidth*2) {
                 return (
-                    <div value={i} key={i} onClick={() => loadlevel(i)} style={{
+                    <div key={i} onClick={() => loadlevel(i)} style={{
                         position: 'absolute',
                         textAlign: 'center',
                         top: scale*screenratio()*4.75+ 'vh',
@@ -121,27 +120,27 @@ function levelbutton(i) {
         }
     }
 
-function handleKeyDown(e) {
-    if (e.keyCode!==122 && e.keyCode!==123) {
+const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key!=='F11' && e.key!=='F12') {
         e.preventDefault()
     }
-    switch(e.keyCode) {
-        case 13:
+    switch(e.key) {
+        case 'Enter':
             setCookie('mode', 'pushyisland', 365);
             window.location.reload();
             break
         default:
-            console.log(e.keyCode)
+            console.log(e.key + ' key pressed')
     }
 }
-function loadlevel(i) {
+const loadlevel = (i: number) => {
     setCookie('level', i, 365)
     setCookie('mode', 'pushyisland', 365)
     window.location.reload();
 
 }
 
-function Menu(props) {
+const Menu = () => {
     let rows = [];
     let displaylevel = parseInt(getCookie('highscorelevel'))+1
     if (displaylevel>maxlevel) {

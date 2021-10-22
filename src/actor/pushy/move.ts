@@ -3,9 +3,9 @@ import { worldheight } from '../../config/constants'
 import { worldwidth } from '../../config/constants'
 
 
-export default function handleMovement(player) {
+export default function handleMovement(player: any) {
 
-    function getNewPosition(direction) {
+    function getNewPosition(direction: string) {
         const oldPos = store.getState().pushy.position
         switch(direction) {
             case 'left':
@@ -41,7 +41,7 @@ export default function handleMovement(player) {
         }
     }
 
-    function isObstacleAhead(newPos, direction) {
+    function isObstacleAhead(newPos: any, direction: string) {
         const oldPos = store.getState().pushy.position
         const rotation = getRotation(direction)
         const gnd = store.getState().ground.ground
@@ -110,8 +110,8 @@ export default function handleMovement(player) {
                     }
                 }}
             const obj2 = [].concat(...objects);
-            function countInArray(array, value) {
-                return array.reduce((n, x) => n + (x === value), 0);
+            const countInArray = (array: any, value: number) => {
+                return array.reduce((n: any, x: number) => n + (x === value), 0);
               }
             if (countInArray(obj2, 7)===0) { //if no Seastars
             const level = parseInt(getCookie('level'))
@@ -238,6 +238,75 @@ export default function handleMovement(player) {
         }
         //move Figure(s)
         else if (nextObjectsTile===11 || nextObjectsTile===12 || nextObjectsTile===13) {
+            const checkmovefigure = (figuretype: number) => {
+                if (step2GroundTile!==7  &&  step2GroundTile!==0 && !(step2GroundTile === 2 && nextGroundTile!== 2) && !(nextGroundTile === 2 && currentGroundTile!== 2) && !(nextGroundTile !== 2 && currentGroundTile=== 2) && obj[ystep2][xstep2] === 0) {
+                const objects = obj.slice() //copy the array
+                let objarr: any[] = []
+                let i = 0
+                for (let y = 0; y < worldheight; y++) { //scroll through world y
+                    for (let x = 0; x < worldwidth; x++) { //scroll through world x
+                        let yobjto= y+ystep2-yto;
+                        let xobjto= x+xstep2-xto;
+                        let yobjstep2= y+(ystep2-yto)*2;
+                        let xobjstep2= x+(xstep2-xto)*2;
+
+                        // prevent bugs for y
+                        if (yobjto>worldheight-1 || yobjto<0) {
+                            yobjto = y
+                            yobjstep2 = y
+                        }
+                        else if (yobjto>worldheight-2 || yobjto<1) {
+                            yobjto = y
+                            yobjstep2 = y
+                        }
+
+                        // prevent bugs for x
+                        if (xobjto>worldwidth-1 || xobjto<0) {
+                            xobjto = x
+                            xobjstep2 = x
+                        }
+                        else if (xobjto>worldwidth-2 || xobjto<1) {
+                            xobjto = x
+                            xobjstep2 = x
+                        }
+
+                        const objarr2: any[] = [].concat(...objarr); //check for value in Array
+                        const countInArray = (array: any, value: string) => {
+                            return array.reduce((n: any, x: string) => n + (x === value), 0);
+                        }
+
+                        if (objects[y][x] === figuretype // figure of same type found
+                            && !(x===xto && y===yto) // not the object that I am directly moving
+                            && countInArray(objarr2, x+','+y)===0 // not already moved
+                            && (gnd[yobjto][xobjto] === gnd[y][x] || (gnd[yobjto][xobjto] !== 2 && gnd[yobjto][xobjto] !== 0 && gnd[yobjto][xobjto] !==7))) { // appropriate ground
+                            if (objects[yobjto][xobjto] === 0) { // no object in way
+                                objects[y][x] = 0
+                                i++
+                                objarr[i] = xobjto+','+yobjto
+                                objects[yobjto][xobjto] = figuretype
+                            }
+                            else if ((objects[yobjto][xobjto] === figuretype) && objects[yobjstep2][xobjstep2] === 0 && (gnd[yobjstep2][xobjstep2] === gnd[y][x] || (gnd[yobjstep2][xobjstep2] !== 2 && gnd[yobjstep2][xobjstep2] !== 0 && gnd[yobjstep2][xobjstep2] !== 7))) {// another figure of same type in way but that can move
+                                objects[y][x] = 0
+                                i++
+                                objarr[i] = xobjto+','+yobjto
+                                i++
+                                objarr[i] = xobjstep2+','+yobjstep2
+                                objects[yobjstep2][xobjstep2] = figuretype
+                            }
+                                
+                        }
+                    }
+                }
+                objects[yto][xto] = 0 //remove at old position
+                objects[ystep2][xstep2] = figuretype //add at new position
+                store.dispatch({type: 'MOVE_OBJECTS', payload: {
+                    objects
+                }})
+                return false
+
+                }
+                return true
+            }
             if (nextObjectsTile===11 && !checkmovefigure(11)) {
                 return false
             }
@@ -248,76 +317,6 @@ export default function handleMovement(player) {
                 return false
             }
             return true
-
-        function checkmovefigure(figuretype) {
-         if (step2GroundTile!==7  &&  step2GroundTile!==0 && !(step2GroundTile === 2 && nextGroundTile!== 2) && !(nextGroundTile === 2 && currentGroundTile!== 2) && !(nextGroundTile !== 2 && currentGroundTile=== 2) && obj[ystep2][xstep2] === 0) {
-            const objects = obj.slice() //copy the array
-            let objarr = []
-            let i = 0
-            for (let y = 0; y < worldheight; y++) { //scroll through world y
-                for (let x = 0; x < worldwidth; x++) { //scroll through world x
-                    let yobjto= y+ystep2-yto;
-                    let xobjto= x+xstep2-xto;
-                    let yobjstep2= y+(ystep2-yto)*2;
-                    let xobjstep2= x+(xstep2-xto)*2;
-
-                    // prevent bugs for y
-                    if (yobjto>worldheight-1 || yobjto<0) {
-                        yobjto = y
-                        yobjstep2 = y
-                    }
-                    else if (yobjto>worldheight-2 || yobjto<1) {
-                        yobjto = y
-                        yobjstep2 = y
-                    }
-
-                    // prevent bugs for x
-                    if (xobjto>worldwidth-1 || xobjto<0) {
-                        xobjto = x
-                        xobjstep2 = x
-                    }
-                    else if (xobjto>worldwidth-2 || xobjto<1) {
-                        xobjto = x
-                        xobjstep2 = x
-                    }
-
-                    const objarr2 = [].concat(...objarr); //check for value in Array
-                    function countInArray(array, value) {
-                        return array.reduce((n, x) => n + (x === value), 0);
-                    }
-
-                    if (objects[y][x] === figuretype // figure of same type found
-                        && !(x===xto && y===yto) // not the object that I am directly moving
-                        && countInArray(objarr2, x+','+y)===0 // not already moved
-                        && (gnd[yobjto][xobjto] === gnd[y][x] || (gnd[yobjto][xobjto] !== 2 && gnd[yobjto][xobjto] !== 0 && gnd[yobjto][xobjto] !==7))) { // appropriate ground
-                        if (objects[yobjto][xobjto] === 0) { // no object in way
-                            objects[y][x] = 0
-                            i++
-                            objarr[i] = xobjto+','+yobjto
-                            objects[yobjto][xobjto] = figuretype
-                        }
-                        else if ((objects[yobjto][xobjto] === figuretype) && objects[yobjstep2][xobjstep2] === 0 && (gnd[yobjstep2][xobjstep2] === gnd[y][x] || (gnd[yobjstep2][xobjstep2] !== 2 && gnd[yobjstep2][xobjstep2] !== 0 && gnd[yobjstep2][xobjstep2] !== 7))) {// another figure of same type in way but that can move
-                            objects[y][x] = 0
-                            i++
-                            objarr[i] = xobjto+','+yobjto
-                            i++
-                            objarr[i] = xobjstep2+','+yobjstep2
-                            objects[yobjstep2][xobjstep2] = figuretype
-                        }
-                            
-                    }
-                }
-            }
-            objects[yto][xto] = 0 //remove at old position
-            objects[ystep2][xstep2] = figuretype //add at new position
-            store.dispatch({type: 'MOVE_OBJECTS', payload: {
-                objects
-            }})
-            return false
-
-            }
-            return true
-            }
         }
 
         //move Bomb
@@ -357,7 +356,7 @@ export default function handleMovement(player) {
         
 
     }
-    function getCookie(cookieName) {
+    function getCookie(cookieName: string) {
         const name = cookieName + "=";
         const decodedCookie = decodeURIComponent(document.cookie);
         const cookieArray = decodedCookie.split(';');
@@ -373,14 +372,14 @@ export default function handleMovement(player) {
         return "";
       }
 
-    function setCookie(cookieName, cvalue, exdays) {
+    function setCookie(cookieName: string, cvalue: number | string, exdays: number) {
         let date = new Date();
         date.setTime(date.getTime() + (exdays*24*60*60*1000));
         let expires = "expires="+ date.toUTCString();
         document.cookie = cookieName + "=" + cvalue + ";" + expires + ";path=/";
       }
 
-    function removeseastar(obj,yto,xto,ystep2,xstep2) {
+    function removeseastar(obj: any,yto: number,xto: number,ystep2: number,xstep2: number) {
         setTimeout(() => {  const objects = obj.slice() //copy the array
             objects[yto][xto] = 0 //remove at old position
             objects[ystep2][xstep2] = 0 //remove at old position
@@ -391,7 +390,7 @@ export default function handleMovement(player) {
         
     }
 
-    function explode(obj) {
+    function explode(obj: any) {
         const objects = obj.slice()
         for (let y = 0; y < worldheight; y++) { //scroll through world y
             for (let x = 0; x < worldwidth; x++) { //scroll through world x
@@ -480,7 +479,7 @@ export default function handleMovement(player) {
         
     }
 
-    function turnhome(newPos) {
+    function turnhome(newPos: any) {
         let rotation = 0
         for (let i = 0; i < 1440; i++) { //two turns
             setTimeout(() => {
@@ -497,7 +496,7 @@ export default function handleMovement(player) {
           setTimeout(() => { window.location.reload()
          }, 1000);
     }
-    function getRotation(rotation) {
+    function getRotation(rotation: string) {
         switch(rotation) {
             case 'left':
                 return -90
@@ -512,7 +511,7 @@ export default function handleMovement(player) {
         }
         
     }
-    function tryMove(direction) {
+    function tryMove(direction: string) {
         const newPos = getNewPosition(direction)
         const obstacle = isObstacleAhead(newPos, direction)
         if (obstacle===false) {
@@ -522,7 +521,7 @@ export default function handleMovement(player) {
         }
 
     }
-    function dispatchMove(direction) {
+    function dispatchMove(direction: string) {
         store.dispatch({
             type: 'MOVE_PUSHY',
             payload: {
@@ -532,7 +531,7 @@ export default function handleMovement(player) {
         })
     }
     
-    function doNotDispatchMove(direction) {
+    function doNotDispatchMove(direction: string) {
         store.dispatch({
             type: 'MOVE_PUSHY',
             payload: {
@@ -542,7 +541,7 @@ export default function handleMovement(player) {
         })
     }
 
-    function handleKeyDown(e) {
+    function handleKeyDown(e: any) {
         if (e.keyCode!==122 && e.keyCode!==123) {
             e.preventDefault()
         }
@@ -583,15 +582,15 @@ export default function handleMovement(player) {
         document.addEventListener("touchmove", moveTouch, false);
 
     // Swipe Up / Down / Left / Right
-  let initialX = null;
-  let initialY = null;
+  let initialX: number | null = null;
+  let initialY: number | null = null;
 
-  function startTouch(e) {
+  function startTouch(e: any) {
     initialX = e.touches[0].clientX;
     initialY = e.touches[0].clientY;
   };
 
-  function moveTouch(e) {
+  function moveTouch(e: any) {
     if (initialX === null) {
       return;
     }

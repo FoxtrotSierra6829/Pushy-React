@@ -2,7 +2,7 @@ const initialState = {
     ground: [],
 }
 
-const groundReducer = (state=initialState, action) => {
+const groundReducer = (state=initialState, action: any) => {
     switch(action.type) {
         case 'ADD_GROUND':
             return {

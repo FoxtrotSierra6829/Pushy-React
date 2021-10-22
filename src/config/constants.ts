@@ -4,7 +4,7 @@ export const worldwidth = 20
 export const maxlevel = 21
 
 // level imports
-export const levels = {
+export const levels: any = {
     level1 : require('../levels/PushyIsland/1'),
     level2 : require('../levels/PushyIsland/2'),
     level3 : require('../levels/PushyIsland/3'),
@@ -28,7 +28,7 @@ export const levels = {
     level21 : require('../levels/PushyIsland/21')
 }
 
-export function screenratio() {
+export const screenratio= () => {
     let mobileAdapt = 1
     let mobileAdaptSmall = 1
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -60,25 +60,59 @@ export function screenratio() {
         return 1*mobileAdapt
     }
 }
-export function getCookie(cname) {
-    let name = cname + "=";
+export const getCookie = (cookieName: string) => {
+    let name = cookieName + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(let i = 0; i <ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) === ' ') {
-        c = c.substring(1);
+    let cookieArray = decodedCookie.split(';');
+    for(let i = 0; i <cookieArray.length; i++) {
+      let cookie = cookieArray[i];
+      while (cookie.charAt(0) === ' ') {
+        cookie = cookie.substring(1);
       }
-      if (c.indexOf(name) === 0) {
-        return c.substring(name.length, c.length);
+      if (cookie.indexOf(name) === 0) {
+        return cookie.substring(name.length, cookie.length);
       }
     }
     return "";
   }
 
-export function setCookie(cname, cvalue, exdays) {
-    let d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    let expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+export const setCookie = (cookieName: string, cookieValue: string | number, expiryDays: number) => {
+    let date = new Date();
+    date.setTime(date.getTime() + (expiryDays*24*60*60*1000));
+    let expires = "expires="+ date.toUTCString();
+    document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
   }
+
+export enum groundType {
+    water,
+    sand,
+    grass,
+    boxInWater,
+    waterHole,
+    sandHole,
+    sandHoleWithBean,
+    spring,
+    crossRed,
+    crossBlue,
+    crossGreen,
+    bombTrigger,
+}
+
+export enum objectType {
+    none,
+    pushy,
+    house,
+    box,
+    stone,
+    palmLeft,
+    palmRight,
+    seastar,
+    bottle,
+    bean,
+    bottleWater,
+    figureRed,
+    figureBlue,
+    figureGreen,
+    bomb,
+    explosion,
+}

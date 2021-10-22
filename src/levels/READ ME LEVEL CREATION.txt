@@ -14,7 +14,7 @@ Items are placed with indication numbers inside the array.
 For Ground array:
 0 = Water
 1 = Sand
-2 = Gras
+2 = Grass
 3 = Box in water
 4 = WaterHole
 5 = SandHole

@@ -1,45 +1,44 @@
-import React from 'react'
 import { connect } from 'react-redux'
-import { scale, worldheight, worldwidth, screenratio } from '../../config/constants'
+import { scale, worldheight, worldwidth, screenratio, objectType } from '../../config/constants'
 import '../styles.css'
 
 
-function getTileType(type) {
+const getTileType = (type: number) => {
     switch(type) {
-        case 2:
+        case objectType.house:
             return 'house'
-        case 3:
+        case objectType.box:
             return 'box'
-        case 4:
+        case objectType.stone:
             return 'stone'
-        case 5:
+        case objectType.palmLeft:
             return 'palm-left'
-        case 6:
+        case objectType.palmRight:
             return 'palm-right'
-        case 7:
+        case objectType.seastar:
             return 'seastar'
-        case 8:
+        case objectType.bottle:
             return 'bottle'
-        case 9:
+        case objectType.bean:
             return 'bean'
-        case 10:
+        case objectType.bottleWater:
             return 'bottle-water'
-        case 11:
+        case objectType.figureRed:
             return 'figure-red'
-        case 12:
+        case objectType.figureBlue:
             return 'figure-blue'
-        case 13:
+        case objectType.figureGreen:
             return 'figure-green'
-        case 14:
+        case objectType.bomb:
             return 'bomb'
-        case 15:
+        case objectType.explosion:
             return 'explosion'
         default:
             return
     }
 }
 
-function MapTile(props) {
+const MapTile = (props: any) => {
     return <div
     className={`objectstile ${getTileType(props.objectstile)}`}
     style={{
@@ -50,15 +49,15 @@ function MapTile(props) {
     </div>
 }
 
-function MapRow(props) {
+const MapRow = (props: any) => {
     return <div className="row">
         {
-            props.objects.map(objectstile => <MapTile objectstile={objectstile} /> )
+            props.objects.map((objectstile: any) => <MapTile objectstile={objectstile} /> )
         }
     </div>
 }
 
-function Objects(props) {
+const Objects = (props: any) => {
     return (
         <div 
             style={{
@@ -71,14 +70,14 @@ function Objects(props) {
             }}
         >
             {
-                props.objects.map(row => <MapRow objects={row} />)
+                props.objects.map((row: any) => <MapRow objects={row} />)
             }
            
         </div>
     )
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state: any) => {
     return {
         objects: state.objects.objects,
     }

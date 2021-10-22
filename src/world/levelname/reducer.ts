@@ -2,7 +2,7 @@ const initialState = {
     levelname: ""
 }
 
-const levelnameReducer = (state=initialState, action) => {
+const levelnameReducer = (state=initialState, action: any) => {
     switch(action.type) {
         case 'ADD_LEVELNAME':
             return {

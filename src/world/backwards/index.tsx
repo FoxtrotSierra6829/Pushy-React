@@ -1,8 +1,7 @@
-import React from 'react'
 import { scale, worldheight, screenratio, getCookie, setCookie } from '../../config/constants'
 import '../styles.css'
 
-function backwards() {
+const backwards = () => {
     let level = parseInt(getCookie('level'))-1
     if (level<=0) {
         level=1
@@ -11,7 +10,7 @@ function backwards() {
     window.location.reload();
 }
 
-function Backwards() {
+const Backwards = () => {
     return (
         <div className="backwards" onClick={() => backwards()}
             style={{

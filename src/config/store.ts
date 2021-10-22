@@ -14,10 +14,11 @@ const rootReducer = combineReducers({
     levelname: levelnameReducer,
     bean: beanReducer,
 })
-
+// eslint-disable-next-line  @typescript-eslint/no-explicit-any
+const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__();
 const store = createStore(
     rootReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    composeEnhancers,
 )
 
 export default store

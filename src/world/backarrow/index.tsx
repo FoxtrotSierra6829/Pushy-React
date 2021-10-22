@@ -1,13 +1,12 @@
-import React from 'react'
 import { scale, worldwidth, screenratio, setCookie } from '../../config/constants'
 import '../styles.css'
 
-function back() {
+const back = () => {
     setCookie('mode', 'menu', 365);
     window.location.reload();
 }
 
-function BackArrow(props) {
+const BackArrow = () => {
     return (
         <div className="back-arrow" onClick={() => back()}
             style={{

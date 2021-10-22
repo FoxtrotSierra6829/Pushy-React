@@ -1,10 +1,9 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import pushyimg from '../../images/pushy.png'
 import handleMovement from './move'
 import { scale, screenratio } from '../../config/constants'
 
-function Pushy(props) {
+const Pushy = (props: any) => {
     return (
         <div
             style={{
@@ -26,7 +25,7 @@ function Pushy(props) {
     )
 }
 
-function mapStateToProps(state) {
+const mapStateToProps = (state: any) => {
     return {
         ...state.pushy,
     }
