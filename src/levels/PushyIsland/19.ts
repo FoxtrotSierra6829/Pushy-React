@@ -1,5 +1,5 @@
-const levelname = 'Insel 19: Waikiki'
-const ground = [
+export const levelname = 'Insel 19: Waikiki'
+export const ground = [
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0],
     [0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0],
@@ -13,7 +13,7 @@ const ground = [
     [0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ]
-const objects = [
+export const objects = [
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,12,0,0,4,0,0,0,0,4,0,0,0,0,0,0,0],
@@ -28,6 +28,4 @@ const objects = [
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ]
 
-const initalPushyPosition = [15,7]
-
-export { levelname, ground, objects, initalPushyPosition }
+export const initalPushyPosition = [15,7]
