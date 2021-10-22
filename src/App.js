@@ -10,8 +10,6 @@ function App() {
     <div style={{
       width: '100vw',
       height: '100vh',
-      display: '-webkit-flex',
-      display: '-ms-flexbox',
       display: 'flex',
       
       '-webkit-justify-content': 'center',

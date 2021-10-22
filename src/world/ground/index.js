@@ -5,54 +5,54 @@ import { scale, screenratio, worldheight, worldwidth } from '../../config/consta
 import '../styles.css'
 
 
-var count = 0;
-var x = 0;
-var y = 0;
-var xleft = 0;
-var xright = 0;
-var yup = 0;
-var ydown =0;
+let count = 0;
+let x = 0;
+let y = 0;
+let xleft = 0;
+let xright = 0;
+let yup = 0;
+let ydown =0;
 function getTileSprite(type) {
     x = count%(worldwidth)
     y = Math.floor(count/(worldwidth))
-    if (y==0) {
+    if (y===0) {
         yup = 1
     } else {
         yup =y-1
     }
-    if (y==worldheight-1) {
+    if (y===worldheight-1) {
         ydown = y
     } else {
         ydown =y+1
     }
-    if (x==0) {
+    if (x===0) {
         xleft = x
     } else {
         xleft = x-1
     }
-    if (x==worldwidth-1) {
+    if (x===worldwidth-1) {
         xright = x
     } else {
         xright = x+1
     }
     
     const storedground = store.getState().ground.ground
-    const groundTileAbove = storedground[yup] [x]
-    const groundTileBelow = storedground[ydown] [x]
-    const groundTileLeft = storedground[y] [xleft]
-    const groundTileRight = storedground[y] [xright]
+    const groundTileAbove = storedground[yup][x]
+    const groundTileBelow = storedground[ydown][x]
+    const groundTileLeft = storedground[y][xleft]
+    const groundTileRight = storedground[y][xright]
     count++
     switch(type) {
         case 0:
             return 'water'
         case 1:
-            if (groundTileAbove === 0 && groundTileLeft === 0 || groundTileAbove === 3 && groundTileLeft === 0 || groundTileAbove === 3 && groundTileLeft === 3 || groundTileAbove === 0 && groundTileLeft === 3 || groundTileAbove === 0 && x === 0 || groundTileAbove === 3 && x === 0|| groundTileLeft === 0 && y === 0) {
+            if ((groundTileAbove === 0 && groundTileLeft === 0) || (groundTileAbove === 3 && groundTileLeft === 0) || (groundTileAbove === 3 && groundTileLeft === 3) || (groundTileAbove === 0 && groundTileLeft === 3) || (groundTileAbove === 0 && x === 0) || (groundTileAbove === 3 && x === 0)|| (groundTileLeft === 0 && y === 0)) {
                 return 'sand-lo'
-            } else if (groundTileBelow === 0 && groundTileLeft === 0 || groundTileBelow === 3 && groundTileLeft === 0 || groundTileBelow === 3 && groundTileLeft === 3 || groundTileBelow === 0 && groundTileLeft === 3 || groundTileBelow === 0 && x === 0 || groundTileBelow === 3 && x === 0|| groundTileLeft === 0 && y === worldheight-1) {
+            } else if ((groundTileBelow === 0 && groundTileLeft === 0) || (groundTileBelow === 3 && groundTileLeft === 0) || (groundTileBelow === 3 && groundTileLeft === 3) || (groundTileBelow === 0 && groundTileLeft === 3) || (groundTileBelow === 0 && x === 0) || (groundTileBelow === 3 && x === 0)|| (groundTileLeft === 0 && y === worldheight-1)) {
                     return 'sand-lu'
-            } else if (groundTileBelow === 0 && groundTileRight === 0 || groundTileBelow === 3 && groundTileRight === 0 || groundTileBelow === 3 && groundTileRight === 3 ||groundTileBelow === 0 && groundTileRight === 3 || groundTileBelow === 0 && x === 19 || groundTileBelow === 3 && x === 19|| groundTileRight === 0 && y === worldheight-1) {
+            } else if ((groundTileBelow === 0 && groundTileRight === 0) || (groundTileBelow === 3 && groundTileRight === 0) || (groundTileBelow === 3 && groundTileRight === 3) ||(groundTileBelow === 0 && groundTileRight === 3) || (groundTileBelow === 0 && x === 19) || (groundTileBelow === 3 && x === 19)|| (groundTileRight === 0 && y === worldheight-1)) {
                 return 'sand-ru'
-            } else if (groundTileAbove === 0 && groundTileRight === 0 || groundTileAbove === 3 && groundTileRight === 0 ||groundTileAbove === 3 && groundTileRight === 3 || groundTileAbove === 0 && groundTileRight === 3 || groundTileAbove === 0 && x === worldwidth-1 || groundTileAbove === 3 && x === worldwidth-1 || groundTileRight === 0 && y === 0) {
+            } else if ((groundTileAbove === 0 && groundTileRight === 0) || (groundTileAbove === 3 && groundTileRight === 0) ||(groundTileAbove === 3 && groundTileRight === 3) || (groundTileAbove === 0 && groundTileRight === 3) || (groundTileAbove === 0 && x === worldwidth-1) || (groundTileAbove === 3 && x === worldwidth-1) || (groundTileRight === 0 && y === 0)) {
                 return 'sand-ro'
             } else {
                 return 'sand'
@@ -90,6 +90,8 @@ function getTileSprite(type) {
             return 'cross-green'
         case 11:
             return 'bomb-trigger'
+        default:
+            return 'water'
     }
 }
 

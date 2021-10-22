@@ -3,14 +3,16 @@ import { setCookie } from '../../config/constants';
 import '../styles.css'
 
 function handleKeyDown(e) {
-    if (e.keyCode!=122 && e.keyCode!=123) {
+    if (e.keyCode!==122 && e.keyCode!==123) {
         e.preventDefault()
     }
     switch(e.keyCode) {
         case 13:
             gotomenu()
+            break
         case 27:
             gotomenu()
+            break
         
         default:
             console.log(e.keyCode)

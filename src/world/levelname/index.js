@@ -1,5 +1,4 @@
 import React from 'react'
-import store from '../../config/store'
 import { connect } from 'react-redux'
 import { scale, screenratio } from '../../config/constants'
 import '../styles.css'

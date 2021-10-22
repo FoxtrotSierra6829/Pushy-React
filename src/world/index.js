@@ -17,7 +17,7 @@ import BackArrow from './backarrow'
 
 function World() {
       
-        var level =1
+        let level =1
         store.dispatch({type: 'CHANGE_LEVEL', payload: {
             maxlevel,
          }})
@@ -114,7 +114,7 @@ function World() {
 
   //get related level objects
   function loadlevel(level) {
-    var keys = Object.keys(levels);
+    let keys = Object.keys(levels);
     const ground = levels[keys[level-1]].ground
     const objects = levels[keys[level-1]].objects
     const position = levels[keys[level-1]].initalPushyPosition

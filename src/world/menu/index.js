@@ -122,14 +122,14 @@ function levelbutton(i) {
     }
 
 function handleKeyDown(e) {
-    if (e.keyCode!=122 && e.keyCode!=123) {
+    if (e.keyCode!==122 && e.keyCode!==123) {
         e.preventDefault()
     }
     switch(e.keyCode) {
         case 13:
             setCookie('mode', 'pushyisland', 365);
             window.location.reload();
-        
+            break
         default:
             console.log(e.keyCode)
     }
@@ -142,12 +142,12 @@ function loadlevel(i) {
 }
 
 function Menu(props) {
-    var rows = [];
+    let rows = [];
     let displaylevel = parseInt(getCookie('highscorelevel'))+1
     if (displaylevel>maxlevel) {
         displaylevel = maxlevel
     }
-    for (var i = 1; i < displaylevel+1; i++) {
+    for (let i = 1; i < displaylevel+1; i++) {
     rows.push(levelbutton(i));
 }
     window.addEventListener('keydown', (e) => {

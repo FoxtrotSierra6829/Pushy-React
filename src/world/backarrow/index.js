@@ -1,5 +1,5 @@
 import React from 'react'
-import { scale, worldheight, worldwidth, screenratio, setCookie } from '../../config/constants'
+import { scale, worldwidth, screenratio, setCookie } from '../../config/constants'
 import '../styles.css'
 
 function back() {

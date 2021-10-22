@@ -1,7 +1,6 @@
 import store from '../../config/store'
 import { worldheight } from '../../config/constants'
 import { worldwidth } from '../../config/constants'
-import objects from '../../world/objects'
 
 
 export default function handleMovement(player) {
@@ -37,6 +36,8 @@ export default function handleMovement(player) {
                 else {
                     return [oldPos[0], oldPos[1]]
                 }
+            default:
+                return [oldPos[0], oldPos[1]]
         }
     }
 
@@ -47,15 +48,15 @@ export default function handleMovement(player) {
         const obj = store.getState().objects.objects
         const yto = newPos[1]-1
         const xto = newPos[0]-1
-        var ystep2 = 0
-        if (yto==worldheight-1 || yto==0) {
+        let ystep2 = 0
+        if (yto===worldheight-1 || yto===0) {
             ystep2 = yto
         }
         else {
             ystep2 = oldPos[1]+(oldPos[1]-newPos[1])*(-2)-1
         }
-        var xstep2 = 0
-        if (xto==worldwidth-1 || xto==0) {
+        let xstep2 = 0
+        if (xto===worldwidth-1 || xto===0) {
             xstep2 = xto
         }
         else {
@@ -63,16 +64,16 @@ export default function handleMovement(player) {
         }
         const yfrom = oldPos[1]-1
         const xfrom = oldPos[0]-1
-        const nextGroundTile = gnd[yto] [xto]
-        const nextObjectsTile = obj[yto] [xto]
-        const step2ObjectsTile = obj[ystep2] [xstep2]
-        const step2GroundTile = gnd[ystep2] [xstep2]
-        const currentGroundTile = gnd[yfrom] [xfrom]
-        const currentObjectsTile = obj[yfrom] [xfrom]
+        const nextGroundTile = gnd[yto][xto]
+        const nextObjectsTile = obj[yto][xto]
+        const step2ObjectsTile = obj[ystep2][xstep2]
+        const step2GroundTile = gnd[ystep2][xstep2]
+        const currentGroundTile = gnd[yfrom][xfrom]
+        const currentObjectsTile = obj[yfrom][xfrom]
         //Bean ahead
         if (nextObjectsTile===9) {
             const objects = obj.slice() //copy the array
-            objects[yto] [xto] = 0 //remove at old position
+            objects[yto][xto] = 0 //remove at old position
             store.dispatch({type: 'MOVE_OBJECTS', payload: {
                 objects
             }})
@@ -83,7 +84,7 @@ export default function handleMovement(player) {
         if (nextGroundTile===5) {
             if (store.getState().bean.count>0) {
                 const ground = gnd.slice() //copy the array
-                ground[yto] [xto] = 6 //add at new position
+                ground[yto][xto] = 6 //add at new position
                 store.dispatch({type: 'UPDATE_GROUND', payload: {
                     ground
                 }})
@@ -98,13 +99,13 @@ export default function handleMovement(player) {
             const ground = gnd.slice() //copy the array
             for (let y = 0; y < worldheight; y++) { //scroll through world y
                 for (let x = 0; x < worldwidth; x++) { //scroll through world x
-                    if (objects[y] [x]==11 && ground [y] [x] != 8) { // when figure red and not red cross below
+                    if (objects[y][x]===11 && ground[y][x] !== 8) { // when figure red and not red cross below
                         return false
                     }
-                    if (objects[y] [x]==12 && ground [y] [x] != 9) { // when figure red and not red cross below
+                    if (objects[y][x]===12 && ground[y][x] !== 9) { // when figure red and not red cross below
                         return false
                     }
-                    if (objects[y] [x]==13 && ground [y] [x] != 10) { // when figure red and not red cross below
+                    if (objects[y][x]===13 && ground[y][x] !== 10) { // when figure red and not red cross below
                         return false
                     }
                 }}
@@ -137,12 +138,12 @@ export default function handleMovement(player) {
         //Box to Box_water
         else if (nextObjectsTile===3 && step2ObjectsTile === 0 && step2GroundTile===0 && !(currentGroundTile === 2 && nextGroundTile!== 2)) {
             const objects = obj.slice() //copy the array
-            objects[yto] [xto] = 0 //remove at old position
+            objects[yto][xto] = 0 //remove at old position
             store.dispatch({type: 'MOVE_OBJECTS', payload: {
                 objects
             }})
             const ground = gnd.slice() //copy the array
-            ground[ystep2] [xstep2] = 3 //add at new position
+            ground[ystep2][xstep2] = 3 //add at new position
             store.dispatch({type: 'UPDATE_GROUND', payload: {
                 ground,
             }})
@@ -154,10 +155,10 @@ export default function handleMovement(player) {
             return true
         }
         //Throw Seastar in Water
-        else if (nextObjectsTile===7 && obj[ystep2] [xstep2] === 0 && step2GroundTile===0 && !(currentGroundTile === 2 && nextGroundTile!== 2)) {
+        else if (nextObjectsTile===7 && obj[ystep2][xstep2] === 0 && step2GroundTile===0 && !(currentGroundTile === 2 && nextGroundTile!== 2)) {
             const objects = obj.slice() //copy the array
-            objects[yto] [xto] = 0 //remove at old position
-            objects[ystep2] [xstep2] = 7 //add at new position
+            objects[yto][xto] = 0 //remove at old position
+            objects[ystep2][xstep2] = 7 //add at new position
             store.dispatch({type: 'MOVE_OBJECTS', payload: {
                 objects
             }})
@@ -166,10 +167,10 @@ export default function handleMovement(player) {
 
         }
         //move Box
-        else if (nextObjectsTile===3 && step2GroundTile!==7 && !(step2GroundTile === 2 && nextGroundTile!== 2) && !(nextGroundTile === 2 && currentGroundTile!== 2) && !(nextGroundTile !== 2 && currentGroundTile=== 2) && obj[ystep2] [xstep2] === 0) {
+        else if (nextObjectsTile===3 && step2GroundTile!==7 && !(step2GroundTile === 2 && nextGroundTile!== 2) && !(nextGroundTile === 2 && currentGroundTile!== 2) && !(nextGroundTile !== 2 && currentGroundTile=== 2) && obj[ystep2][xstep2] === 0) {
             const objects = obj.slice() //copy the array
-            objects[yto] [xto] = 0 //remove at old position
-            objects[ystep2] [xstep2] = 3 //add at new position
+            objects[yto][xto] = 0 //remove at old position
+            objects[ystep2][xstep2] = 3 //add at new position
             store.dispatch({type: 'MOVE_OBJECTS', payload: {
                 objects
             }})
@@ -177,10 +178,10 @@ export default function handleMovement(player) {
 
         }
         //move Seastar
-        else if (nextObjectsTile===7 && step2GroundTile!==7  && !(step2GroundTile === 2 && nextGroundTile!== 2) && !(nextGroundTile === 2 && currentGroundTile!== 2) && !(nextGroundTile !== 2 && currentGroundTile=== 2) && obj[ystep2] [xstep2] === 0) {
+        else if (nextObjectsTile===7 && step2GroundTile!==7  && !(step2GroundTile === 2 && nextGroundTile!== 2) && !(nextGroundTile === 2 && currentGroundTile!== 2) && !(nextGroundTile !== 2 && currentGroundTile=== 2) && obj[ystep2][xstep2] === 0) {
             const objects = obj.slice() //copy the array
-            objects[yto] [xto] = 0 //remove at old position
-            objects[ystep2] [xstep2] = 7 //add at new position
+            objects[yto][xto] = 0 //remove at old position
+            objects[ystep2][xstep2] = 7 //add at new position
             store.dispatch({type: 'MOVE_OBJECTS', payload: {
                 objects
             }})
@@ -188,10 +189,10 @@ export default function handleMovement(player) {
 
         }
         //Bottle to Bottle water
-        else if (nextObjectsTile===8 && step2GroundTile===4 && !(step2GroundTile === 2 && nextGroundTile!== 2) && !(nextGroundTile === 2 && currentGroundTile!== 2) && !(nextGroundTile !== 2 && currentGroundTile=== 2) && obj[ystep2] [xstep2] === 0) {
+        else if (nextObjectsTile===8 && step2GroundTile===4 && !(step2GroundTile === 2 && nextGroundTile!== 2) && !(nextGroundTile === 2 && currentGroundTile!== 2) && !(nextGroundTile !== 2 && currentGroundTile=== 2) && obj[ystep2][xstep2] === 0) {
             const objects = obj.slice() //copy the array
-            objects[yto] [xto] = 0 //remove at old position
-            objects[ystep2] [xstep2] = 10 //add at new position
+            objects[yto][xto] = 0 //remove at old position
+            objects[ystep2][xstep2] = 10 //add at new position
             store.dispatch({type: 'MOVE_OBJECTS', payload: {
                 objects
             }})
@@ -199,10 +200,10 @@ export default function handleMovement(player) {
 
         }
         //move Bottle
-        else if (nextObjectsTile===8 && step2GroundTile!==7  &&  step2GroundTile!==0 && !(step2GroundTile === 2 && nextGroundTile!== 2) && !(nextGroundTile === 2 && currentGroundTile!== 2) && !(nextGroundTile !== 2 && currentGroundTile=== 2) && obj[ystep2] [xstep2] === 0) {
+        else if (nextObjectsTile===8 && step2GroundTile!==7  &&  step2GroundTile!==0 && !(step2GroundTile === 2 && nextGroundTile!== 2) && !(nextGroundTile === 2 && currentGroundTile!== 2) && !(nextGroundTile !== 2 && currentGroundTile=== 2) && obj[ystep2][xstep2] === 0) {
             const objects = obj.slice() //copy the array
-            objects[yto] [xto] = 0 //remove at old position
-            objects[ystep2] [xstep2] = 8 //add at new position
+            objects[yto][xto] = 0 //remove at old position
+            objects[ystep2][xstep2] = 8 //add at new position
             store.dispatch({type: 'MOVE_OBJECTS', payload: {
                 objects
             }})
@@ -210,14 +211,14 @@ export default function handleMovement(player) {
 
         }
         //Create Spring
-        else if (nextObjectsTile===10 &&  step2GroundTile===6 && !(step2GroundTile === 2 && nextGroundTile!== 2) && !(nextGroundTile === 2 && currentGroundTile!== 2) && !(nextGroundTile !== 2 && currentGroundTile=== 2) && obj[ystep2] [xstep2] === 0) {
+        else if (nextObjectsTile===10 &&  step2GroundTile===6 && !(step2GroundTile === 2 && nextGroundTile!== 2) && !(nextGroundTile === 2 && currentGroundTile!== 2) && !(nextGroundTile !== 2 && currentGroundTile=== 2) && obj[ystep2][xstep2] === 0) {
             const objects = obj.slice() //copy the array
-            objects[yto] [xto] = 0 //remove at old position
+            objects[yto][xto] = 0 //remove at old position
             store.dispatch({type: 'MOVE_OBJECTS', payload: {
                 objects
             }})
             const ground = gnd.slice() //copy the array
-                    ground[ystep2] [xstep2] = 7 //add at new position
+                    ground[ystep2][xstep2] = 7 //add at new position
                     store.dispatch({type: 'UPDATE_GROUND', payload: {
                         ground
                     }})
@@ -225,10 +226,10 @@ export default function handleMovement(player) {
 
         }
         //move Bottle with water
-        else if (nextObjectsTile===10 && step2GroundTile!==7  &&  step2GroundTile!==0 && !(step2GroundTile === 2 && nextGroundTile!== 2) && !(nextGroundTile === 2 && currentGroundTile!== 2) && !(nextGroundTile !== 2 && currentGroundTile=== 2) && obj[ystep2] [xstep2] === 0) {
+        else if (nextObjectsTile===10 && step2GroundTile!==7  &&  step2GroundTile!==0 && !(step2GroundTile === 2 && nextGroundTile!== 2) && !(nextGroundTile === 2 && currentGroundTile!== 2) && !(nextGroundTile !== 2 && currentGroundTile=== 2) && obj[ystep2][xstep2] === 0) {
             const objects = obj.slice() //copy the array
-            objects[yto] [xto] = 0 //remove at old position
-            objects[ystep2] [xstep2] = 10 //add at new position
+            objects[yto][xto] = 0 //remove at old position
+            objects[ystep2][xstep2] = 10 //add at new position
             store.dispatch({type: 'MOVE_OBJECTS', payload: {
                 objects
             }})
@@ -249,7 +250,7 @@ export default function handleMovement(player) {
             return true
 
         function checkmovefigure(figuretype) {
-         if (step2GroundTile!==7  &&  step2GroundTile!==0 && !(step2GroundTile === 2 && nextGroundTile!== 2) && !(nextGroundTile === 2 && currentGroundTile!== 2) && !(nextGroundTile !== 2 && currentGroundTile=== 2) && obj[ystep2] [xstep2] === 0) {
+         if (step2GroundTile!==7  &&  step2GroundTile!==0 && !(step2GroundTile === 2 && nextGroundTile!== 2) && !(nextGroundTile === 2 && currentGroundTile!== 2) && !(nextGroundTile !== 2 && currentGroundTile=== 2) && obj[ystep2][xstep2] === 0) {
             const objects = obj.slice() //copy the array
             let objarr = []
             let i = 0
@@ -285,30 +286,30 @@ export default function handleMovement(player) {
                         return array.reduce((n, x) => n + (x === value), 0);
                     }
 
-                    if (objects[y] [x] == figuretype // figure of same type found
-                        && !(x==xto && y==yto) // not the object that I am directly moving
+                    if (objects[y][x] === figuretype // figure of same type found
+                        && !(x===xto && y===yto) // not the object that I am directly moving
                         && countInArray(objarr2, x+','+y)===0 // not already moved
-                        && (gnd[yobjto] [xobjto] == gnd[y] [x] || (gnd[yobjto] [xobjto] != 2 && gnd[yobjto] [xobjto] != 0 && gnd[yobjto] [xobjto] != 7))) { // appropriate ground
-                        if (objects[yobjto] [xobjto] == 0) { // no object in way
-                            objects[y] [x] = 0
+                        && (gnd[yobjto][xobjto] === gnd[y][x] || (gnd[yobjto][xobjto] !== 2 && gnd[yobjto][xobjto] !== 0 && gnd[yobjto][xobjto] !==7))) { // appropriate ground
+                        if (objects[yobjto][xobjto] === 0) { // no object in way
+                            objects[y][x] = 0
                             i++
                             objarr[i] = xobjto+','+yobjto
-                            objects[yobjto] [xobjto] = figuretype
+                            objects[yobjto][xobjto] = figuretype
                         }
-                        else if ((objects[yobjto] [xobjto] == figuretype) && objects[yobjstep2] [xobjstep2] == 0 && (gnd[yobjstep2] [xobjstep2] == gnd[y] [x] || (gnd[yobjstep2] [xobjstep2] != 2 && gnd[yobjstep2] [xobjstep2] != 0 && gnd[yobjstep2] [xobjstep2] != 7))) {// another figure of same type in way but that can move
-                            objects[y] [x] = 0
+                        else if ((objects[yobjto][xobjto] === figuretype) && objects[yobjstep2][xobjstep2] === 0 && (gnd[yobjstep2][xobjstep2] === gnd[y][x] || (gnd[yobjstep2][xobjstep2] !== 2 && gnd[yobjstep2][xobjstep2] !== 0 && gnd[yobjstep2][xobjstep2] !== 7))) {// another figure of same type in way but that can move
+                            objects[y][x] = 0
                             i++
                             objarr[i] = xobjto+','+yobjto
                             i++
                             objarr[i] = xobjstep2+','+yobjstep2
-                            objects[yobjstep2] [xobjstep2] = figuretype
+                            objects[yobjstep2][xobjstep2] = figuretype
                         }
                             
                     }
                 }
             }
-            objects[yto] [xto] = 0 //remove at old position
-            objects[ystep2] [xstep2] = figuretype //add at new position
+            objects[yto][xto] = 0 //remove at old position
+            objects[ystep2][xstep2] = figuretype //add at new position
             store.dispatch({type: 'MOVE_OBJECTS', payload: {
                 objects
             }})
@@ -320,10 +321,10 @@ export default function handleMovement(player) {
         }
 
         //move Bomb
-        else if (nextObjectsTile===14 && step2GroundTile!==0 && step2GroundTile!==7 && !(step2GroundTile === 2 && nextGroundTile!== 2) && !(nextGroundTile === 2 && currentGroundTile!== 2) && !(nextGroundTile !== 2 && currentGroundTile=== 2) && obj[ystep2] [xstep2] === 0) {
+        else if (nextObjectsTile===14 && step2GroundTile!==0 && step2GroundTile!==7 && !(step2GroundTile === 2 && nextGroundTile!== 2) && !(nextGroundTile === 2 && currentGroundTile!== 2) && !(nextGroundTile !== 2 && currentGroundTile=== 2) && obj[ystep2][xstep2] === 0) {
             const objects = obj.slice() //copy the array
-            objects[yto] [xto] = 0 //remove at old position
-            objects[ystep2] [xstep2] = 14 //add at new position
+            objects[yto][xto] = 0 //remove at old position
+            objects[ystep2][xstep2] = 14 //add at new position
             store.dispatch({type: 'MOVE_OBJECTS', payload: {
                 objects
             }})
@@ -331,9 +332,9 @@ export default function handleMovement(player) {
 
         }
         //trigger explosion
-        else if (nextGroundTile===11 && obj[yto] [xto] === 0) {
+        else if (nextGroundTile===11 && obj[yto][xto] === 0) {
             const ground = gnd.slice() //copy the array
-            ground[yto] [xto] = 1 //remove at old position
+            ground[yto][xto] = 1 //remove at old position
             store.dispatch({type: 'UPDATE_GROUND', payload: {
                 ground
             }})
@@ -356,33 +357,33 @@ export default function handleMovement(player) {
         
 
     }
-    function getCookie(cname) {
-        var name = cname + "=";
-        var decodedCookie = decodeURIComponent(document.cookie);
-        var ca = decodedCookie.split(';');
-        for(var i = 0; i <ca.length; i++) {
-          var c = ca[i];
-          while (c.charAt(0) == ' ') {
-            c = c.substring(1);
+    function getCookie(cookieName) {
+        const name = cookieName + "=";
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookieArray = decodedCookie.split(';');
+        for(let i = 0; i <cookieArray.length; i++) {
+          let cookie = cookieArray[i];
+          while (cookie.charAt(0) === ' ') {
+            cookie = cookie.substring(1);
           }
-          if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
+          if (cookie.indexOf(name) === 0) {
+            return cookie.substring(name.length, cookie.length);
           }
         }
         return "";
       }
 
-    function setCookie(cname, cvalue, exdays) {
-        var d = new Date();
-        d.setTime(d.getTime() + (exdays*24*60*60*1000));
-        var expires = "expires="+ d.toUTCString();
-        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    function setCookie(cookieName, cvalue, exdays) {
+        let date = new Date();
+        date.setTime(date.getTime() + (exdays*24*60*60*1000));
+        let expires = "expires="+ date.toUTCString();
+        document.cookie = cookieName + "=" + cvalue + ";" + expires + ";path=/";
       }
 
     function removeseastar(obj,yto,xto,ystep2,xstep2) {
         setTimeout(() => {  const objects = obj.slice() //copy the array
-            objects[yto] [xto] = 0 //remove at old position
-            objects[ystep2] [xstep2] = 0 //remove at old position
+            objects[yto][xto] = 0 //remove at old position
+            objects[ystep2][xstep2] = 0 //remove at old position
             store.dispatch({type: 'MOVE_OBJECTS', payload: {
                 objects
             }})
@@ -394,29 +395,29 @@ export default function handleMovement(player) {
         const objects = obj.slice()
         for (let y = 0; y < worldheight; y++) { //scroll through world y
             for (let x = 0; x < worldwidth; x++) { //scroll through world x
-                if (objects [y] [x]===14) {
+                if (objects[y][x]===14) {
                     setTimeout(() => {  const objects = obj.slice() //copy the array
-                        objects [y] [x] = 15 //remove at old position
+                        objects[y][x] = 15 //remove at old position
                         store.dispatch({type: 'MOVE_OBJECTS', payload: {
                             objects
                         }})
                      }, 50);
                      setTimeout(() => {  const objects = obj.slice() //copy the array
-                        objects [y] [x] = 0 //remove at old position
+                        objects[y][x] = 0 //remove at old position
                         store.dispatch({type: 'MOVE_OBJECTS', payload: {
                             objects
                         }})
                      }, 250);
                      if (y>0) {
-                         if (objects [y-1] [x]===0 || objects [y-1] [x]===4) {
+                         if (objects[y-1][x]===0 || objects[y-1][x]===4) {
                             setTimeout(() => {  const objects = obj.slice() //copy the array
-                                objects [y-1] [x] = 15 //remove at old position
+                                objects[y-1][x] = 15 //remove at old position
                                 store.dispatch({type: 'MOVE_OBJECTS', payload: {
                                     objects
                                 }})
                              }, 300);
                             setTimeout(() => {  const objects = obj.slice() //copy the array
-                                objects [y-1] [x] = 0 //remove at old position
+                                objects[y-1][x] = 0 //remove at old position
                                 store.dispatch({type: 'MOVE_OBJECTS', payload: {
                                     objects
                                 }})
@@ -424,15 +425,15 @@ export default function handleMovement(player) {
                             }
                         }
                     if (x<worldwidth) {
-                        if (objects [y] [x+1]===0 || objects [y] [x+1]===4) {
+                        if (objects[y][x+1]===0 || objects[y][x+1]===4) {
                             setTimeout(() => {  const objects = obj.slice() //copy the array
-                                objects [y] [x+1] = 15 //remove at old position
+                                objects[y][x+1] = 15 //remove at old position
                                 store.dispatch({type: 'MOVE_OBJECTS', payload: {
                                     objects
                                 }})
                              }, 450);
                             setTimeout(() => {  const objects = obj.slice() //copy the array
-                                objects [y] [x+1] = 0 //remove at old position
+                                objects[y][x+1] = 0 //remove at old position
                                 store.dispatch({type: 'MOVE_OBJECTS', payload: {
                                     objects
                                 }})
@@ -440,15 +441,15 @@ export default function handleMovement(player) {
                          }
                      }
                      if (y<worldheight-1) {
-                        if (objects [y+1] [x]===0 || objects [y+1] [x]===4) {
+                        if (objects[y+1][x]===0 || objects[y+1][x]===4) {
                             setTimeout(() => {  const objects = obj.slice() //copy the array
-                                objects [y+1] [x] = 15 //remove at old position
+                                objects[y+1][x] = 15 //remove at old position
                                 store.dispatch({type: 'MOVE_OBJECTS', payload: {
                                     objects
                                 }})
                              }, 700);
                             setTimeout(() => {  const objects = obj.slice() //copy the array
-                                objects [y+1] [x] = 0 //remove at old position
+                                objects[y+1][x] = 0 //remove at old position
                                 store.dispatch({type: 'MOVE_OBJECTS', payload: {
                                     objects
                                 }})
@@ -456,15 +457,15 @@ export default function handleMovement(player) {
                          }
                      }
                      if (x>0) {
-                        if (objects [y] [x-1]===0 || objects [y] [x-1]===4) {
+                        if (objects[y][x-1]===0 || objects[y][x-1]===4) {
                             setTimeout(() => {  const objects = obj.slice() //copy the array
-                                objects [y] [x-1] = 15 //remove at old position
+                                objects[y][x-1] = 15 //remove at old position
                                 store.dispatch({type: 'MOVE_OBJECTS', payload: {
                                     objects
                                 }})
                              }, 950);
                             setTimeout(() => {  const objects = obj.slice() //copy the array
-                                objects [y] [x-1] = 0 //remove at old position
+                                objects[y][x-1] = 0 //remove at old position
                                 store.dispatch({type: 'MOVE_OBJECTS', payload: {
                                     objects
                                 }})
@@ -481,15 +482,14 @@ export default function handleMovement(player) {
 
     function turnhome(newPos) {
         let rotation = 0
-        var i;
-        for (i = 0; i < 1440; i++) { //two turns
+        for (let i = 0; i < 1440; i++) { //two turns
             setTimeout(() => {
-                rotation = rotation+0.5;
+                let newrotation = rotation+i*0.5;
                 store.dispatch({
                 type: 'MOVE_PUSHY',
                 payload: {
                     position: newPos,
-                    rotation: rotation,
+                    rotation: newrotation,
                 }
             });
              }, i/1.44);
@@ -507,6 +507,8 @@ export default function handleMovement(player) {
                 return 0
             case 'down':
                 return 180
+            default:
+                return 0
         }
         
     }
@@ -541,7 +543,7 @@ export default function handleMovement(player) {
     }
 
     function handleKeyDown(e) {
-        if (e.keyCode!=122 && e.keyCode!=123) {
+        if (e.keyCode!==122 && e.keyCode!==123) {
             e.preventDefault()
         }
         switch(e.keyCode) {
@@ -598,11 +600,11 @@ export default function handleMovement(player) {
       return;
     }
 
-    let currentX = e.touches[0].clientX;
-    let currentY = e.touches[0].clientY;
+    const currentX = e.touches[0].clientX;
+    const currentY = e.touches[0].clientY;
 
-    let diffX = initialX - currentX;
-    let diffY = initialY - currentY;
+    const diffX = initialX - currentX;
+    const diffY = initialY - currentY;
 
     if (Math.abs(diffX) > Math.abs(diffY)) {
       // sliding horizontally

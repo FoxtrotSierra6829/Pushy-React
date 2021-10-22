@@ -34,6 +34,8 @@ function getTileType(type) {
             return 'bomb'
         case 15:
             return 'explosion'
+        default:
+            return
     }
 }
 
