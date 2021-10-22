@@ -1,14 +1,13 @@
+import { actionTypes } from "../../config/types"
+
 const initialState = {
     ground: [],
 }
 
 const groundReducer = (state=initialState, action: any) => {
     switch(action.type) {
-        case 'ADD_GROUND':
-            return {
-                ...action.payload
-            }
-        case 'UPDATE_GROUND':
+        case actionTypes.addGround:
+        case actionTypes.updateGround:
             return {
                 ...action.payload
             }

@@ -12,12 +12,13 @@ import Congrats from './congrats'
 import {levels, scale, worldheight, worldwidth, maxlevel, screenratio, setCookie, getCookie } from '../config/constants'
 import store from '../config/store'
 import BackArrow from './backarrow'
+import { actionTypes } from '../config/types'
 
 
 const World = () => {
       
         let level =1
-        store.dispatch({type: 'CHANGE_LEVEL', payload: {
+        store.dispatch({type: actionTypes.changeLevel, payload: {
             maxlevel,
          }})
         let mode = getCookie('mode')
@@ -112,24 +113,24 @@ const World = () => {
 
 
   //get related level objects
-  function loadlevel(level: number) {
-    let keys = Object.keys(levels);
+  const loadlevel = (level: number) => {
+    const keys = Object.keys(levels);
     const ground = levels[keys[level-1]].ground
     const objects = levels[keys[level-1]].objects
     const position = levels[keys[level-1]].initalPushyPosition
     const levelname = levels[keys[level-1]].levelname
     
 
-    store.dispatch({type: 'ADD_GROUND', payload: {
+    store.dispatch({type: actionTypes.addGround, payload: {
         ground,
     }})
-    store.dispatch({type: 'ADD_OBJECTS', payload: {
+    store.dispatch({type: actionTypes.addObjects, payload: {
         objects
     }})
-    store.dispatch({type: 'MOVE_PUSHY', payload: {
+    store.dispatch({type: actionTypes.movePushy, payload: {
         position,
     }})
-    store.dispatch({type: 'ADD_LEVELNAME', payload: {
+    store.dispatch({type: actionTypes.addLevelName, payload: {
         levelname,
     }})
 }

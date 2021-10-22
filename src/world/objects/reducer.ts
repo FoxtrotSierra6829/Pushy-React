@@ -1,16 +1,15 @@
+import { actionTypes } from "../../config/types"
+
 const initialState = {
     objects: [],
 }
 
 const objectsReducer = (state=initialState, action: any) => {
     switch(action.type) {
-        case 'ADD_OBJECTS':
+        case actionTypes.addObjects:
+        case actionTypes.moveObjects:
             return {
                 ...action.payload
-            }
-        case 'MOVE_OBJECTS':
-        return {
-            ...action.payload
             }
         default:
         return state
