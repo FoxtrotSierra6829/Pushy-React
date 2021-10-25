@@ -25,5 +25,6 @@ jobs:
         server: ${{ secrets.SERVER_ADRESS }}
         username: ${{ secrets.SERVER_PASSWORD }}
         password: ${{ secrets.SERVER_USERNAME }}
+        protocol: ftps
         local-dir: ./build/
         server-dir: default-website/pushy/
