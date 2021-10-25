@@ -20,13 +20,11 @@ jobs:
       run: npm run build
     
     - name: Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.1.0
+      uses: sebastianpopp/ftp-action@releases/v2
       with:
-        server: ${{ secrets.SERVER_ADRESS }}
-        username: ${{ secrets.SERVER_PASSWORD }}
-        password: ${{ secrets.SERVER_USERNAME }}
-        protocol: ftp
-        port: 21
-        local-dir: ./build/
-        server-dir: default-website/pushy/
-        dry-run: true
+        host: ${{ secrets.SERVER_ADRESS }}
+        user: ${{ secrets.SERVER_USERNAME }}
+        password: ${{ secrets.SERVER_PASSWORD }}
+        localDir: "build"
+        remoteDir: "default-website/test"
+        options: ""
