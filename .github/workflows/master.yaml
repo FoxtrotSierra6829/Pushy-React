@@ -26,5 +26,7 @@ jobs:
         username: ${{ secrets.SERVER_PASSWORD }}
         password: ${{ secrets.SERVER_USERNAME }}
         protocol: ftps
+        port: 21
         local-dir: ./build/
         server-dir: default-website/pushy/
+        dry-run: true
