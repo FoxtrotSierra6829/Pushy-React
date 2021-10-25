@@ -1,0 +1,30 @@
+name: Upload to Server
+on:
+  push:
+    branches: [master]
+
+jobs:
+  web-deploy:
+    name: 🎉 Deploy
+    # Prevent running this on forks
+    if: github.repository_owner == 'FoxtrotSierra6829'
+    runs-on: ubuntu-latest
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2
+    
+    - name: install dependencies
+      run: npm ci
+
+    - name: build website
+      run: npm run build
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.1.0
+      with:
+        server: ${{ secrets.SERVER_ADRESS }}
+        username: ${{ secrets.SERVER_PASSWORD }}
+        password: ${{ secrets.SERVER_USERNAME }}
+        protocol: ftps
+        local-dir: ./build/
+        server-dir: default-website/pushy/
