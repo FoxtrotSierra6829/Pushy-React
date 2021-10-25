@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import pushyimg from '../../images/pushy.png'
+import pushyimg from '../../images/pushy.webp'
 import handleMovement from './move'
 import { scale, screenratio } from '../../config/constants'
 

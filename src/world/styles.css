@@ -5,14 +5,14 @@
   height: 0;
   overflow: hidden;
   z-index: -1;
-  content: url('../images/box_water.png') url('../images/bottle_water.png')
-    url('../images/bottle_water.png') url('../images/sand_hole_bean.png')
-    url('../images/spring.png') url('../images/1xbean.png');
+  content: url('../images/box_water.webp') url('../images/bottle_water.webp')
+    url('../images/bottle_water.webp') url('../images/sand_hole_bean.webp')
+    url('../images/spring.webp') url('../images/1xbean.webp');
 }
 .frame {
   background-size: 100%;
   background-repeat: 'no-repeat';
-  background-image: url('../images/pushy_island_all_water.png');
+  background-image: url('../images/pushy_island_all_water.webp');
   touch-action: none;
 }
 .frame-menu {
@@ -40,65 +40,65 @@
   z-index: 1;
 }
 .water {
-  background-image: url('../images/water.png');
+  background-image: url('../images/water.webp');
 }
 
 .sand {
-  background-image: url('../images/sand.png');
+  background-image: url('../images/sand.webp');
 }
 .sand-lo {
-  background-image: url('../images/sand_lo.png');
+  background-image: url('../images/sand_lo.webp');
 }
 .sand-lu {
-  background-image: url('../images/sand_lu.png');
+  background-image: url('../images/sand_lu.webp');
 }
 .sand-ru {
-  background-image: url('../images/sand_ru.png');
+  background-image: url('../images/sand_ru.webp');
 }
 .sand-ro {
-  background-image: url('../images/sand_ro.png');
+  background-image: url('../images/sand_ro.webp');
 }
 .grass {
-  background-image: url('../images/grass.png');
+  background-image: url('../images/grass.webp');
 }
 .grass-lo {
-  background-image: url('../images/grass_lo.png');
+  background-image: url('../images/grass_lo.webp');
 }
 .grass-lu {
-  background-image: url('../images/grass_lu.png');
+  background-image: url('../images/grass_lu.webp');
 }
 .grass-ro {
-  background-image: url('../images/grass_ro.png');
+  background-image: url('../images/grass_ro.webp');
 }
 .grass-ru {
-  background-image: url('../images/grass_ru.png');
+  background-image: url('../images/grass_ru.webp');
 }
 .grass-down {
-  background-image: url('../images/grass_down.png');
+  background-image: url('../images/grass_down.webp');
 }
 .water-hole {
-  background-image: url('../images/water_hole.png');
+  background-image: url('../images/water_hole.webp');
 }
 .sand-hole {
-  background-image: url('../images/sand_hole.png');
+  background-image: url('../images/sand_hole.webp');
 }
 .sand-hole-bean {
-  background-image: url('../images/sand_hole_bean.png');
+  background-image: url('../images/sand_hole_bean.webp');
 }
 .spring {
-  background-image: url('../images/spring.png');
+  background-image: url('../images/spring.webp');
 }
 .cross-red {
-  background-image: url('../images/cross_red.png');
+  background-image: url('../images/cross_red.webp');
 }
 .cross-blue {
-  background-image: url('../images/cross_blue.png');
+  background-image: url('../images/cross_blue.webp');
 }
 .cross-green {
-  background-image: url('../images/cross_green.png');
+  background-image: url('../images/cross_green.webp');
 }
 .bomb-trigger {
-  background-image: url('../images/bomb_trigger.png');
+  background-image: url('../images/bomb_trigger.webp');
 }
 
 .objectstile {
@@ -109,49 +109,49 @@
   z-index: 2;
 }
 .house {
-  background-image: url('../images/house.png');
+  background-image: url('../images/house.webp');
 }
 .box {
-  background-image: url('../images/box.png');
+  background-image: url('../images/box.webp');
 }
 .box-water {
-  background-image: url('../images/box_water.png');
+  background-image: url('../images/box_water.webp');
 }
 .stone {
-  background-image: url('../images/stone.png');
+  background-image: url('../images/stone.webp');
 }
 .palm-left {
-  background-image: url('../images/palm_left.png');
+  background-image: url('../images/palm_left.webp');
 }
 .palm-right {
-  background-image: url('../images/palm_right.png');
+  background-image: url('../images/palm_right.webp');
 }
 .seastar {
-  background-image: url('../images/seastar.png');
+  background-image: url('../images/seastar.webp');
 }
 .bottle {
-  background-image: url('../images/bottle.png');
+  background-image: url('../images/bottle.webp');
 }
 .bottle-water {
-  background-image: url('../images/bottle_water.png');
+  background-image: url('../images/bottle_water.webp');
 }
 .bean {
-  background-image: url('../images/bean.png');
+  background-image: url('../images/bean.webp');
 }
 .figure-red {
-  background-image: url('../images/figure_red.png');
+  background-image: url('../images/figure_red.webp');
 }
 .figure-blue {
-  background-image: url('../images/figure_blue.png');
+  background-image: url('../images/figure_blue.webp');
 }
 .figure-green {
-  background-image: url('../images/figure_green.png');
+  background-image: url('../images/figure_green.webp');
 }
 .bomb {
-  background-image: url('../images/bomb.png');
+  background-image: url('../images/bomb.webp');
 }
 .explosion {
-  background-image: url('../images/explosion.png');
+  background-image: url('../images/explosion.webp');
 }
 
 .back-arrow {
@@ -161,7 +161,7 @@
   background-repeat: 'no-repeat';
   color: transparent;
   z-index: 4;
-  background-image: url('../images/back_arrow.png');
+  background-image: url('../images/back_arrow.webp');
   cursor: pointer;
 }
 .reload {
@@ -171,7 +171,7 @@
   background-repeat: 'no-repeat';
   color: transparent;
   z-index: 4;
-  background-image: url('../images/reset.png');
+  background-image: url('../images/reset.webp');
   cursor: pointer;
 }
 .backwards {
@@ -181,7 +181,7 @@
   background-repeat: 'no-repeat';
   color: transparent;
   z-index: 4;
-  background-image: url('../images/backwards.png');
+  background-image: url('../images/backwards.webp');
   cursor: pointer;
 }
 .forwards {
@@ -191,7 +191,7 @@
   background-repeat: 'no-repeat';
   color: transparent;
   z-index: 4;
-  background-image: url('../images/backwards.png');
+  background-image: url('../images/backwards.webp');
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
   cursor: pointer;
@@ -203,5 +203,5 @@
   background-repeat: 'no-repeat';
   color: transparent;
   z-index: 4;
-  background-image: url('../images/1xbean.png');
+  background-image: url('../images/1xbean.webp');
 }
