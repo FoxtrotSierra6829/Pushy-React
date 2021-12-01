@@ -1,7 +1,6 @@
 export const scale = 7.5
 export const worldheight = 12
 export const worldwidth = 20
-export const maxlevel = 21
 
 // level imports
 export const levels: any = {
@@ -27,6 +26,8 @@ export const levels: any = {
     level20 : require('../levels/PushyIsland/20'),
     level21 : require('../levels/PushyIsland/21')
 }
+
+export const maxlevel = Object.keys(levels).length
 
 export const screenratio= () => {
     let mobileAdapt = 1
