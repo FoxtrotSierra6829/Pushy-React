@@ -1,4 +1,4 @@
-export const levelname = 'Insel 10: Hala Hula'
+export const levelName = 'Insel 10: Hala Hula'
 export const ground = [
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],

@@ -1,22 +1,22 @@
 import { connect } from 'react-redux'
-import pushyimg from '../../images/pushy.webp'
+import pushyImage from '../../images/pushy.webp'
 import handleMovement from './move'
-import { scale, screenratio } from '../../config/constants'
+import { scale, screenRatio } from '../../config/constants'
 
 const Pushy = (props: any) => {
     return (
         <div
             style={{
                 position: 'absolute',
-                top: (props.position[1]-1)*scale*screenratio()+'vh',
-                left: (props.position[0]-1)*scale*screenratio()+'vh',
+                top: (props.position[1]-1)*scale*screenRatio()+'vh',
+                left: (props.position[0]-1)*scale*screenRatio()+'vh',
                 transform: `rotate(${props.rotation}deg)`,
-                backgroundImage: `url('${pushyimg}')`,
+                backgroundImage: `url('${pushyImage}')`,
                 backgroundPosition: '0 0',
                 backgroundSize: '100%',
                 backgroundRepeat: 'no-repeat',
-                width: scale*screenratio()+ 'vh',
-                height: scale*screenratio()+ 'vh',
+                width: scale*screenRatio()+ 'vh',
+                height: scale*screenRatio()+ 'vh',
                 zIndex: 3,
 
             }}

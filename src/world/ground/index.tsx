@@ -1,6 +1,6 @@
 import store from '../../config/store'
 import { connect } from 'react-redux'
-import { scale, screenratio, worldheight, worldwidth, groundType } from '../../config/constants'
+import { scale, screenRatio, worldHeight, worldWidth, groundType } from '../../config/constants'
 import '../styles.css'
 import { ReactChild, ReactFragment, ReactPortal } from 'react';
 
@@ -13,14 +13,14 @@ let xright = 0;
 let yup = 0;
 let ydown =0;
 const getTileSprite = (type: any) => {
-    x = count%(worldwidth)
-    y = Math.floor(count/(worldwidth))
+    x = count%(worldWidth)
+    y = Math.floor(count/(worldWidth))
     if (y===0) {
         yup = 1
     } else {
         yup =y-1
     }
-    if (y===worldheight-1) {
+    if (y===worldHeight-1) {
         ydown = y
     } else {
         ydown =y+1
@@ -30,7 +30,7 @@ const getTileSprite = (type: any) => {
     } else {
         xleft = x-1
     }
-    if (x===worldwidth-1) {
+    if (x===worldWidth-1) {
         xright = x
     } else {
         xright = x+1
@@ -48,11 +48,11 @@ const getTileSprite = (type: any) => {
         case groundType.sand:
             if ((groundTileAbove === groundType.water && groundTileLeft === groundType.water) || (groundTileAbove === 3 && groundTileLeft === groundType.water) || (groundTileAbove === 3 && groundTileLeft === 3) || (groundTileAbove === groundType.water && groundTileLeft === 3) || (groundTileAbove === groundType.water && x === 0) || (groundTileAbove === 3 && x === 0)|| (groundTileLeft === groundType.water && y === 0)) {
                 return 'sand-lo'
-            } else if ((groundTileBelow === groundType.water && groundTileLeft === groundType.water) || (groundTileBelow === 3 && groundTileLeft === groundType.water) || (groundTileBelow === 3 && groundTileLeft === 3) || (groundTileBelow === groundType.water && groundTileLeft === 3) || (groundTileBelow === groundType.water && x === 0) || (groundTileBelow === 3 && x === 0)|| (groundTileLeft === groundType.water && y === worldheight-1)) {
+            } else if ((groundTileBelow === groundType.water && groundTileLeft === groundType.water) || (groundTileBelow === 3 && groundTileLeft === groundType.water) || (groundTileBelow === 3 && groundTileLeft === 3) || (groundTileBelow === groundType.water && groundTileLeft === 3) || (groundTileBelow === groundType.water && x === 0) || (groundTileBelow === 3 && x === 0)|| (groundTileLeft === groundType.water && y === worldHeight-1)) {
                     return 'sand-lu'
-            } else if ((groundTileBelow === groundType.water && groundTileRight === groundType.water) || (groundTileBelow === 3 && groundTileRight === groundType.water) || (groundTileBelow === 3 && groundTileRight === 3) ||(groundTileBelow === groundType.water && groundTileRight === 3) || (groundTileBelow === groundType.water && x === 19) || (groundTileBelow === 3 && x === 19)|| (groundTileRight === groundType.water && y === worldheight-1)) {
+            } else if ((groundTileBelow === groundType.water && groundTileRight === groundType.water) || (groundTileBelow === 3 && groundTileRight === groundType.water) || (groundTileBelow === 3 && groundTileRight === 3) ||(groundTileBelow === groundType.water && groundTileRight === 3) || (groundTileBelow === groundType.water && x === 19) || (groundTileBelow === 3 && x === 19)|| (groundTileRight === groundType.water && y === worldHeight-1)) {
                 return 'sand-ru'
-            } else if ((groundTileAbove === groundType.water && groundTileRight === groundType.water) || (groundTileAbove === 3 && groundTileRight === groundType.water) ||(groundTileAbove === 3 && groundTileRight === 3) || (groundTileAbove === groundType.water && groundTileRight === 3) || (groundTileAbove === groundType.water && x === worldwidth-1) || (groundTileAbove === 3 && x === worldwidth-1) || (groundTileRight === groundType.water && y === 0)) {
+            } else if ((groundTileAbove === groundType.water && groundTileRight === groundType.water) || (groundTileAbove === 3 && groundTileRight === groundType.water) ||(groundTileAbove === 3 && groundTileRight === 3) || (groundTileAbove === groundType.water && groundTileRight === 3) || (groundTileAbove === groundType.water && x === worldWidth-1) || (groundTileAbove === 3 && x === worldWidth-1) || (groundTileRight === groundType.water && y === 0)) {
                 return 'sand-ro'
             } else {
                 return 'sand'
@@ -99,8 +99,8 @@ const MapTile = (props: { groundtile: boolean | ReactChild | ReactFragment | Rea
     return <div
     className={`groundtile ${getTileSprite(props.groundtile)}`}
     style={{
-        width: scale*screenratio()+ 'vh',
-        height: scale*screenratio()+ 'vh',
+        width: scale*screenRatio()+ 'vh',
+        height: scale*screenRatio()+ 'vh',
     }}
     >{props.groundtile}
     </div>
@@ -121,8 +121,8 @@ const Ground = (props: any) => {
             style={{
                 position: 'absolute',
                 textAlign: 'center',
-                width: scale*screenratio()*worldwidth+ 'vh',
-                height: scale*screenratio()*worldheight+ 'vh',
+                width: scale*screenRatio()*worldWidth+ 'vh',
+                height: scale*screenRatio()*worldHeight+ 'vh',
                 margin: 'auto',
                 fontSize: 0,
             }}

@@ -1,4 +1,4 @@
-export const levelname = 'Insel 17: Kawaikiki'
+export const levelName = 'Insel 17: Kawaikiki'
 export const ground = [
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0],
