@@ -1,6 +1,6 @@
 export const scale = 7.5
-export const worldheight = 12
-export const worldwidth = 20
+export const worldHeight = 12
+export const worldWidth = 20
 
 // level imports
 export const levels: any = {
@@ -27,9 +27,9 @@ export const levels: any = {
     level21 : require('../levels/PushyIsland/21')
 }
 
-export const maxlevel = Object.keys(levels).length
+export const maxLevel = Object.keys(levels).length
 
-export const screenratio= () => {
+export const screenRatio= () => {
     let mobileAdapt = 1
     let mobileAdaptSmall = 1
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {

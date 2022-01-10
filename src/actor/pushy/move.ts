@@ -1,70 +1,70 @@
 import store from '../../config/store'
-import { groundType, objectType, worldheight } from '../../config/constants'
-import { worldwidth } from '../../config/constants'
+import { groundType, objectType, worldHeight } from '../../config/constants'
+import { worldWidth } from '../../config/constants'
 import { actionTypes } from '../../config/types'
 
 
 const handleMovement = (player: any) => {
 
     const getNewPosition = (direction: string) => {
-        const oldPos = store.getState().pushy.position
+        const oldPosition = store.getState().pushy.position
         switch(direction) {
             case 'left':
-                if (oldPos[0]-1>=1) {
-                    return [oldPos[0]-1, oldPos[1]]
+                if (oldPosition[0]-1>=1) {
+                    return [oldPosition[0]-1, oldPosition[1]]
                 }
                 else {
-                    return [oldPos[0], oldPos[1]]
+                    return [oldPosition[0], oldPosition[1]]
                 }
             case 'right':
-                if (oldPos[0]+1<=worldwidth) {
-                    return [oldPos[0]+1, oldPos[1]]
+                if (oldPosition[0]+1<=worldWidth) {
+                    return [oldPosition[0]+1, oldPosition[1]]
                 }
                 else {
-                    return [oldPos[0], oldPos[1]]
+                    return [oldPosition[0], oldPosition[1]]
                 }
             case 'up':
-                if (oldPos[1]-1>=1) {
-                    return [oldPos[0], oldPos[1]-1]
+                if (oldPosition[1]-1>=1) {
+                    return [oldPosition[0], oldPosition[1]-1]
                 }
                 else {
-                    return [oldPos[0], oldPos[1]]
+                    return [oldPosition[0], oldPosition[1]]
                 }
             case 'down':
-                if (oldPos[1]+1<=worldheight) {
-                    return [oldPos[0], oldPos[1]+1]
+                if (oldPosition[1]+1<=worldHeight) {
+                    return [oldPosition[0], oldPosition[1]+1]
                 }
                 else {
-                    return [oldPos[0], oldPos[1]]
+                    return [oldPosition[0], oldPosition[1]]
                 }
             default:
-                return [oldPos[0], oldPos[1]]
+                return [oldPosition[0], oldPosition[1]]
         }
     }
 
     const isObstacleAhead = (newPos: any, direction: string) => {
-        const oldPos = store.getState().pushy.position
+        const oldPosition = store.getState().pushy.position
         const rotation = getRotation(direction)
         const gnd = store.getState().ground.ground
         const obj = store.getState().objects.objects
         const yto = newPos[1]-1
         const xto = newPos[0]-1
         let ystep2 = 0
-        if (yto===worldheight-1 || yto===0) {
+        if (yto===worldHeight-1 || yto===0) {
             ystep2 = yto
         }
         else {
-            ystep2 = oldPos[1]+(oldPos[1]-newPos[1])*(-2)-1
+            ystep2 = oldPosition[1]+(oldPosition[1]-newPos[1])*(-2)-1
         }
         let xstep2 = 0
-        if (xto===worldwidth-1 || xto===0) {
+        if (xto===worldWidth-1 || xto===0) {
             xstep2 = xto
         }
         else {
-            xstep2 = oldPos[0]+(oldPos[0]-newPos[0])*(-2)-1
+            xstep2 = oldPosition[0]+(oldPosition[0]-newPos[0])*(-2)-1
         }
-        const yfrom = oldPos[1]-1
-        const xfrom = oldPos[0]-1
+        const yfrom = oldPosition[1]-1
+        const xfrom = oldPosition[0]-1
         const nextGroundTile = gnd[yto][xto]
         const nextObjectsTile = obj[yto][xto]
         const step2ObjectsTile = obj[ystep2][xstep2]
@@ -98,8 +98,8 @@ const handleMovement = (player: any) => {
         if (nextObjectsTile===objectType.house && rotation === 0) {
             const objects = obj.slice() //copy the array
             const ground = gnd.slice() //copy the array
-            for (let y = 0; y < worldheight; y++) { //scroll through world y
-                for (let x = 0; x < worldwidth; x++) { //scroll through world x
+            for (let y = 0; y < worldHeight; y++) { //scroll through world y
+                for (let x = 0; x < worldWidth; x++) { //scroll through world x
                     if (objects[y][x]===objectType.figureRed && ground[y][x] !== groundType.crossRed) { // when figure red and not red cross below
                         return false
                     }
@@ -121,7 +121,7 @@ const handleMovement = (player: any) => {
             if (level>highscore) {
             setCookie('highscorelevel', level, 365)
             }
-            turnhome(newPos)
+            turnHome(newPos)
             return false
                   }
             return false
@@ -244,29 +244,29 @@ const handleMovement = (player: any) => {
                 const objects = obj.slice() //copy the array
                 let objarr: any[] = []
                 let i = 0
-                for (let y = 0; y < worldheight; y++) { //scroll through world y
-                    for (let x = 0; x < worldwidth; x++) { //scroll through world x
+                for (let y = 0; y < worldHeight; y++) { //scroll through world y
+                    for (let x = 0; x < worldWidth; x++) { //scroll through world x
                         let yobjto= y+ystep2-yto;
                         let xobjto= x+xstep2-xto;
                         let yobjstep2= y+(ystep2-yto)*2;
                         let xobjstep2= x+(xstep2-xto)*2;
 
                         // prevent bugs for y
-                        if (yobjto>worldheight-1 || yobjto<0) {
+                        if (yobjto>worldHeight-1 || yobjto<0) {
                             yobjto = y
                             yobjstep2 = y
                         }
-                        else if (yobjto>worldheight-2 || yobjto<1) {
+                        else if (yobjto>worldHeight-2 || yobjto<1) {
                             yobjto = y
                             yobjstep2 = y
                         }
 
                         // prevent bugs for x
-                        if (xobjto>worldwidth-1 || xobjto<0) {
+                        if (xobjto>worldWidth-1 || xobjto<0) {
                             xobjto = x
                             xobjstep2 = x
                         }
-                        else if (xobjto>worldwidth-2 || xobjto<1) {
+                        else if (xobjto>worldWidth-2 || xobjto<1) {
                             xobjto = x
                             xobjstep2 = x
                         }
@@ -393,8 +393,8 @@ const handleMovement = (player: any) => {
 
     const explode = (obj: any) => {
         const objects = obj.slice()
-        for (let y = 0; y < worldheight; y++) { //scroll through world y
-            for (let x = 0; x < worldwidth; x++) { //scroll through world x
+        for (let y = 0; y < worldHeight; y++) { //scroll through world y
+            for (let x = 0; x < worldWidth; x++) { //scroll through world x
                 if (objects[y][x]===14) {
                     setTimeout(() => {  const objects = obj.slice() //copy the array
                         objects[y][x] = 15 //remove at old position
@@ -424,7 +424,7 @@ const handleMovement = (player: any) => {
                              }, 400);
                             }
                         }
-                    if (x<worldwidth) {
+                    if (x<worldWidth) {
                         if (objects[y][x+1]===0 || objects[y][x+1]===4) {
                             setTimeout(() => {  const objects = obj.slice() //copy the array
                                 objects[y][x+1] = 15 //remove at old position
@@ -440,7 +440,7 @@ const handleMovement = (player: any) => {
                              }, 650);
                          }
                      }
-                     if (y<worldheight-1) {
+                     if (y<worldHeight-1) {
                         if (objects[y+1][x]===0 || objects[y+1][x]===4) {
                             setTimeout(() => {  const objects = obj.slice() //copy the array
                                 objects[y+1][x] = 15 //remove at old position
@@ -480,7 +480,7 @@ const handleMovement = (player: any) => {
         
     }
 
-    const turnhome = (newPos: any) => {
+    const turnHome = (newPos: any) => {
         let rotation = 0
         for (let i = 0; i < 1440; i++) { //two turns
             setTimeout(() => {

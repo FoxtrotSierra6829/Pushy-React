@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { scale, worldheight, worldwidth, screenratio, objectType } from '../../config/constants'
+import { scale, worldHeight, worldWidth, screenRatio, objectType } from '../../config/constants'
 import '../styles.css'
 
 
@@ -42,8 +42,8 @@ const MapTile = (props: any) => {
     return <div
     className={`objectstile ${getTileType(props.objectstile)}`}
     style={{
-        width: scale*screenratio()+ 'vh',
-        height: scale*screenratio()+ 'vh',
+        width: scale*screenRatio()+ 'vh',
+        height: scale*screenRatio()+ 'vh',
     }}
     >{props.objectstile}
     </div>
@@ -63,8 +63,8 @@ const Objects = (props: any) => {
             style={{
                 position: 'absolute',
                 textAlign: 'center',
-                width: scale*screenratio()*worldwidth+ 'vh',
-                height: scale*screenratio()*worldheight+ 'vh',
+                width: scale*screenRatio()*worldWidth+ 'vh',
+                height: scale*screenRatio()*worldHeight+ 'vh',
                 margin: 'auto',
                 fontSize: 0,
             }}

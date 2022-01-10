@@ -1,40 +1,40 @@
-import { maxlevel, scale, worldwidth, screenratio, getCookie, setCookie } from '../../config/constants'
+import { maxLevel, scale, worldWidth, screenRatio, getCookie, setCookie } from '../../config/constants'
 import '../styles.css'
 
 const levelbutton = (i: number) => {
         let highscore = parseInt(getCookie('highscorelevel'))
         let current = parseInt(getCookie('level'))
         if (i===current) {
-            if (i<worldwidth) {
+            if (i<worldWidth) {
                 return (
                     <div key={i} onClick={() => loadlevel(i)} style={{
                         position: 'absolute',
                         textAlign: 'center',
-                        top: scale*screenratio()*4+ 'vh',
-                        left: scale*screenratio()*(i-0.5)+ 'vh',
-                        width: scale*screenratio()+ 'vh',
-                        height: scale*screenratio()+ 'vh',
+                        top: scale*screenRatio()*4+ 'vh',
+                        left: scale*screenRatio()*(i-0.5)+ 'vh',
+                        width: scale*screenRatio()+ 'vh',
+                        height: scale*screenRatio()+ 'vh',
                         margin: 'auto',
                         fontFamily: 'arial',
-                        fontSize: scale*screenratio()*0.4+'vh',
+                        fontSize: scale*screenRatio()*0.4+'vh',
                         color: 'red',
                         fontWeight: 'bold',  
                         cursor: 'pointer',
                     }} >{i}</div>
                 )
             }
-            if (i<worldwidth*2) {
+            if (i<worldWidth*2) {
                 return (
                     <div key={i} onClick={() => loadlevel(i)} style={{
                         position: 'absolute',
                         textAlign: 'center',
-                        top: scale*screenratio()*4.75+ 'vh',
-                        left: scale*screenratio()*(i-worldwidth+1-0.5)+ 'vh',
-                        width: scale*screenratio()+ 'vh',
-                        height: scale*screenratio()+ 'vh',
+                        top: scale*screenRatio()*4.75+ 'vh',
+                        left: scale*screenRatio()*(i-worldWidth+1-0.5)+ 'vh',
+                        width: scale*screenRatio()+ 'vh',
+                        height: scale*screenRatio()+ 'vh',
                         margin: 'auto',
                         fontFamily: 'arial',
-                        fontSize: scale*screenratio()*0.4+'vh',
+                        fontSize: scale*screenRatio()*0.4+'vh',
                         color: 'red',
                         fontWeight: 'bold',  
                         cursor: 'pointer',
@@ -43,36 +43,36 @@ const levelbutton = (i: number) => {
             }
         }
         else if (i>highscore) {
-            if (i<worldwidth) {
+            if (i<worldWidth) {
                 return (
                     <div key={i} onClick={() => loadlevel(i)} style={{
                         position: 'absolute',
                         textAlign: 'center',
-                        top: scale*screenratio()*4+ 'vh',
-                        left: scale*screenratio()*(i-0.5)+ 'vh',
-                        width: scale*screenratio()+ 'vh',
-                        height: scale*screenratio()+ 'vh',
+                        top: scale*screenRatio()*4+ 'vh',
+                        left: scale*screenRatio()*(i-0.5)+ 'vh',
+                        width: scale*screenRatio()+ 'vh',
+                        height: scale*screenRatio()+ 'vh',
                         margin: 'auto',
                         fontFamily: 'arial',
-                        fontSize: scale*screenratio()*0.4+'vh',
+                        fontSize: scale*screenRatio()*0.4+'vh',
                         color: '#aaaaaa',
                         fontWeight: 'bold',
                         cursor: 'pointer',
                     }} >{i}</div>
                 )
             }
-        if (i<worldwidth*2) {
+        if (i<worldWidth*2) {
             return (
                 <div key={i} onClick={() => loadlevel(i)} style={{
                     position: 'absolute',
                     textAlign: 'center',
-                    top: scale*screenratio()*4.75+ 'vh',
-                    left: scale*screenratio()*(i-worldwidth+1-0.5)+ 'vh',
-                    width: scale*screenratio()+ 'vh',
-                    height: scale*screenratio()+ 'vh',
+                    top: scale*screenRatio()*4.75+ 'vh',
+                    left: scale*screenRatio()*(i-worldWidth+1-0.5)+ 'vh',
+                    width: scale*screenRatio()+ 'vh',
+                    height: scale*screenRatio()+ 'vh',
                     margin: 'auto',
                     fontFamily: 'arial',
-                    fontSize: scale*screenratio()*0.4+'vh',
+                    fontSize: scale*screenRatio()*0.4+'vh',
                     color: '#aaaaaa',
                     fontWeight: 'bold',
                     cursor: 'pointer',
@@ -81,36 +81,36 @@ const levelbutton = (i: number) => {
         }
         }
         else {
-            if (i<worldwidth) {
+            if (i<worldWidth) {
                 return (
                     <div key={i} onClick={() => loadlevel(i)} style={{
                         position: 'absolute',
                         textAlign: 'center',
-                        top: scale*screenratio()*4+ 'vh',
-                        left: scale*screenratio()*(i-0.5)+ 'vh',
-                        width: scale*screenratio()+ 'vh',
-                        height: scale*screenratio()+ 'vh',
+                        top: scale*screenRatio()*4+ 'vh',
+                        left: scale*screenRatio()*(i-0.5)+ 'vh',
+                        width: scale*screenRatio()+ 'vh',
+                        height: scale*screenRatio()+ 'vh',
                         margin: 'auto',
                         fontFamily: 'arial',
-                        fontSize: scale*screenratio()*0.4+'vh',
+                        fontSize: scale*screenRatio()*0.4+'vh',
                         color: 'black',
                         fontWeight: 'bold',
                         cursor: 'pointer',
                     }} >{i}</div>
                 )
             }
-            if (i<worldwidth*2) {
+            if (i<worldWidth*2) {
                 return (
                     <div key={i} onClick={() => loadlevel(i)} style={{
                         position: 'absolute',
                         textAlign: 'center',
-                        top: scale*screenratio()*4.75+ 'vh',
-                        left: scale*screenratio()*(i-worldwidth+1-0.5)+ 'vh',
-                        width: scale*screenratio()+ 'vh',
-                        height: scale*screenratio()+ 'vh',
+                        top: scale*screenRatio()*4.75+ 'vh',
+                        left: scale*screenRatio()*(i-worldWidth+1-0.5)+ 'vh',
+                        width: scale*screenRatio()+ 'vh',
+                        height: scale*screenRatio()+ 'vh',
                         margin: 'auto',
                         fontFamily: 'arial',
-                        fontSize: scale*screenratio()*0.4+'vh',
+                        fontSize: scale*screenRatio()*0.4+'vh',
                         color: 'black',
                         fontWeight: 'bold',
                         cursor: 'pointer',
@@ -143,8 +143,8 @@ const loadlevel = (i: number) => {
 const Menu = () => {
     let rows = [];
     let displaylevel = parseInt(getCookie('highscorelevel'))+1
-    if (displaylevel>maxlevel) {
-        displaylevel = maxlevel
+    if (displaylevel>maxLevel) {
+        displaylevel = maxLevel
     }
     for (let i = 1; i < displaylevel+1; i++) {
     rows.push(levelbutton(i));

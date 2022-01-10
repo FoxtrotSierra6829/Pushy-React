@@ -1,11 +1,11 @@
-import { maxlevel, scale, worldheight, worldwidth, screenratio, setCookie, getCookie } from '../../config/constants'
+import { maxLevel, scale, worldHeight, worldWidth, screenRatio, setCookie, getCookie } from '../../config/constants'
 import '../styles.css'
 
 const forwards = () => {
     let level = parseInt(getCookie('level'))+1
     let highscorelevel = parseInt(getCookie('highscorelevel'))
-    if (level>=maxlevel) {
-      level=maxlevel
+    if (level>=maxLevel) {
+      level=maxLevel
   }
     else if (level>=highscorelevel+1) {
         level=highscorelevel+1
@@ -19,11 +19,11 @@ const Forwards = () => {
     return (
         <div className="forwards" onClick={() => forwards()}
             style={{
-                width: scale*screenratio()*0.3+ 'vh',
-                height: scale*screenratio()*0.3+ 'vh',
-                top: scale*screenratio()*(worldheight-1)+scale*screenratio()*0.4+ 'vh',
+                width: scale*screenRatio()*0.3+ 'vh',
+                height: scale*screenRatio()*0.3+ 'vh',
+                top: scale*screenRatio()*(worldHeight-1)+scale*screenRatio()*0.4+ 'vh',
                 color: 'transparent',
-                left: scale*screenratio()*(worldwidth-1)+scale*screenratio()*0.4+'vh',
+                left: scale*screenRatio()*(worldWidth-1)+scale*screenRatio()*0.4+'vh',
                 }}
         
         >

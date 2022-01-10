@@ -1,4 +1,4 @@
-export const levelname = 'Insel 3: Jojo Filizia'
+export const levelName = 'Insel 3: Jojo Filizia'
 export const ground = [
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],

@@ -2,14 +2,14 @@ import { connect } from 'react-redux'
 import Pushy from '../actor/pushy'
 import Ground from './ground'
 import Objects from './objects'
-import Levelname from './levelname'
+import LevelName from './levelname'
 import Reload from './reload'
 import Backwards from './backwards'
 import Forwards from './forwards'
 import Beancount from './beancount'
 import Menu from './menu'
 import Congrats from './congrats'
-import {levels, scale, worldheight, worldwidth, maxlevel, screenratio, setCookie, getCookie } from '../config/constants'
+import {levels, scale, worldHeight, worldWidth, maxLevel, screenRatio, setCookie, getCookie } from '../config/constants'
 import store from '../config/store'
 import BackArrow from './backarrow'
 import { actionTypes } from '../config/types'
@@ -19,14 +19,14 @@ const World = () => {
       
         let level =1
         store.dispatch({type: actionTypes.changeLevel, payload: {
-            maxlevel,
+            maxlevel: maxLevel,
          }})
         let mode = getCookie('mode')
         let levelcookie: string | number = getCookie('level')
         const highscorelevel = parseInt(getCookie('highscorelevel'))
         if (levelcookie!=="") {
             levelcookie = parseInt(levelcookie)
-        if (levelcookie>maxlevel) {
+        if (levelcookie>maxLevel) {
             level = levelcookie-1
             setCookie('level', level, 365)
             setCookie('mode', 'congrats', 365)
@@ -55,8 +55,8 @@ const World = () => {
                 style={{
                     position: 'relative',
                     textAlign: 'center',
-                    width: scale*screenratio()*worldwidth+ 'vh',
-                    height: scale*screenratio()*worldheight+ 'vh',
+                    width: scale*screenRatio()*worldWidth+ 'vh',
+                    height: scale*screenRatio()*worldHeight+ 'vh',
                     border: '.1vh solid black',
                     margin: 'auto',
                 }}
@@ -64,7 +64,7 @@ const World = () => {
                 <Ground />
                 <Objects />
                 <Pushy />
-                <Levelname />
+                <LevelName />
                 <BackArrow />
                 <Reload />
                 <Backwards />
@@ -81,8 +81,8 @@ const World = () => {
                 style={{
                     position: 'relative',
                     textAlign: 'center',
-                    width: scale*screenratio()*worldwidth+ 'vh',
-                    height: scale*screenratio()*worldheight+ 'vh',
+                    width: scale*screenRatio()*worldWidth+ 'vh',
+                    height: scale*screenRatio()*worldHeight+ 'vh',
                     border: '.1vh solid black',
                     margin: 'auto',
                 }}
@@ -98,8 +98,8 @@ const World = () => {
                 style={{
                     position: 'relative',
                     textAlign: 'center',
-                    width: scale*screenratio()*worldwidth+ 'vh',
-                    height: scale*screenratio()*worldheight+ 'vh',
+                    width: scale*screenRatio()*worldWidth+ 'vh',
+                    height: scale*screenRatio()*worldHeight+ 'vh',
                     border: '.1vh solid black',
                     margin: 'auto',
                 }}
@@ -118,7 +118,7 @@ const World = () => {
     const ground = levels[keys[level-1]].ground
     const objects = levels[keys[level-1]].objects
     const position = levels[keys[level-1]].initalPushyPosition
-    const levelname = levels[keys[level-1]].levelname
+    const levelName = levels[keys[level-1]].levelName
     
 
     store.dispatch({type: actionTypes.addGround, payload: {
@@ -131,7 +131,7 @@ const World = () => {
         position,
     }})
     store.dispatch({type: actionTypes.addLevelName, payload: {
-        levelname,
+        levelName: levelName,
     }})
 }
 

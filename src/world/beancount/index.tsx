@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { scale, worldheight, worldwidth, screenratio } from '../../config/constants'
+import { scale, worldHeight, worldWidth, screenRatio } from '../../config/constants'
 import '../styles.css'
 
 
@@ -7,11 +7,11 @@ const Beancount = (props: any) => {
     return (
       <div className={'beancount-'+props.beancount}
           style={{
-              width: scale*screenratio()+ 'vh',
-              height: scale*screenratio()+ 'vh',
-              top: scale*screenratio()*(worldheight-2)+scale*screenratio()+ 'vh',
+              width: scale*screenRatio()+ 'vh',
+              height: scale*screenRatio()+ 'vh',
+              top: scale*screenRatio()*(worldHeight-2)+scale*screenRatio()+ 'vh',
               color: 'transparent',
-              left: scale*screenratio()*((worldwidth-4)/2)+scale*screenratio()+'vh',
+              left: scale*screenRatio()*((worldWidth-4)/2)+scale*screenRatio()+'vh',
               }}
       
       > {'B'}
