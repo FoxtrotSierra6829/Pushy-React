@@ -19,11 +19,11 @@
     "web-vitals": "^2.1.3"
   },
   "scripts": {
-    "start": "CI=false && react-scripts start",
-    "build": "CI=false && react-scripts build",
-    "test": "CI=false && react-scripts test",
-    "eject": "CI=false && react-scripts eject",
-    "lint": "CI=false && eslint ."
+    "start": "set \"CI=false\" && react-scripts start",
+    "build": "set \"CI=false\" && react-scripts build",
+    "test": "set \"CI=false\" && react-scripts test",
+    "eject": "set \"CI=false\" && react-scripts eject",
+    "lint": "set \"CI=false\" && eslint ."
   },
   "eslintConfig": {
     "extends": [
