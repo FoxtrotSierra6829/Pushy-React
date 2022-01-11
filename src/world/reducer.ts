@@ -1,19 +1,19 @@
-import { actionTypes } from "../config/types"
+import { actionTypes, WorldAction, WorldState } from "../config/types";
 
 const initialState = {
-    level: 1
-}
+    level: 1,
+    maxlevel: 1
+};
 
-const worldReducer = (state=initialState, action: any) => {
-    switch(action.type) {
+const worldReducer = (state = initialState, action: WorldAction): WorldState => {
+    switch (action.type) {
         case actionTypes.changeLevel:
             return {
                 ...action.payload
-            }
+            };
         default:
-        return state
+            return state;
     }
-}
+};
 
-
-export default worldReducer
+export default worldReducer;

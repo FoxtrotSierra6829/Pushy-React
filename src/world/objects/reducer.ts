@@ -1,20 +1,19 @@
-import { actionTypes } from "../../config/types"
+import { actionTypes, TypedAction } from "../../config/types";
 
 const initialState = {
-    objects: [],
-}
+    objects: [] as number[][],
+};
 
-const objectsReducer = (state=initialState, action: any) => {
-    switch(action.type) {
+const objectsReducer = (state = initialState, action: TypedAction< typeof initialState>): typeof initialState => {
+    switch (action.type) {
         case actionTypes.addObjects:
         case actionTypes.moveObjects:
             return {
                 ...action.payload
-            }
+            };
         default:
-        return state
+            return state;
     }
-}
+};
 
-
-export default objectsReducer
+export default objectsReducer;
