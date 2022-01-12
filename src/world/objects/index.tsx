@@ -3,7 +3,7 @@ import { scale, worldHeight, worldWidth, screenRatio, objectType } from '../../c
 import { RootState } from '../../config/store';
 import '../styles.css';
 
-const getTileType = (type: number) => {
+const getTileType = (type: objectType) => {
     switch (type) {
         case objectType.house:
             return 'house';

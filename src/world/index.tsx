@@ -117,9 +117,7 @@ const loadlevel = (level: number) => {
     const position = levels[keys[level - 1]].initalPushyPosition;
     const levelName = levels[keys[level - 1]].levelName;
 
-    store.dispatch({ type: actionTypes.addGround, payload: {
-        ground,
-    } });
+    store.dispatch({ type: actionTypes.addGround, payload: ground });
     store.dispatch({ type: actionTypes.addObjects, payload: objects });
     store.dispatch({ type: actionTypes.movePushy, payload: {
         position,

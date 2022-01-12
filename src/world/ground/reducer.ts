@@ -1,16 +1,12 @@
 import { actionTypes } from "../../config/types";
 
-const initialState = {
-    ground: [],
-};
+const initialState = [] as number[][];
 
 const groundReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case actionTypes.addGround:
         case actionTypes.updateGround:
-            return {
-                ...action.payload
-            };
+            return action.payload;
         default:
             return state;
     }

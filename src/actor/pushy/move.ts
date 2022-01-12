@@ -40,7 +40,7 @@ const handleMovement = (player: any) => {
     const isObstacleAhead = (newPos: number[], direction: string) => {
         const oldPosition = store.getState().pushy.position;
         const rotation = getRotation(direction);
-        const gnd = store.getState().ground.ground;
+        const gnd = store.getState().ground;
         const obj = store.getState().objects;
         const yto = newPos[1] - 1;
         const xto = newPos[0] - 1;
@@ -77,9 +77,7 @@ const handleMovement = (player: any) => {
             if (store.getState().bean.count > 0) {
                 const ground = gnd.slice(); //copy the array
                 ground[yto][xto] = groundType.sandHoleWithBean; //add at new position
-                store.dispatch({ type: actionTypes.updateGround, payload: {
-                    ground
-                } });
+                store.dispatch({ type: actionTypes.updateGround, payload: ground });
                 store.dispatch({ type: actionTypes.updateBeanCount, payload: {
                     count: store.getState().bean.count - 1,
                 } });
@@ -135,9 +133,7 @@ const handleMovement = (player: any) => {
             store.dispatch({ type: actionTypes.moveObjects, payload: objects });
             const ground = gnd.slice(); //copy the array
             ground[ystep2][xstep2] = groundType.boxInWater; //add at new position
-            store.dispatch({ type: actionTypes.updateGround, payload: {
-                ground,
-            } });
+            store.dispatch({ type: actionTypes.updateGround, payload: ground });
             return false;
 
         //Seastar already in water
@@ -192,9 +188,7 @@ const handleMovement = (player: any) => {
             store.dispatch({ type: actionTypes.moveObjects, payload: objects });
             const ground = gnd.slice(); //copy the array
             ground[ystep2][xstep2] = 7; //add at new position
-            store.dispatch({ type: actionTypes.updateGround, payload: {
-                ground
-            } });
+            store.dispatch({ type: actionTypes.updateGround, payload: ground });
             return false;
 
         //move Bottle with water
@@ -294,9 +288,7 @@ const handleMovement = (player: any) => {
         } else if (nextGroundTile === groundType.bombTrigger && obj[yto][xto] === objectType.none) {
             const ground = gnd.slice(); //copy the array
             ground[yto][xto] = groundType.sand; //remove at old position
-            store.dispatch({ type: actionTypes.updateGround, payload: {
-                ground
-            } });
+            store.dispatch({ type: actionTypes.updateGround, payload: ground });
             explode(obj);
             return false;
 
