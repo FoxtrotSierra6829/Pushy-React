@@ -120,15 +120,11 @@ const loadlevel = (level: number) => {
     store.dispatch({ type: actionTypes.addGround, payload: {
         ground,
     } });
-    store.dispatch({ type: actionTypes.addObjects, payload: {
-        objects
-    } });
+    store.dispatch({ type: actionTypes.addObjects, payload: objects });
     store.dispatch({ type: actionTypes.movePushy, payload: {
         position,
     } });
-    store.dispatch({ type: actionTypes.addLevelName, payload: {
-        levelName: levelName,
-    } });
+    store.dispatch({ type: actionTypes.addLevelName, payload: levelName });
 };
 
 const mapStateToProps = (state: RootState) => {

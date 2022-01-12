@@ -1,9 +1,11 @@
+import { levelType } from "./types";
+
 export const scale = 7.5;
 export const worldHeight = 12;
 export const worldWidth = 20;
 
 // level imports
-export const levels: any = {
+export const levels: Record<string,levelType> = {
     level1 : require('../levels/PushyIsland/1'),
     level2 : require('../levels/PushyIsland/2'),
     level3 : require('../levels/PushyIsland/3'),

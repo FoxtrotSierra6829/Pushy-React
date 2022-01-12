@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import { scale, screenRatio } from '../../config/constants';
+import { RootState } from '../../config/store';
 import '../styles.css';
 
-const levelName = (props: any) => {
+const levelName = (props: {levelName: string}) => {
     return (
         <div
             style={{
@@ -19,9 +20,9 @@ const levelName = (props: any) => {
         </div>
     );
 };
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootState) => {
     return {
-        ...state.levelName,
+        levelName: state.levelName,
     };
 };
 

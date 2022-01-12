@@ -1,11 +1,11 @@
-import { actionTypes, WorldAction, WorldState } from "../config/types";
+import { actionTypes, TypedAction } from "../config/types";
 
 const initialState = {
     level: 1,
     maxlevel: 1
 };
 
-const worldReducer = (state = initialState, action: WorldAction): WorldState => {
+const worldReducer = (state = initialState, action: TypedAction< typeof initialState>): typeof initialState => {
     switch (action.type) {
         case actionTypes.changeLevel:
             return {

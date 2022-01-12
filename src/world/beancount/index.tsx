@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import { scale, worldHeight, worldWidth, screenRatio } from '../../config/constants';
+import { RootState } from '../../config/store';
 import '../styles.css';
 
-const Beancount = (props: any) => {
+const Beancount = (props: {beancount: number}) => {
     return (
         <div className={'beancount-' + props.beancount}
             style={{
@@ -18,7 +19,7 @@ const Beancount = (props: any) => {
     );
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootState) => {
     return {
         beancount: state.bean.count,
     };

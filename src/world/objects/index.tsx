@@ -38,26 +38,26 @@ const getTileType = (type: number) => {
     }
 };
 
-const MapTile = (props: any) => {
+const MapTile = ({ tile }: {tile: number}) => {
     return <div
-        className={`objectstile ${getTileType(props.objectstile)}`}
+        className={`objectstile ${getTileType(tile)}`}
         style={{
             width: scale * screenRatio() + 'vh',
             height: scale * screenRatio() + 'vh',
         }}
-    >{props.objectstile}
+    >{tile}
     </div>;
 };
 
-const MapRow = (props: any) => {
+const MapRow = ({ row }: {row: number[]}) => {
     return <div className="row">
         {
-            props.objects.map((objectstile: any) => <MapTile objectstile={objectstile} />)
+            row.map((objectstile) => <MapTile tile={objectstile} />)
         }
     </div>;
 };
 
-const Objects = (props: any) => {
+const Objects = (props: {objects: number[][]}) => {
     return (
         <div
             style={{
@@ -70,7 +70,7 @@ const Objects = (props: any) => {
             }}
         >
             {
-                props.objects.map((row: any) => <MapRow objects={row} />)
+                props.objects.map((row) => <MapRow row={row} />)
             }
 
         </div>
@@ -79,7 +79,7 @@ const Objects = (props: any) => {
 
 const mapStateToProps = (state: RootState) => {
     return {
-        objects: state.objects.objects,
+        objects: state.objects,
     };
 };
 
