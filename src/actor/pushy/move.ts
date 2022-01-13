@@ -165,7 +165,7 @@ const handleMovement = (player: (() => JSX.Element)) => {
             return false;
 
         //Bottle to Bottle water
-        } else if (nextObjectsTile === objectType.bottle && step2GroundTile === groundType.waterHole && !(step2GroundTile === groundType.grass && nextGroundTile !== groundType.grass) && !(nextGroundTile === groundType.grass && currentGroundTile !== groundType.grass) && !(nextGroundTile !== groundType.grass && currentGroundTile === groundType.grass) && obj[ystep2][xstep2] === objectType.none) {
+        } else if (nextObjectsTile === objectType.bottle && step2GroundTile === groundType.waterHole && !(nextGroundTile === groundType.grass && currentGroundTile !== groundType.grass) && !(nextGroundTile !== groundType.grass && currentGroundTile === groundType.grass) && obj[ystep2][xstep2] === objectType.none) {
             const objects = obj.slice(); //copy the array
             objects[yto][xto] = objectType.none; //remove at old position
             objects[ystep2][xstep2] = objectType.bottleWater; //add at new position
@@ -181,7 +181,7 @@ const handleMovement = (player: (() => JSX.Element)) => {
             return false;
 
         //Create Spring
-        } else if (nextObjectsTile === objectType.bottleWater && step2GroundTile === groundType.sandHoleWithBean && !(step2GroundTile === groundType.grass && nextGroundTile !== groundType.grass) && !(nextGroundTile === groundType.grass && currentGroundTile !== groundType.grass) && !(nextGroundTile !== groundType.grass && currentGroundTile === groundType.grass) && obj[ystep2][xstep2] === objectType.none) {
+        } else if (nextObjectsTile === objectType.bottleWater && step2GroundTile === groundType.sandHoleWithBean && !(nextGroundTile === groundType.grass && currentGroundTile !== groundType.grass) && !(nextGroundTile !== groundType.grass && currentGroundTile === groundType.grass) && obj[ystep2][xstep2] === objectType.none) {
             const objects = obj.slice(); //copy the array
             objects[yto][xto] = 0; //remove at old position
             store.dispatch({ type: actionTypes.moveObjects, payload: objects });

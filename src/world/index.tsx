@@ -16,9 +16,6 @@ import { actionTypes } from '../config/types';
 const World = () => {
 
     let level = 1;
-    store.dispatch({ type: actionTypes.changeLevel, payload: {
-        maxlevel: maxLevel,
-    } });
     let mode = getCookie('mode');
     let levelcookie: string | number = getCookie('level');
     const highscorelevel = parseInt(getCookie('highscorelevel'));
@@ -119,7 +116,8 @@ const loadlevel = (level: number) => {
     store.dispatch({ type: actionTypes.addGround, payload: ground });
     store.dispatch({ type: actionTypes.addObjects, payload: objects });
     store.dispatch({ type: actionTypes.movePushy, payload: {
-        position,
+        position: position,
+        rotation: 0
     } });
     store.dispatch({ type: actionTypes.addLevelName, payload: levelName });
 };
