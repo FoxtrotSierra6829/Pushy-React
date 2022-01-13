@@ -1,11 +1,12 @@
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { scale, worldHeight, worldWidth, screenRatio } from '../../config/constants';
 import { RootState } from '../../config/store';
 import '../styles.css';
 
-const Beancount = (props: {beancount: number}) => {
+const Beancount = () => {
+    const beancount = useSelector((state: RootState) => state.bean.count);
     return (
-        <div className={'beancount-' + props.beancount}
+        <div className={'beancount-' + beancount}
             style={{
                 width: scale * screenRatio() + 'vh',
                 height: scale * screenRatio() + 'vh',
@@ -19,10 +20,4 @@ const Beancount = (props: {beancount: number}) => {
     );
 };
 
-const mapStateToProps = (state: RootState) => {
-    return {
-        beancount: state.bean.count,
-    };
-};
-
-export default connect(mapStateToProps)(Beancount);
+export default Beancount;

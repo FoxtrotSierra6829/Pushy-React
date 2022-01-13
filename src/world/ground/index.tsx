@@ -1,5 +1,5 @@
 import store, { RootState } from '../../config/store';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { scale, screenRatio, worldHeight, worldWidth, groundType } from '../../config/constants';
 import '../styles.css';
 
@@ -112,7 +112,8 @@ const MapRow = ({ row }: {row: number[]}) => {
     </div>;
 };
 
-const Ground = (props: {ground: number[][]}) => {
+const Ground = () => {
+    const ground: number[][] = useSelector((state: RootState) => state.ground);
     count = 0;
     return (
         <div
@@ -126,17 +127,11 @@ const Ground = (props: {ground: number[][]}) => {
             }}
         >
             {
-                props.ground.map((row) => <MapRow row={row} />)
+                ground.map((row) => <MapRow row={row} />)
             }
 
         </div>
     );
 };
 
-const mapStateToProps = (state: RootState) => {
-    return {
-        ground: state.ground,
-    };
-};
-
-export default connect(mapStateToProps)(Ground);
+export default Ground;

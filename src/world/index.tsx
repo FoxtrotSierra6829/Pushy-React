@@ -1,4 +1,3 @@
-import { connect } from 'react-redux';
 import Pushy from '../actor/pushy';
 import Ground from './ground';
 import Objects from './objects';
@@ -10,7 +9,7 @@ import Beancount from './beancount';
 import Menu from './menu';
 import Congrats from './congrats';
 import { levels, scale, worldHeight, worldWidth, maxLevel, screenRatio, setCookie, getCookie } from '../config/constants';
-import store, { RootState } from '../config/store';
+import store from '../config/store';
 import BackArrow from './backarrow';
 import { actionTypes } from '../config/types';
 
@@ -125,9 +124,4 @@ const loadlevel = (level: number) => {
     store.dispatch({ type: actionTypes.addLevelName, payload: levelName });
 };
 
-const mapStateToProps = (state: RootState) => {
-    return {
-        ...state.world,
-    };
-};
-export default connect(mapStateToProps)(World);
+export default World;

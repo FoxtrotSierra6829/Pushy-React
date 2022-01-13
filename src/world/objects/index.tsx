@@ -1,4 +1,4 @@
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { scale, worldHeight, worldWidth, screenRatio, objectType } from '../../config/constants';
 import { RootState } from '../../config/store';
 import '../styles.css';
@@ -57,7 +57,8 @@ const MapRow = ({ row }: {row: number[]}) => {
     </div>;
 };
 
-const Objects = (props: {objects: number[][]}) => {
+const Objects = () => {
+    const objects = useSelector((state: RootState) => state.objects);
     return (
         <div
             style={{
@@ -70,17 +71,11 @@ const Objects = (props: {objects: number[][]}) => {
             }}
         >
             {
-                props.objects.map((row) => <MapRow row={row} />)
+                objects.map((row) => <MapRow row={row} />)
             }
 
         </div>
     );
 };
 
-const mapStateToProps = (state: RootState) => {
-    return {
-        objects: state.objects,
-    };
-};
-
-export default connect(mapStateToProps)(Objects);
+export default Objects;

@@ -1,17 +1,18 @@
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import pushyImage from '../../images/pushy.webp';
-import handleMovement from './move';
 import { scale, screenRatio } from '../../config/constants';
 import { RootState } from '../../config/store';
+import handleMovement from './move';
 
-const Pushy = (props: RootState["pushy"]) => {
+const Pushy = () => {
+    const pushy = useSelector((state: RootState) => state.pushy);
     return (
         <div
             style={{
                 position: 'absolute',
-                top: (props.position[1] - 1) * scale * screenRatio() + 'vh',
-                left: (props.position[0] - 1) * scale * screenRatio() + 'vh',
-                transform: `rotate(${props.rotation}deg)`,
+                top: (pushy.position[1] - 1) * scale * screenRatio() + 'vh',
+                left: (pushy.position[0] - 1) * scale * screenRatio() + 'vh',
+                transform: `rotate(${pushy.rotation}deg)`,
                 backgroundImage: `url('${pushyImage}')`,
                 backgroundPosition: '0 0',
                 backgroundSize: '100%',
@@ -25,11 +26,4 @@ const Pushy = (props: RootState["pushy"]) => {
         />
     );
 };
-
-const mapStateToProps = (state: RootState) => {
-    return {
-        ...state.pushy,
-    };
-};
-
-export default connect(mapStateToProps)(handleMovement(Pushy));
+export default handleMovement(Pushy);
