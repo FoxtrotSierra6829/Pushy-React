@@ -1,4 +1,3 @@
-import { connect } from 'react-redux';
 import Pushy from '../actor/pushy';
 import Ground from './ground';
 import Objects from './objects';
@@ -10,16 +9,13 @@ import Beancount from './beancount';
 import Menu from './menu';
 import Congrats from './congrats';
 import { levels, scale, worldHeight, worldWidth, maxLevel, screenRatio, setCookie, getCookie } from '../config/constants';
-import store, { RootState } from '../config/store';
+import store from '../config/store';
 import BackArrow from './backarrow';
 import { actionTypes } from '../config/types';
 
 const World = () => {
 
     let level = 1;
-    store.dispatch({ type: actionTypes.changeLevel, payload: {
-        maxlevel: maxLevel,
-    } });
     let mode = getCookie('mode');
     let levelcookie: string | number = getCookie('level');
     const highscorelevel = parseInt(getCookie('highscorelevel'));
@@ -117,23 +113,13 @@ const loadlevel = (level: number) => {
     const position = levels[keys[level - 1]].initalPushyPosition;
     const levelName = levels[keys[level - 1]].levelName;
 
-    store.dispatch({ type: actionTypes.addGround, payload: {
-        ground,
-    } });
-    store.dispatch({ type: actionTypes.addObjects, payload: {
-        objects
-    } });
+    store.dispatch({ type: actionTypes.addGround, payload: ground });
+    store.dispatch({ type: actionTypes.addObjects, payload: objects });
     store.dispatch({ type: actionTypes.movePushy, payload: {
-        position,
+        position: position,
+        rotation: 0
     } });
-    store.dispatch({ type: actionTypes.addLevelName, payload: {
-        levelName: levelName,
-    } });
+    store.dispatch({ type: actionTypes.addLevelName, payload: levelName });
 };
 
-const mapStateToProps = (state: RootState) => {
-    return {
-        ...state.world,
-    };
-};
-export default connect(mapStateToProps)(World);
+export default World;

@@ -1,9 +1,9 @@
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { scale, worldHeight, worldWidth, screenRatio, objectType } from '../../config/constants';
 import { RootState } from '../../config/store';
 import '../styles.css';
 
-const getTileType = (type: number) => {
+const getTileType = (type: objectType) => {
     switch (type) {
         case objectType.house:
             return 'house';
@@ -38,26 +38,27 @@ const getTileType = (type: number) => {
     }
 };
 
-const MapTile = (props: any) => {
+const MapTile = ({ tile }: {tile: number}) => {
     return <div
-        className={`objectstile ${getTileType(props.objectstile)}`}
+        className={`objectstile ${getTileType(tile)}`}
         style={{
             width: scale * screenRatio() + 'vh',
             height: scale * screenRatio() + 'vh',
         }}
-    >{props.objectstile}
+    >{tile}
     </div>;
 };
 
-const MapRow = (props: any) => {
+const MapRow = ({ row }: {row: number[]}) => {
     return <div className="row">
         {
-            props.objects.map((objectstile: any) => <MapTile objectstile={objectstile} />)
+            row.map((objectstile) => <MapTile tile={objectstile} />)
         }
     </div>;
 };
 
-const Objects = (props: any) => {
+const Objects = () => {
+    const objects = useSelector((state: RootState) => state.objects);
     return (
         <div
             style={{
@@ -70,17 +71,11 @@ const Objects = (props: any) => {
             }}
         >
             {
-                props.objects.map((row: any) => <MapRow objects={row} />)
+                objects.map((row) => <MapRow row={row} />)
             }
 
         </div>
     );
 };
 
-const mapStateToProps = (state: RootState) => {
-    return {
-        objects: state.objects.objects,
-    };
-};
-
-export default connect(mapStateToProps)(Objects);
+export default Objects;

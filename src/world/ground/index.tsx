@@ -1,8 +1,7 @@
-import store from '../../config/store';
-import { connect } from 'react-redux';
+import store, { RootState } from '../../config/store';
+import { useSelector } from 'react-redux';
 import { scale, screenRatio, worldHeight, worldWidth, groundType } from '../../config/constants';
 import '../styles.css';
-import { ReactChild, ReactFragment, ReactPortal } from 'react';
 
 let count = 0;
 let x = 0;
@@ -11,7 +10,7 @@ let xleft = 0;
 let xright = 0;
 let yup = 0;
 let ydown = 0;
-const getTileSprite = (type: any) => {
+const getTileSprite = (type: groundType) => {
     x = count % (worldWidth);
     y = Math.floor(count / (worldWidth));
     if (y === 0) {
@@ -35,7 +34,7 @@ const getTileSprite = (type: any) => {
         xright = x + 1;
     }
 
-    const storedground = store.getState().ground.ground;
+    const storedground = store.getState().ground;
     const groundTileAbove = storedground[yup][x];
     const groundTileBelow = storedground[ydown][x];
     const groundTileLeft = storedground[y][xleft];
@@ -94,26 +93,27 @@ const getTileSprite = (type: any) => {
     }
 };
 
-const MapTile = (props: { groundtile: boolean | ReactChild | ReactFragment | ReactPortal | null | undefined; }) => {
+const MapTile = ({ tile }: {tile: number}) => {
     return <div
-        className={`groundtile ${getTileSprite(props.groundtile)}`}
+        className={`groundtile ${getTileSprite(tile)}`}
         style={{
             width: scale * screenRatio() + 'vh',
             height: scale * screenRatio() + 'vh',
         }}
-    >{props.groundtile}
+    >{tile}
     </div>;
 };
 
-const MapRow = (props: { ground: any[]; }) => {
+const MapRow = ({ row }: {row: number[]}) => {
     return <div className="row">
         {
-            props.ground.map((groundtile: any) => <MapTile groundtile={groundtile} />)
+            row.map((groundtile) => <MapTile tile={groundtile} />)
         }
     </div>;
 };
 
-const Ground = (props: any) => {
+const Ground = () => {
+    const ground: number[][] = useSelector((state: RootState) => state.ground);
     count = 0;
     return (
         <div
@@ -127,17 +127,11 @@ const Ground = (props: any) => {
             }}
         >
             {
-                props.ground.map((row: any) => <MapRow ground={row} />)
+                ground.map((row) => <MapRow row={row} />)
             }
 
         </div>
     );
 };
 
-const mapStateToProps = (state: any) => {
-    return {
-        ground: state.ground.ground,
-    };
-};
-
-export default connect(mapStateToProps)(Ground);
+export default Ground;

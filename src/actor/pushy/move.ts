@@ -3,7 +3,7 @@ import { groundType, objectType, worldHeight } from '../../config/constants';
 import { worldWidth } from '../../config/constants';
 import { actionTypes } from '../../config/types';
 
-const handleMovement = (player: any) => {
+const handleMovement = (player: (() => JSX.Element)) => {
 
     const getNewPosition = (direction: string) => {
         const oldPosition = store.getState().pushy.position;
@@ -37,11 +37,11 @@ const handleMovement = (player: any) => {
         }
     };
 
-    const isObstacleAhead = (newPos: any, direction: string) => {
+    const isObstacleAhead = (newPos: number[], direction: string) => {
         const oldPosition = store.getState().pushy.position;
         const rotation = getRotation(direction);
-        const gnd = store.getState().ground.ground;
-        const obj = store.getState().objects.objects;
+        const gnd = store.getState().ground;
+        const obj = store.getState().objects;
         const yto = newPos[1] - 1;
         const xto = newPos[0] - 1;
         let ystep2 = 0;
@@ -68,9 +68,7 @@ const handleMovement = (player: any) => {
         if (nextObjectsTile === objectType.bean) {
             const objects = obj.slice(); //copy the array
             objects[yto][xto] = objectType.none; //remove at old position
-            store.dispatch({ type: actionTypes.moveObjects, payload: {
-                objects
-            } });
+            store.dispatch({ type: actionTypes.moveObjects, payload: objects });
             store.dispatch({ type: actionTypes.updateBeanCount, payload: {
                 count: store.getState().bean.count + 1,
             } });
@@ -79,9 +77,7 @@ const handleMovement = (player: any) => {
             if (store.getState().bean.count > 0) {
                 const ground = gnd.slice(); //copy the array
                 ground[yto][xto] = groundType.sandHoleWithBean; //add at new position
-                store.dispatch({ type: actionTypes.updateGround, payload: {
-                    ground
-                } });
+                store.dispatch({ type: actionTypes.updateGround, payload: ground });
                 store.dispatch({ type: actionTypes.updateBeanCount, payload: {
                     count: store.getState().bean.count - 1,
                 } });
@@ -104,10 +100,9 @@ const handleMovement = (player: any) => {
                     }
                 }
             }
-            const obj2 = [] as number[][];
-            obj2.concat(...objects);
-            const countInArray = (array: any, value: number) => {
-                return array.reduce((n: any, x: number) => n + (x === value), 0);
+            const obj2 = objects.slice();
+            const countInArray = (array: number[][], value: number) => {
+                return array.flat().reduce((number, element) => number + Number(element === value), 0);
             };
             if (countInArray(obj2, objectType.seastar) === 0) { //if no Seastars
                 const level = parseInt(getCookie('level'));
@@ -134,14 +129,10 @@ const handleMovement = (player: any) => {
         } else if (nextObjectsTile === objectType.box && step2ObjectsTile === objectType.none && step2GroundTile === groundType.water && !(currentGroundTile === groundType.grass && nextGroundTile !== groundType.grass)) {
             const objects = obj.slice(); //copy the array
             objects[yto][xto] = objectType.none; //remove at old position
-            store.dispatch({ type: actionTypes.moveObjects, payload: {
-                objects
-            } });
+            store.dispatch({ type: actionTypes.moveObjects, payload: objects });
             const ground = gnd.slice(); //copy the array
             ground[ystep2][xstep2] = groundType.boxInWater; //add at new position
-            store.dispatch({ type: actionTypes.updateGround, payload: {
-                ground,
-            } });
+            store.dispatch({ type: actionTypes.updateGround, payload: ground });
             return false;
 
         //Seastar already in water
@@ -153,9 +144,7 @@ const handleMovement = (player: any) => {
             const objects = obj.slice(); //copy the array
             objects[yto][xto] = objectType.none; //remove at old position
             objects[ystep2][xstep2] = objectType.seastar; //add at new position
-            store.dispatch({ type: actionTypes.moveObjects, payload: {
-                objects
-            } });
+            store.dispatch({ type: actionTypes.moveObjects, payload: objects });
             removeseastar(obj,yto,xto,ystep2,xstep2);
             return false;
 
@@ -164,9 +153,7 @@ const handleMovement = (player: any) => {
             const objects = obj.slice(); //copy the array
             objects[yto][xto] = objectType.none; //remove at old position
             objects[ystep2][xstep2] = objectType.box; //add at new position
-            store.dispatch({ type: actionTypes.moveObjects, payload: {
-                objects
-            } });
+            store.dispatch({ type: actionTypes.moveObjects, payload: objects });
             return false;
 
         //move Seastar
@@ -174,19 +161,15 @@ const handleMovement = (player: any) => {
             const objects = obj.slice(); //copy the array
             objects[yto][xto] = objectType.none; //remove at old position
             objects[ystep2][xstep2] = objectType.seastar; //add at new position
-            store.dispatch({ type: actionTypes.moveObjects, payload: {
-                objects
-            } });
+            store.dispatch({ type: actionTypes.moveObjects, payload: objects });
             return false;
 
         //Bottle to Bottle water
-        } else if (nextObjectsTile === objectType.bottle && step2GroundTile === groundType.waterHole && !(step2GroundTile === groundType.grass && nextGroundTile !== groundType.grass) && !(nextGroundTile === groundType.grass && currentGroundTile !== groundType.grass) && !(nextGroundTile !== groundType.grass && currentGroundTile === groundType.grass) && obj[ystep2][xstep2] === objectType.none) {
+        } else if (nextObjectsTile === objectType.bottle && step2GroundTile === groundType.waterHole && !(nextGroundTile === groundType.grass && currentGroundTile !== groundType.grass) && !(nextGroundTile !== groundType.grass && currentGroundTile === groundType.grass) && obj[ystep2][xstep2] === objectType.none) {
             const objects = obj.slice(); //copy the array
             objects[yto][xto] = objectType.none; //remove at old position
             objects[ystep2][xstep2] = objectType.bottleWater; //add at new position
-            store.dispatch({ type: actionTypes.moveObjects, payload: {
-                objects
-            } });
+            store.dispatch({ type: actionTypes.moveObjects, payload: objects });
             return false;
 
         //move Bottle
@@ -194,23 +177,17 @@ const handleMovement = (player: any) => {
             const objects = obj.slice(); //copy the array
             objects[yto][xto] = 0; //remove at old position
             objects[ystep2][xstep2] = 8; //add at new position
-            store.dispatch({ type: actionTypes.moveObjects, payload: {
-                objects
-            } });
+            store.dispatch({ type: actionTypes.moveObjects, payload: objects });
             return false;
 
         //Create Spring
-        } else if (nextObjectsTile === objectType.bottleWater && step2GroundTile === groundType.sandHoleWithBean && !(step2GroundTile === groundType.grass && nextGroundTile !== groundType.grass) && !(nextGroundTile === groundType.grass && currentGroundTile !== groundType.grass) && !(nextGroundTile !== groundType.grass && currentGroundTile === groundType.grass) && obj[ystep2][xstep2] === objectType.none) {
+        } else if (nextObjectsTile === objectType.bottleWater && step2GroundTile === groundType.sandHoleWithBean && !(nextGroundTile === groundType.grass && currentGroundTile !== groundType.grass) && !(nextGroundTile !== groundType.grass && currentGroundTile === groundType.grass) && obj[ystep2][xstep2] === objectType.none) {
             const objects = obj.slice(); //copy the array
             objects[yto][xto] = 0; //remove at old position
-            store.dispatch({ type: actionTypes.moveObjects, payload: {
-                objects
-            } });
+            store.dispatch({ type: actionTypes.moveObjects, payload: objects });
             const ground = gnd.slice(); //copy the array
             ground[ystep2][xstep2] = 7; //add at new position
-            store.dispatch({ type: actionTypes.updateGround, payload: {
-                ground
-            } });
+            store.dispatch({ type: actionTypes.updateGround, payload: ground });
             return false;
 
         //move Bottle with water
@@ -218,9 +195,7 @@ const handleMovement = (player: any) => {
             const objects = obj.slice(); //copy the array
             objects[yto][xto] = objectType.none; //remove at old position
             objects[ystep2][xstep2] = objectType.bottleWater; //add at new position
-            store.dispatch({ type: actionTypes.moveObjects, payload: {
-                objects
-            } });
+            store.dispatch({ type: actionTypes.moveObjects, payload: objects });
             return false;
 
         //move Figure(s)
@@ -228,7 +203,7 @@ const handleMovement = (player: any) => {
             const checkmovefigure = (figuretype: number) => {
                 if (step2GroundTile !== groundType.spring && step2GroundTile !== groundType.water && !(step2GroundTile === groundType.grass && nextGroundTile !== groundType.grass) && !(nextGroundTile === groundType.grass && currentGroundTile !== groundType.grass) && !(nextGroundTile !== groundType.grass && currentGroundTile === groundType.grass) && obj[ystep2][xstep2] === objectType.none) {
                     const objects = obj.slice(); //copy the array
-                    const objarr: any[] = [];
+                    const objarr: string[] = [];
                     let i = 0;
                     for (let y = 0; y < worldHeight; y++) { //scroll through world y
                         for (let x = 0; x < worldWidth; x++) { //scroll through world x
@@ -255,9 +230,9 @@ const handleMovement = (player: any) => {
                                 xobjstep2 = x;
                             }
 
-                            const objarr2: any[] = [].concat(...objarr); //check for value in Array
-                            const countInArray = (array: any, value: string) => {
-                                return array.reduce((n: any, x: string) => n + (x === value), 0);
+                            const objarr2 = objarr.slice(); //check for value in Array
+                            const countInArray = (array: string[], value: string) => {
+                                return array.reduce((number, element) => number + Number(element === value), 0);
                             };
 
                             if (objects[y][x] === figuretype // figure of same type found
@@ -283,9 +258,7 @@ const handleMovement = (player: any) => {
                     }
                     objects[yto][xto] = objectType.none; //remove at old position
                     objects[ystep2][xstep2] = figuretype; //add at new position
-                    store.dispatch({ type: actionTypes.moveObjects, payload: {
-                        objects
-                    } });
+                    store.dispatch({ type: actionTypes.moveObjects, payload: objects });
                     return false;
 
                 }
@@ -307,18 +280,14 @@ const handleMovement = (player: any) => {
             const objects = obj.slice(); //copy the array
             objects[yto][xto] = objectType.none; //remove at old position
             objects[ystep2][xstep2] = objectType.bomb; //add at new position
-            store.dispatch({ type: actionTypes.moveObjects, payload: {
-                objects
-            } });
+            store.dispatch({ type: actionTypes.moveObjects, payload: objects });
             return false;
 
         //trigger explosion
         } else if (nextGroundTile === groundType.bombTrigger && obj[yto][xto] === objectType.none) {
             const ground = gnd.slice(); //copy the array
             ground[yto][xto] = groundType.sand; //remove at old position
-            store.dispatch({ type: actionTypes.updateGround, payload: {
-                ground
-            } });
+            store.dispatch({ type: actionTypes.updateGround, payload: ground });
             explode(obj);
             return false;
 
@@ -357,19 +326,17 @@ const handleMovement = (player: any) => {
         document.cookie = cookieName + "=" + cvalue + ";" + expires + ";path=/";
     };
 
-    const removeseastar = (obj: any,yto: number,xto: number,ystep2: number,xstep2: number) => {
+    const removeseastar = (obj: number[][],yto: number,xto: number,ystep2: number,xstep2: number) => {
         setTimeout(() => {
             const objects = obj.slice(); //copy the array
             objects[yto][xto] = 0; //remove at old position
             objects[ystep2][xstep2] = 0; //remove at old position
-            store.dispatch({ type: actionTypes.moveObjects, payload: {
-                objects
-            } });
+            store.dispatch({ type: actionTypes.moveObjects, payload: objects });
         }, 100);
 
     };
 
-    const explode = (obj: any) => {
+    const explode = (obj: number[][]) => {
         const objects = obj.slice();
         for (let y = 0; y < worldHeight; y++) { //scroll through world y
             for (let x = 0; x < worldWidth; x++) { //scroll through world x
@@ -377,32 +344,24 @@ const handleMovement = (player: any) => {
                     setTimeout(() => {
                         const objects = obj.slice(); //copy the array
                         objects[y][x] = 15; //remove at old position
-                        store.dispatch({ type: actionTypes.moveObjects, payload: {
-                            objects
-                        } });
+                        store.dispatch({ type: actionTypes.moveObjects, payload: objects });
                     }, 50);
                     setTimeout(() => {
                         const objects = obj.slice(); //copy the array
                         objects[y][x] = 0; //remove at old position
-                        store.dispatch({ type: actionTypes.moveObjects, payload: {
-                            objects
-                        } });
+                        store.dispatch({ type: actionTypes.moveObjects, payload: objects });
                     }, 250);
                     if (y > 0) {
                         if (objects[y - 1][x] === 0 || objects[y - 1][x] === 4) {
                             setTimeout(() => {
                                 const objects = obj.slice(); //copy the array
                                 objects[y - 1][x] = 15; //remove at old position
-                                store.dispatch({ type: actionTypes.moveObjects, payload: {
-                                    objects
-                                } });
+                                store.dispatch({ type: actionTypes.moveObjects, payload: objects });
                             }, 300);
                             setTimeout(() => {
                                 const objects = obj.slice(); //copy the array
                                 objects[y - 1][x] = 0; //remove at old position
-                                store.dispatch({ type: actionTypes.moveObjects, payload: {
-                                    objects
-                                } });
+                                store.dispatch({ type: actionTypes.moveObjects, payload: objects });
                             }, 400);
                         }
                     }
@@ -411,16 +370,12 @@ const handleMovement = (player: any) => {
                             setTimeout(() => {
                                 const objects = obj.slice(); //copy the array
                                 objects[y][x + 1] = 15; //remove at old position
-                                store.dispatch({ type: actionTypes.moveObjects, payload: {
-                                    objects
-                                } });
+                                store.dispatch({ type: actionTypes.moveObjects, payload: objects });
                             }, 450);
                             setTimeout(() => {
                                 const objects = obj.slice(); //copy the array
                                 objects[y][x + 1] = 0; //remove at old position
-                                store.dispatch({ type: actionTypes.moveObjects, payload: {
-                                    objects
-                                } });
+                                store.dispatch({ type: actionTypes.moveObjects, payload: objects });
                             }, 650);
                         }
                     }
@@ -429,16 +384,12 @@ const handleMovement = (player: any) => {
                             setTimeout(() => {
                                 const objects = obj.slice(); //copy the array
                                 objects[y + 1][x] = 15; //remove at old position
-                                store.dispatch({ type: actionTypes.moveObjects, payload: {
-                                    objects
-                                } });
+                                store.dispatch({ type: actionTypes.moveObjects, payload: objects });
                             }, 700);
                             setTimeout(() => {
                                 const objects = obj.slice(); //copy the array
                                 objects[y + 1][x] = 0; //remove at old position
-                                store.dispatch({ type: actionTypes.moveObjects, payload: {
-                                    objects
-                                } });
+                                store.dispatch({ type: actionTypes.moveObjects, payload: objects });
                             }, 900);
                         }
                     }
@@ -447,16 +398,12 @@ const handleMovement = (player: any) => {
                             setTimeout(() => {
                                 const objects = obj.slice(); //copy the array
                                 objects[y][x - 1] = 15; //remove at old position
-                                store.dispatch({ type: actionTypes.moveObjects, payload: {
-                                    objects
-                                } });
+                                store.dispatch({ type: actionTypes.moveObjects, payload: objects });
                             }, 950);
                             setTimeout(() => {
                                 const objects = obj.slice(); //copy the array
                                 objects[y][x - 1] = 0; //remove at old position
-                                store.dispatch({ type: actionTypes.moveObjects, payload: {
-                                    objects
-                                } });
+                                store.dispatch({ type: actionTypes.moveObjects, payload: objects });
                             }, 1150);
                         }
                     }
@@ -467,7 +414,7 @@ const handleMovement = (player: any) => {
 
     };
 
-    const turnHome = (newPos: any) => {
+    const turnHome = (newPos: number[]) => {
         const rotation = 0;
         for (let i = 0; i < 1440; i++) { //two turns
             setTimeout(() => {
@@ -564,12 +511,12 @@ const handleMovement = (player: any) => {
     let initialX: number | null = null;
     let initialY: number | null = null;
 
-    const startTouch = (e: any) => {
+    const startTouch = (e: TouchEvent) => {
         initialX = e.touches[0].clientX;
         initialY = e.touches[0].clientY;
     };
 
-    const moveTouch = (e: any) => {
+    const moveTouch = (e: TouchEvent) => {
         if (initialX === null) {
             return;
         }

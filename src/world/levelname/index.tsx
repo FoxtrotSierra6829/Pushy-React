@@ -1,8 +1,10 @@
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { scale, screenRatio } from '../../config/constants';
+import { RootState } from '../../config/store';
 import '../styles.css';
 
-const levelName = (props: any) => {
+const LevelName = () => {
+    const levelName = useSelector((state: RootState) => state.levelName);
     return (
         <div
             style={{
@@ -15,14 +17,9 @@ const levelName = (props: any) => {
             }}
 
         >
-            {props.levelName}
+            {levelName}
         </div>
     );
 };
-const mapStateToProps = (state: any) => {
-    return {
-        ...state.levelName,
-    };
-};
 
-export default connect(mapStateToProps)(levelName);
+export default LevelName;
