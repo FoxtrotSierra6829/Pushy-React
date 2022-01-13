@@ -3,7 +3,7 @@ import { groundType, objectType, worldHeight } from '../../config/constants';
 import { worldWidth } from '../../config/constants';
 import { actionTypes } from '../../config/types';
 
-const handleMovement = (player: any) => {
+const handleMovement = (player: (() => JSX.Element)) => {
 
     const getNewPosition = (direction: string) => {
         const oldPosition = store.getState().pushy.position;
@@ -100,10 +100,9 @@ const handleMovement = (player: any) => {
                     }
                 }
             }
-            const obj2 = [] as number[][];
-            obj2.concat(...objects);
-            const countInArray = (array: any, value: number) => {
-                return array.reduce((n: any, x: number) => n + (x === value), 0);
+            const obj2 = objects.slice();
+            const countInArray = (array: number[][], value: number) => {
+                return array.flat().reduce((number, element) => number + Number(element === value), 0);
             };
             if (countInArray(obj2, objectType.seastar) === 0) { //if no Seastars
                 const level = parseInt(getCookie('level'));
@@ -204,7 +203,7 @@ const handleMovement = (player: any) => {
             const checkmovefigure = (figuretype: number) => {
                 if (step2GroundTile !== groundType.spring && step2GroundTile !== groundType.water && !(step2GroundTile === groundType.grass && nextGroundTile !== groundType.grass) && !(nextGroundTile === groundType.grass && currentGroundTile !== groundType.grass) && !(nextGroundTile !== groundType.grass && currentGroundTile === groundType.grass) && obj[ystep2][xstep2] === objectType.none) {
                     const objects = obj.slice(); //copy the array
-                    const objarr: any[] = [];
+                    const objarr: string[] = [];
                     let i = 0;
                     for (let y = 0; y < worldHeight; y++) { //scroll through world y
                         for (let x = 0; x < worldWidth; x++) { //scroll through world x
@@ -231,9 +230,9 @@ const handleMovement = (player: any) => {
                                 xobjstep2 = x;
                             }
 
-                            const objarr2: any[] = [].concat(...objarr); //check for value in Array
-                            const countInArray = (array: any, value: string) => {
-                                return array.reduce((n: any, x: string) => n + (x === value), 0);
+                            const objarr2 = objarr.slice(); //check for value in Array
+                            const countInArray = (array: string[], value: string) => {
+                                return array.reduce((number, element) => number + Number(element === value), 0);
                             };
 
                             if (objects[y][x] === figuretype // figure of same type found
@@ -512,12 +511,12 @@ const handleMovement = (player: any) => {
     let initialX: number | null = null;
     let initialY: number | null = null;
 
-    const startTouch = (e: any) => {
+    const startTouch = (e: TouchEvent) => {
         initialX = e.touches[0].clientX;
         initialY = e.touches[0].clientY;
     };
 
-    const moveTouch = (e: any) => {
+    const moveTouch = (e: TouchEvent) => {
         if (initialX === null) {
             return;
         }
