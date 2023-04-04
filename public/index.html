@@ -15,10 +15,7 @@
   </head>
   <body>
     <script>
-    if (window.location.href=='https://florian-scheuner.de/pushy/' || window.location.href=='http://florian-scheuner.de/pushy/') {
-      window.location.href = "https://pushy.florian-scheuner.de/";
-  }
-  document.onreadystatechange = () => {
+      document.onreadystatechange = () => {
         if (document.readyState === 'complete') {
           document.getElementById("world").style.opacity="100";
         }
