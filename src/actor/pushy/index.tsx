@@ -20,9 +20,7 @@ const Pushy = () => {
                 width: scale * screenRatio() + 'vh',
                 height: scale * screenRatio() + 'vh',
                 zIndex: 3,
-
             }}
-
         />
     );
 };
