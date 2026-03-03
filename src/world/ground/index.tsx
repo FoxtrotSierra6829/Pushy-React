@@ -107,7 +107,7 @@ const MapTile = ({ tile }: {tile: number}) => {
 const MapRow = ({ row }: {row: number[]}) => {
     return <div className="row">
         {
-            row.map((groundtile) => <MapTile tile={groundtile} />)
+            row.map((groundtile, index) => <MapTile key={index} tile={groundtile} />)
         }
     </div>;
 };
@@ -127,7 +127,7 @@ const Ground = () => {
             }}
         >
             {
-                ground.map((row) => <MapRow row={row} />)
+                ground.map((row, index) => <MapRow key={index} row={row} />)
             }
 
         </div>

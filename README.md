@@ -10,23 +10,20 @@ Port-Over/Rebuild from existing [Greenfoot/Java Project](https://github.com/Foxt
 
 ![Preview Image](https://github.com/FoxtrotSierra6829/Pushy-React/blob/master/Preview.png?raw=true)
 
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Getting Started
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `npm install`
+### `npm install` or `npm i`
 
 Installs the required dependencies
 
-### `npm start`
+### `npm run dev`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3000](http://localhost:3000) (default port) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
@@ -38,5 +35,3 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.

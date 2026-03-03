@@ -1,32 +1,55 @@
 import { levelType } from "./types";
 
+// Level imports
+import * as level1 from '../levels/PushyIsland/1';
+import * as level2 from '../levels/PushyIsland/2';
+import * as level3 from '../levels/PushyIsland/3';
+import * as level4 from '../levels/PushyIsland/4';
+import * as level5 from '../levels/PushyIsland/5';
+import * as level6 from '../levels/PushyIsland/6';
+import * as level7 from '../levels/PushyIsland/7';
+import * as level8 from '../levels/PushyIsland/8';
+import * as level9 from '../levels/PushyIsland/9';
+import * as level10 from '../levels/PushyIsland/10';
+import * as level11 from '../levels/PushyIsland/11';
+import * as level12 from '../levels/PushyIsland/12';
+import * as level13 from '../levels/PushyIsland/13';
+import * as level14 from '../levels/PushyIsland/14';
+import * as level15 from '../levels/PushyIsland/15';
+import * as level16 from '../levels/PushyIsland/16';
+import * as level17 from '../levels/PushyIsland/17';
+import * as level18 from '../levels/PushyIsland/18';
+import * as level19 from '../levels/PushyIsland/19';
+import * as level20 from '../levels/PushyIsland/20';
+import * as level21 from '../levels/PushyIsland/21';
+
 export const scale = 7.5;
 export const worldHeight = 12;
 export const worldWidth = 20;
 
 // level imports
 export const levels: Record<string,levelType> = {
-    level1 : require('../levels/PushyIsland/1'),
-    level2 : require('../levels/PushyIsland/2'),
-    level3 : require('../levels/PushyIsland/3'),
-    level4 : require('../levels/PushyIsland/4'),
-    level5 : require('../levels/PushyIsland/5'),
-    level6 : require('../levels/PushyIsland/6'),
-    level7 : require('../levels/PushyIsland/7'),
-    level8 : require('../levels/PushyIsland/8'),
-    level9 : require('../levels/PushyIsland/9'),
-    level10 : require('../levels/PushyIsland/10'),
-    level11 : require('../levels/PushyIsland/11'),
-    level12 : require('../levels/PushyIsland/12'),
-    level13 : require('../levels/PushyIsland/13'),
-    level14 : require('../levels/PushyIsland/14'),
-    level15 : require('../levels/PushyIsland/15'),
-    level16 : require('../levels/PushyIsland/16'),
-    level17 : require('../levels/PushyIsland/17'),
-    level18 : require('../levels/PushyIsland/18'),
-    level19 : require('../levels/PushyIsland/19'),
-    level20 : require('../levels/PushyIsland/20'),
-    level21 : require('../levels/PushyIsland/21')
+    level1,
+    level2,
+    level3,
+    level4,
+    level5,
+    level6,
+    level7,
+    level8,
+    level9,
+    level10,
+    level11,
+    level12,
+    level13,
+    level14,
+    level15,
+    level16,
+    level17,
+    level18,
+    level19,
+    level20,
+    level21
 };
 
 export const maxLevel = Object.keys(levels).length;
