@@ -1,30 +1,32 @@
 name: Upload to Server
 on:
-  push:
-    branches: [master]
+    push:
+        branches: [master]
 
 jobs:
-  web-deploy:
-    name: Deploy
-    # Prevent running this on forks
-    if: github.repository_owner == 'FoxtrotSierra6829'
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout source
-      uses: actions/checkout@v2
-    
-    - name: Install dependencies
-      run: npm ci
+    web-deploy:
+        name: Deploy
+        # Prevent running this on forks
+        if: github.repository_owner == 'FoxtrotSierra6829'
+        runs-on: ubuntu-latest
+        permissions:
+            contents: read
+        steps:
+            - name: Checkout source
+              uses: actions/checkout@v2
 
-    - name: Build website
-      run: npm run build
-    
-    - name: Sync files
-      uses: sebastianpopp/ftp-action@releases/v2
-      with:
-        host: ${{ secrets.SERVER_ADRESS }}
-        user: ${{ secrets.SERVER_USERNAME }}
-        password: ${{ secrets.SERVER_PASSWORD }}
-        localDir: "build"
-        remoteDir: "pushy"
-        options: ""
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Build website
+              run: npm run build
+
+            - name: Sync files
+              uses: sebastianpopp/ftp-action@releases/v2
+              with:
+                  host: ${{ secrets.SERVER_ADRESS }}
+                  user: ${{ secrets.SERVER_USERNAME }}
+                  password: ${{ secrets.SERVER_PASSWORD }}
+                  localDir: 'build'
+                  remoteDir: 'pushy'
+                  options: ''
