@@ -4,6 +4,9 @@ Pushy Island recreated in ReactJS
 
 Port-Over/Rebuild from existing [Greenfoot/Java Project](https://github.com/FoxtrotSierra6829/PushyGreenfoot)
 
+> [!NOTE]  
+> Disclaimer: This project is based on the educational game _Pushy Island_ from <a href="https://medienwerkstatt-online.de/">Medienwerkstatt Mühlacker Verlagsges.mbH</a>. No original arts or code were used.
+
 ## [Try it out now!](https://pushy.florian-scheuner.de/)
 
 ![Preview Image](https://github.com/FoxtrotSierra6829/Pushy-React/blob/master/Preview.png?raw=true)
