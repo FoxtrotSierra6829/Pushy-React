@@ -1,207 +1,207 @@
 /* Preload all groundtiles that could appear later */
 .frame::after {
-  position: absolute;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-  z-index: -1;
-  content: url('../images/box_water.webp') url('../images/bottle_water.webp')
-    url('../images/bottle_water.webp') url('../images/sand_hole_bean.webp')
-    url('../images/spring.webp') url('../images/1xbean.webp');
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    z-index: -1;
+    content: url('../images/box_water.webp') url('../images/bottle_water.webp')
+        url('../images/bottle_water.webp') url('../images/sand_hole_bean.webp')
+        url('../images/spring.webp') url('../images/1xbean.webp');
 }
 .frame {
-  background-size: 100%;
-  background-repeat: 'no-repeat';
-  background-image: url('../images/pushy_island_all_water.webp');
-  touch-action: none;
+    background-size: 100%;
+    background-repeat: 'no-repeat';
+    background-image: url('../images/pushy_island_all_water.webp');
+    touch-action: none;
 }
 .frame-menu {
-  background-size: 100%;
-  background-repeat: 'no-repeat';
-  background-image: url('../images/pushy_island.jpg');
-  touch-action: none;
+    background-size: 100%;
+    background-repeat: 'no-repeat';
+    background-image: url('../images/pushy_island.jpg');
+    touch-action: none;
 }
 .frame-congrats {
-  background-size: 100%;
-  background-repeat: 'no-repeat';
-  background-image: url('../images/pushy_island_win.jpg');
-  touch-action: none;
+    background-size: 100%;
+    background-repeat: 'no-repeat';
+    background-image: url('../images/pushy_island_win.jpg');
+    touch-action: none;
 }
 .world {
-  opacity: 0;
-  background-size: 100%;
-  background-repeat: 'no-repeat';
+    opacity: 1;
+    background-size: 100%;
+    background-repeat: 'no-repeat';
 }
 .groundtile {
-  display: inline-flex;
-  background-size: 100%;
-  background-repeat: 'no-repeat';
-  color: transparent;
-  z-index: 1;
+    display: inline-flex;
+    background-size: 100%;
+    background-repeat: 'no-repeat';
+    color: transparent;
+    z-index: 1;
 }
 .water {
-  background-image: url('../images/water.webp');
+    background-image: url('../images/water.webp');
 }
 
 .sand {
-  background-image: url('../images/sand.webp');
+    background-image: url('../images/sand.webp');
 }
 .sand-lo {
-  background-image: url('../images/sand_lo.webp');
+    background-image: url('../images/sand_lo.webp');
 }
 .sand-lu {
-  background-image: url('../images/sand_lu.webp');
+    background-image: url('../images/sand_lu.webp');
 }
 .sand-ru {
-  background-image: url('../images/sand_ru.webp');
+    background-image: url('../images/sand_ru.webp');
 }
 .sand-ro {
-  background-image: url('../images/sand_ro.webp');
+    background-image: url('../images/sand_ro.webp');
 }
 .grass {
-  background-image: url('../images/grass.webp');
+    background-image: url('../images/grass.webp');
 }
 .grass-lo {
-  background-image: url('../images/grass_lo.webp');
+    background-image: url('../images/grass_lo.webp');
 }
 .grass-lu {
-  background-image: url('../images/grass_lu.webp');
+    background-image: url('../images/grass_lu.webp');
 }
 .grass-ro {
-  background-image: url('../images/grass_ro.webp');
+    background-image: url('../images/grass_ro.webp');
 }
 .grass-ru {
-  background-image: url('../images/grass_ru.webp');
+    background-image: url('../images/grass_ru.webp');
 }
 .grass-down {
-  background-image: url('../images/grass_down.webp');
+    background-image: url('../images/grass_down.webp');
 }
 .water-hole {
-  background-image: url('../images/water_hole.webp');
+    background-image: url('../images/water_hole.webp');
 }
 .sand-hole {
-  background-image: url('../images/sand_hole.webp');
+    background-image: url('../images/sand_hole.webp');
 }
 .sand-hole-bean {
-  background-image: url('../images/sand_hole_bean.webp');
+    background-image: url('../images/sand_hole_bean.webp');
 }
 .spring {
-  background-image: url('../images/spring.webp');
+    background-image: url('../images/spring.webp');
 }
 .cross-red {
-  background-image: url('../images/cross_red.webp');
+    background-image: url('../images/cross_red.webp');
 }
 .cross-blue {
-  background-image: url('../images/cross_blue.webp');
+    background-image: url('../images/cross_blue.webp');
 }
 .cross-green {
-  background-image: url('../images/cross_green.webp');
+    background-image: url('../images/cross_green.webp');
 }
 .bomb-trigger {
-  background-image: url('../images/bomb_trigger.webp');
+    background-image: url('../images/bomb_trigger.webp');
 }
 
 .objectstile {
-  display: inline-flex;
-  background-size: 100%;
-  background-repeat: 'no-repeat';
-  color: transparent;
-  z-index: 2;
+    display: inline-flex;
+    background-size: 100%;
+    background-repeat: 'no-repeat';
+    color: transparent;
+    z-index: 2;
 }
 .house {
-  background-image: url('../images/house.webp');
+    background-image: url('../images/house.webp');
 }
 .box {
-  background-image: url('../images/box.webp');
+    background-image: url('../images/box.webp');
 }
 .box-water {
-  background-image: url('../images/box_water.webp');
+    background-image: url('../images/box_water.webp');
 }
 .stone {
-  background-image: url('../images/stone.webp');
+    background-image: url('../images/stone.webp');
 }
 .palm-left {
-  background-image: url('../images/palm_left.webp');
+    background-image: url('../images/palm_left.webp');
 }
 .palm-right {
-  background-image: url('../images/palm_right.webp');
+    background-image: url('../images/palm_right.webp');
 }
 .seastar {
-  background-image: url('../images/seastar.webp');
+    background-image: url('../images/seastar.webp');
 }
 .bottle {
-  background-image: url('../images/bottle.webp');
+    background-image: url('../images/bottle.webp');
 }
 .bottle-water {
-  background-image: url('../images/bottle_water.webp');
+    background-image: url('../images/bottle_water.webp');
 }
 .bean {
-  background-image: url('../images/bean.webp');
+    background-image: url('../images/bean.webp');
 }
 .figure-red {
-  background-image: url('../images/figure_red.webp');
+    background-image: url('../images/figure_red.webp');
 }
 .figure-blue {
-  background-image: url('../images/figure_blue.webp');
+    background-image: url('../images/figure_blue.webp');
 }
 .figure-green {
-  background-image: url('../images/figure_green.webp');
+    background-image: url('../images/figure_green.webp');
 }
 .bomb {
-  background-image: url('../images/bomb.webp');
+    background-image: url('../images/bomb.webp');
 }
 .explosion {
-  background-image: url('../images/explosion.webp');
+    background-image: url('../images/explosion.webp');
 }
 
 .back-arrow {
-  position: absolute;
-  display: inline-flex;
-  background-size: 100%;
-  background-repeat: 'no-repeat';
-  color: transparent;
-  z-index: 4;
-  background-image: url('../images/back_arrow.webp');
-  cursor: pointer;
+    position: absolute;
+    display: inline-flex;
+    background-size: 100%;
+    background-repeat: 'no-repeat';
+    color: transparent;
+    z-index: 4;
+    background-image: url('../images/back_arrow.webp');
+    cursor: pointer;
 }
 .reload {
-  position: absolute;
-  display: inline-flex;
-  background-size: 100%;
-  background-repeat: 'no-repeat';
-  color: transparent;
-  z-index: 4;
-  background-image: url('../images/reset.webp');
-  cursor: pointer;
+    position: absolute;
+    display: inline-flex;
+    background-size: 100%;
+    background-repeat: 'no-repeat';
+    color: transparent;
+    z-index: 4;
+    background-image: url('../images/reset.webp');
+    cursor: pointer;
 }
 .backwards {
-  position: absolute;
-  display: inline-flex;
-  background-size: 100%;
-  background-repeat: 'no-repeat';
-  color: transparent;
-  z-index: 4;
-  background-image: url('../images/backwards.webp');
-  cursor: pointer;
+    position: absolute;
+    display: inline-flex;
+    background-size: 100%;
+    background-repeat: 'no-repeat';
+    color: transparent;
+    z-index: 4;
+    background-image: url('../images/backwards.webp');
+    cursor: pointer;
 }
 .forwards {
-  position: absolute;
-  display: inline-flex;
-  background-size: 100%;
-  background-repeat: 'no-repeat';
-  color: transparent;
-  z-index: 4;
-  background-image: url('../images/backwards.webp');
-  -webkit-transform: scaleX(-1);
-  transform: scaleX(-1);
-  cursor: pointer;
+    position: absolute;
+    display: inline-flex;
+    background-size: 100%;
+    background-repeat: 'no-repeat';
+    color: transparent;
+    z-index: 4;
+    background-image: url('../images/backwards.webp');
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    cursor: pointer;
 }
 .beancount-1 {
-  position: absolute;
-  display: inline-flex;
-  background-size: 100%;
-  background-repeat: 'no-repeat';
-  color: transparent;
-  z-index: 4;
-  background-image: url('../images/1xbean.webp');
+    position: absolute;
+    display: inline-flex;
+    background-size: 100%;
+    background-repeat: 'no-repeat';
+    color: transparent;
+    z-index: 4;
+    background-image: url('../images/1xbean.webp');
 }

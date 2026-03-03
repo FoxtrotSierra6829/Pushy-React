@@ -38,23 +38,28 @@ const getTileType = (type: objectType) => {
     }
 };
 
-const MapTile = ({ tile }: {tile: number}) => {
-    return <div
-        className={`objectstile ${getTileType(tile)}`}
-        style={{
-            width: scale * screenRatio() + 'vh',
-            height: scale * screenRatio() + 'vh',
-        }}
-    >{tile}
-    </div>;
+const MapTile = ({ tile }: { tile: number }) => {
+    return (
+        <div
+            className={`objectstile ${getTileType(tile)}`}
+            style={{
+                width: scale * screenRatio() + 'vh',
+                height: scale * screenRatio() + 'vh',
+            }}
+        >
+            {tile}
+        </div>
+    );
 };
 
-const MapRow = ({ row }: {row: number[]}) => {
-    return <div className="row">
-        {
-            row.map((objectstile) => <MapTile tile={objectstile} />)
-        }
-    </div>;
+const MapRow = ({ row }: { row: number[] }) => {
+    return (
+        <div className="row">
+            {row.map((objectstile, index) => (
+                <MapTile key={index} tile={objectstile} />
+            ))}
+        </div>
+    );
 };
 
 const Objects = () => {
@@ -70,10 +75,9 @@ const Objects = () => {
                 fontSize: 0,
             }}
         >
-            {
-                objects.map((row) => <MapRow row={row} />)
-            }
-
+            {objects.map((row, index) => (
+                <MapRow key={index} row={row} />
+            ))}
         </div>
     );
 };
