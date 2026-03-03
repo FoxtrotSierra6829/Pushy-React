@@ -6,8 +6,6 @@ Port-Over/Rebuild from existing [Greenfoot/Java Project](https://github.com/Foxt
 
 ## [Try it out now!](https://pushy.florian-scheuner.de/)
 
-[Project-Status](https://github.com/FoxtrotSierra6829/Pushy-React/projects/1)
-
 ![Preview Image](https://github.com/FoxtrotSierra6829/Pushy-React/blob/master/Preview.png?raw=true)
 
 # Getting Started
